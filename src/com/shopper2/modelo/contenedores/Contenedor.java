@@ -1,7 +1,6 @@
-package com.angi.sooper.contenedores;
+package com.shopper2.modelo.contenedores;
 
-import com.angi.sooper.IContenedor;
-import com.angi.sooper.IProducto;
+import com.shopper2.modelo.productos.IProducto;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -116,14 +115,9 @@ public abstract class Contenedor implements IContenedor {
     public boolean meter(IProducto producto) {
         boolean resistenciaOK = resiste(producto);
         boolean volumenOK = producto.tengoEspacio(this);
-        boolean compatibilidadOK = true;
 
-        for (IProducto p : productos) {
-            boolean compatibleOK = producto.esCompatible(p);
-            compatibilidadOK &= compatibleOK;
-        }
 
-        boolean acepta = resistenciaOK && volumenOK && compatibilidadOK;
+        boolean acepta = resistenciaOK && volumenOK;
         if (acepta) {
             productos.add(producto);
             producto.meter(this);

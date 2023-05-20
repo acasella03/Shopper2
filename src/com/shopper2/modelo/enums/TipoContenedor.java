@@ -1,4 +1,4 @@
-package com.angi.sooper.enums;
+package com.shopper2.modelo.enums;
 
 /**
  * Clasificación de los tipos de contenedores.

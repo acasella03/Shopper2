@@ -1,6 +1,7 @@
-package com.angi.sooper;
+package com.shopper2.modelo.contenedores;
 
-import com.angi.sooper.enums.TipoContenedor;
+import com.shopper2.modelo.productos.IProducto;
+import com.shopper2.modelo.enums.TipoContenedor;
 
 import java.util.Set;
 

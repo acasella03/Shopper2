@@ -1,19 +1,20 @@
-package com.angi.sooper.productos;
+package com.shopper2.modelo.productos;
 
-import com.angi.sooper.IContenedor;
-import com.angi.sooper.IProducto;
-import com.angi.sooper.enums.Categoria;
+import com.shopper2.modelo.contenedores.IContenedor;
+import com.shopper2.modelo.enums.Categoria;
 
-public abstract class Producto implements IProducto {
+public class Producto implements IProducto {
     private String referencia;
     private int peso;
     private int volumen;
     private IContenedor contenedor;
+    private Categoria categoria;
 
-    public Producto(String referencia, int peso, int volumen) {
+    public Producto(String referencia, int peso, int volumen, Categoria categoria) {
         this.referencia = referencia;
         this.peso = peso;
         this.volumen = volumen;
+        this.categoria=categoria;
     }
 
     @Override
@@ -29,6 +30,11 @@ public abstract class Producto implements IProducto {
     @Override
     public int getVolumen() {
         return volumen;
+    }
+
+    @Override
+    public Categoria getCategoria() {
+        return categoria;
     }
 
     @Override

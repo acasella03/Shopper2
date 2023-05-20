@@ -1,6 +1,7 @@
-package com.angi.sooper;
+package com.shopper2.modelo.productos;
 
-import com.angi.sooper.enums.Categoria;
+import com.shopper2.modelo.enums.Categoria;
+import com.shopper2.modelo.contenedores.IContenedor;
 
 /**
  * Datos necesarios para ser implementados en producto:
@@ -18,7 +19,6 @@ public interface IProducto {
     int getPeso();
     int getVolumen();
     Categoria getCategoria();
-    boolean esCompatible(IProducto p);
     boolean tengoEspacio(IContenedor contenedor);
     void meter(IContenedor contenedor);
 }

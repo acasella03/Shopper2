@@ -1,4 +1,7 @@
-package com.angi.sooper;
+package com.shopper2.modelo.pedido;
+
+import com.shopper2.modelo.contenedores.IContenedor;
+import com.shopper2.modelo.productos.IProducto;
 
 import java.util.HashSet;
 import java.util.Set;

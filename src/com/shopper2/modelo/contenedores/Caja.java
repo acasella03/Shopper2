@@ -1,7 +1,7 @@
-package com.angi.sooper.contenedores;
+package com.shopper2.modelo.contenedores;
 
-import com.angi.sooper.IProducto;
-import com.angi.sooper.enums.TipoContenedor;
+import com.shopper2.modelo.productos.IProducto;
+import com.shopper2.modelo.enums.TipoContenedor;
 
 /**
  * Tipo de contenedor llamado Caja.
