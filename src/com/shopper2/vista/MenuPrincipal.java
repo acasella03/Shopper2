@@ -4,8 +4,10 @@ import javax.swing.*;
 
 public class MenuPrincipal {
     private JPanel menuPrincipal;
-    private JButton bPedidos;
-    private JButton bContenedores;
-    private JButton bProductos;
-    private JButton bSalir;
+    private JButton bVerPedidos;
+    private JButton bNuevoPedido;
+    private JPanel panel1;
+    private JPanel panel2;
+    private JPanel panel3;
+    private JLabel eMenuPrincipal;
 }
