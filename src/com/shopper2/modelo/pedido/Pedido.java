@@ -1,9 +1,12 @@
 package com.shopper2.modelo.pedido;
 
-import com.shopper2.modelo.contenedores.IContenedor;
 import com.shopper2.modelo.productos.IProducto;
+import com.shopper2.modelo.productos.Producto;
+import com.shopper2.modelo.repartidores.Repartidor;
 
+import java.util.Date;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -13,30 +16,99 @@ public class Pedido implements IPedido {
     /**
      * Identificador del pedido.
      */
-    private String referencia;
+    private int codpe;
     /**
-     * Tipo de contenedor del pedido.
+     * Nombre del cliente del pedido.
      */
-    private Set<IContenedor> contenedores;
+    private String nomCliente;
+    /**
+     * Dirección del cliente del pedido.
+     */
+    private String direccionCliente;
+    /**
+     * Fecha del pedido.
+     */
+    private Date fecha;
+    private Repartidor repartidor;
+    /**
+     * Lista del productos del pedido.
+     */
+    private Map<IProducto, Integer> productos;
 
     /**
-     * Constructor parametrizado.
+     * Constructor parametrizado con ID del pedido.
      *
-     * @param referencia identificadora del pedido.
+     * @param codpe            identificador del pedido.
+     * @param nomCliente       nombre del cliente del pedido.
+     * @param direccionCliente del pedido.
+     * @param fecha            del pedido
+     * @param productos        contenidos en el pedido.
      */
-    public Pedido(String referencia) {
-        this.referencia = referencia;
-        this.contenedores = new HashSet<>();
+    public Pedido(int codpe, String nomCliente, String direccionCliente, Date fecha, Map<IProducto, Integer> productos) {
+        this.codpe = codpe;
+        this.nomCliente = nomCliente;
+        this.direccionCliente = direccionCliente;
+        this.fecha = fecha;
+        this.productos = productos;
     }
 
     /**
-     * Obtiene la referencia del pedido.
+     * Constructor parametrizado sin ID del pedido.
      *
-     * @return la referencia del pedido.
+     * @param nomCliente       nombre del cliente del pedido.
+     * @param direccionCliente del pedido.
+     * @param fecha            del pedido
+     * @param productos        contenidos en el pedido.
+     */
+    public Pedido(String nomCliente, String direccionCliente, Date fecha, Repartidor repartidor, Map<IProducto, Integer> productos) {
+        this.nomCliente = nomCliente;
+        this.direccionCliente = direccionCliente;
+        this.fecha = fecha;
+        this.repartidor = repartidor;
+        this.productos = productos;
+    }
+
+    /**
+     * Obtiene el identificador del pedido.
+     *
+     * @return identificador del pedido.
+     */
+    public int getCodpe() {
+        return codpe;
+    }
+
+    /**
+     * Obtener el nombre del cliente del pedido.
+     *
+     * @return nombre del cliente del pedido.
      */
     @Override
-    public String getReferencia() {
-        return referencia;
+    public String getNomCliente() {
+        return nomCliente;
+    }
+
+    /**
+     * Obtener la dirección del cliente del pedido.
+     *
+     * @return dirección del cliente del pedido
+     */
+    @Override
+    public String getDireccionCliente() {
+        return direccionCliente;
+    }
+
+    /**
+     * Obtener la fecha del pedido.
+     *
+     * @return fecha del pedido.
+     */
+    public Date getFecha() {
+        return fecha;
+    }
+
+    @Override
+    public Repartidor getRepartidor() {
+        return repartidor;
     }
 
     /**
@@ -45,66 +117,22 @@ public class Pedido implements IPedido {
      * @return producto del pedido.
      */
     @Override
-    public Set<IProducto> getProductos() {
-        Set<IProducto> productos=null;
-        for (IContenedor c: contenedores) {
-            if(productos==null){
-                productos=c.getProductos();
-            }else {
-                productos.addAll(c.getProductos());
-            }
-        }
+    public Map<IProducto, Integer> getProductos() {
         return productos;
     }
 
     /**
-     * Obtiene el tipo de contenedor que usa el pedido.
+     * Agregar producto al pedido.
      *
-     * @return el tipo de contenedor del pedido.
+     * @param producto para agregar.
+     * @param cantidad para agregar.
      */
-    @Override
-    public Set<IContenedor> getContenedores() {
-        return contenedores;
-    }
-
-    /**
-     * Agrega el tipo de contenedor que usa el pedido.
-     *
-     * @param contenedor utilizado en el pedido.
-     */
-    @Override
-    public void addContenedor(IContenedor contenedor) {
-        contenedores.add(contenedor);
-    }
-
-    /**
-     * Agrega el producto al contenedor de un pedido.
-     *
-     * @param producto tipo de producto agregado.
-     * @return el contenedor en el que se ha colocado el producto, si es null no ha localizado el contenedor para el producto.
-     */
-    @Override
-    public IContenedor addProducto(IProducto producto) {
-        for (IContenedor contenedor: contenedores) {
-            if(contenedor.meter(producto)){
-                return contenedor;
-            }
+    public void addProducto(Producto producto, Integer cantidad) {
+        if (productos.containsKey(producto)) {
+            Integer cantidadActual = productos.get(producto);
+            productos.put(producto, cantidad + cantidadActual);
+        } else {
+            productos.put(producto, cantidad);
         }
-        return null;
-    }
-
-    /**
-     * Imprime información el pedido.
-     *
-     * @return información completa del pedido.
-     */
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Pedido: " + referencia + "\n");
-        for (IContenedor contenedor : contenedores) {
-            sb.append("\t" + contenedor + "\n");
-        }
-        return sb.toString();
     }
 }

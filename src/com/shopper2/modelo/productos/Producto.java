@@ -1,55 +1,65 @@
 package com.shopper2.modelo.productos;
 
-import com.shopper2.modelo.contenedores.IContenedor;
 import com.shopper2.modelo.enums.Categoria;
 
+/**
+ * Describe los datos necesarios de un producto.
+ */
 public class Producto implements IProducto {
-    private String referencia;
-    private int peso;
-    private int volumen;
-    private IContenedor contenedor;
+    /**
+     * Identificador de un producto.
+     */
+    private int codpr;
+    /**
+     * Nombre de un producto.
+     */
+    private String nombre;
+    /**
+     * Categoría de un producto.
+     */
     private Categoria categoria;
 
-    public Producto(String referencia, int peso, int volumen, Categoria categoria) {
-        this.referencia = referencia;
-        this.peso = peso;
-        this.volumen = volumen;
-        this.categoria=categoria;
+    /**
+     * Constructor parametrizado.
+     *
+     * @param codpr     código del producto.
+     * @param nombre    del producto.
+     * @param categoria del producto.
+     */
+    public Producto(int codpr, String nombre, Categoria categoria) {
+        this.codpr = codpr;
+        this.nombre = nombre;
+        this.categoria = categoria;
     }
 
+    /**
+     * Obtener el identificador del producto.
+     *
+     * @return identificador del producto.
+     */
     @Override
-    public String getReferencia() {
-        return referencia;
+    public int getCodpr() {
+        return codpr;
     }
 
+    /**
+     * Obtener el nombre del producto.
+     *
+     * @return nombre del producto.
+     */
     @Override
-    public int getPeso() {
-        return peso;
+    public String getNombre() {
+        return nombre;
     }
 
-    @Override
-    public int getVolumen() {
-        return volumen;
-    }
-
+    /**
+     * Obtener la categoría del producto.
+     *
+     * @return categoría del producto.
+     */
     @Override
     public Categoria getCategoria() {
         return categoria;
     }
 
-    @Override
-    public boolean tengoEspacio(IContenedor contenedor) {
-        return contenedor.volumenDisponible() > volumen;
-    }
-
-    @Override
-    public void meter(IContenedor contenedor) {
-        this.contenedor = contenedor;
-    }
-
-    @Override
-    public String toString() {
-        return "Producto [categoría=" + getCategoria() + ", referencia=" + referencia + ", peso=" + peso + ", volumen=" + volumen + ", contenedor="
-                + contenedor.getReferencia() + "]";
-    }
 }
