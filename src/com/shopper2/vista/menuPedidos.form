@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.shopper2.vista.menuPedidos">
-  <grid id="27dc6" binding="panelPedidos" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="panelPedidos" layout-manager="GridLayoutManager" row-count="6" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
       <xy x="20" y="20" width="500" height="400"/>
@@ -8,31 +8,15 @@
     <properties/>
     <border type="none"/>
     <children>
-      <component id="a348a" class="javax.swing.JButton" binding="bCrearPedidos" custom-create="true">
-        <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="CREAR PEDIDOS"/>
-        </properties>
-      </component>
-      <component id="f5ca7" class="javax.swing.JButton" binding="bConsultarPedidos">
-        <constraints>
-          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="CONSULTAR PEDIDOS"/>
-        </properties>
-      </component>
-      <component id="4b1e4" class="javax.swing.JLabel" binding="eCodpe">
+      <component id="4b1e4" class="javax.swing.JLabel" binding="eNombreCliente">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Código del pedido:"/>
+          <text value="NOMBRE"/>
         </properties>
       </component>
-      <component id="9f781" class="javax.swing.JTextField" binding="tCodpe">
+      <component id="9f781" class="javax.swing.JTextField" binding="tNombreCliente">
         <constraints>
           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -40,30 +24,71 @@
         </constraints>
         <properties/>
       </component>
-      <component id="8fee7" class="javax.swing.JButton" binding="bEliminarPedidos">
+      <component id="4cff3" class="javax.swing.JLabel" binding="eDireccionCliente">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="ELIMINAR PEDIDOS"/>
+          <text value="DIRECCIÓN"/>
         </properties>
       </component>
-      <component id="1ff76" class="javax.swing.JButton" binding="bVolver">
+      <component id="6bf1a" class="javax.swing.JTextField" binding="tDireccionCliente">
         <constraints>
-          <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="33671" class="javax.swing.JLabel" binding="eFecha">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="VOLVER A MENÚ PRINCIPAL"/>
+          <text value="FECHA"/>
         </properties>
       </component>
-      <component id="d4f69" class="javax.swing.JButton" binding="bModificarPedidos">
+      <component id="af596" class="javax.swing.JTextField" binding="tFecha">
         <constraints>
-          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="1bbe7" class="javax.swing.JTextField" binding="tIDepartidor">
+        <constraints>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="282c" class="javax.swing.JLabel" binding="eIDRepartidor">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="MODIFICAR PEDIDOS"/>
+          <text value="ID REPARTIDOR"/>
         </properties>
       </component>
+      <component id="fb597" class="javax.swing.JTable">
+        <constraints>
+          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="50"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <grid id="51094" binding="eListaProductos" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children/>
+      </grid>
     </children>
   </grid>
 </form>
