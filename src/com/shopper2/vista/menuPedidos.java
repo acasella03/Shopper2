@@ -1,4 +1,4 @@
-package vista;
+package com.shopper2.vista;
 
 import javax.swing.*;
 
