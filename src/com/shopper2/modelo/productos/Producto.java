@@ -13,7 +13,7 @@ public class Producto implements IProducto {
     /**
      * Nombre de un producto.
      */
-    private String nombre;
+    private String nombreProducto;
     /**
      * Categoría de un producto.
      */
@@ -23,12 +23,12 @@ public class Producto implements IProducto {
      * Constructor parametrizado.
      *
      * @param codpr     código del producto.
-     * @param nombre    del producto.
+     * @param nombreProducto    del producto.
      * @param categoria del producto.
      */
-    public Producto(int codpr, String nombre, Categoria categoria) {
+    public Producto(int codpr, String nombreProducto, Categoria categoria) {
         this.codpr = codpr;
-        this.nombre = nombre;
+        this.nombreProducto = nombreProducto;
         this.categoria = categoria;
     }
 
@@ -42,10 +42,10 @@ public class Producto implements IProducto {
 
     /**
      * Asignar un nombre al producto
-     * @param nombre del producto
+     * @param nombreProducto del producto
      */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
     }
 
     /**
@@ -72,8 +72,8 @@ public class Producto implements IProducto {
      * @return nombre del producto.
      */
     @Override
-    public String getNombre() {
-        return nombre;
+    public String getNombreProducto() {
+        return nombreProducto;
     }
 
     /**
