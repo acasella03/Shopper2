@@ -43,6 +43,7 @@ public class NuevoPedido extends javax.swing.JFrame {
         bCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("NUEVO PEDIDO");
 
         panel.setName("NUEVO PEDIDO"); // NOI18N
 

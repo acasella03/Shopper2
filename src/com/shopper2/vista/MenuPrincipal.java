@@ -32,6 +32,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         eAppShopper = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("MENU PRINCIPAL");
 
         panel.setBackground(new java.awt.Color(204, 204, 255));
         panel.setName("APP SHOPPER"); // NOI18N
