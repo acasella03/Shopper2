@@ -2,16 +2,15 @@ package com.shopper2.controlador;
 
 import com.shopper2.modelo.repartidores.Repartidor;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class RepartidorDao {
 
     /**
-     *Conjunto de resultados de la base de datos
+     * Conjunto de resultados de la base de datos
      */
     ResultSet resultado = null;
     /**
@@ -21,7 +20,44 @@ public class RepartidorDao {
     // todo crear metodo para conectarse
 
     /**
+     * Conectarse a la base de datos
+     *
+     * @return la conexion
+     */
+    public void connect() {
+
+        try {
+            Class.forName("org.sqlite.JDBC");
+            conexion = DriverManager.getConnection("jdbc:sqlite:");//todo poner enlace que conecta a la base de datos
+            if (conexion != null) {
+                System.out.println("Conectado");
+            }
+        } catch (SQLException ex) {
+            System.err.println("No se ha podido conectar a la base de datos\n" + ex.getMessage());
+
+        } catch (ClassNotFoundException e) {
+            Logger.getLogger(RepartidorDao.class.getName()).log(Level.SEVERE, null, e);
+        }
+
+
+    }
+
+
+    /**
+     * Realiza la desconexión de la base de datos
+     */
+    public void close() {
+        try {
+            conexion.close();
+        } catch (SQLException e) {
+            Logger.getLogger(RepartidorDao.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
+
+    /**
      * Buscar repartidor en la base de datos según su código
+     *
      * @param repartidor a buscar
      * @return repartidor encontrado en la base de datos
      */
@@ -33,8 +69,8 @@ public class RepartidorDao {
             resultado = sentencia.executeQuery();
 
             if (resultado.next()) {
-               repartidor.setCodr(Integer.parseInt(resultado.getString("codr")));
-               repartidor.setNomr(resultado.getString("nomr"));
+                repartidor.setCodr(Integer.parseInt(resultado.getString("codr")));
+                repartidor.setNomr(resultado.getString("nomr"));
             }
 
         } catch (SQLException e) {
