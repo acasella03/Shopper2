@@ -12,7 +12,7 @@ import com.shopper2.modelo.enums.Categoria;
 public interface IProducto {
     int getCodpr();
 
-    String getNombre();
+    String getNombreProducto();
 
     Categoria getCategoria();
 }
