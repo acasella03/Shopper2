@@ -13,11 +13,11 @@ public class RepartidorDao {
      * Conjunto de resultados de la base de datos
      */
     ResultSet resultado = null;
+    
     /**
      * Conexion a la base de datos
      */
-    Connection conexion = null;//
-    // todo crear metodo para conectarse
+    Connection conexion = null;
 
     /**
      * Conectarse a la base de datos
@@ -41,7 +41,6 @@ public class RepartidorDao {
 
 
     }
-
 
     /**
      * Realiza la desconexión de la base de datos
