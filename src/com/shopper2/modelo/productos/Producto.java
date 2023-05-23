@@ -33,6 +33,30 @@ public class Producto implements IProducto {
     }
 
     /**
+     * Asignar un identificador al producto
+     * @param codpr codigo del producto
+     */
+    public void setCodpr(int codpr) {
+        this.codpr = codpr;
+    }
+
+    /**
+     * Asignar un nombre al producto
+     * @param nombre del producto
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * Asignar una categoria al producto
+     * @param categoria del producto
+     */
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    /**
      * Obtener el identificador del producto.
      *
      * @return identificador del producto.
