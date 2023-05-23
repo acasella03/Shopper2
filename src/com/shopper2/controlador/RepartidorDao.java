@@ -60,6 +60,8 @@ public class RepartidorDao {
      */
     public Repartidor buscar(Repartidor repartidor) {
 
+        connect();
+
         try {
             PreparedStatement sentencia = conexion.prepareStatement("SELECT * from repartidores where codr=?");
             sentencia.setInt(1, repartidor.getCodr());
@@ -73,11 +75,7 @@ public class RepartidorDao {
         } catch (SQLException e) {
             System.err.println(e);
         } finally {
-            try {
-                conexion.close();//cerramos conexion
-            } catch (SQLException e) {
-                System.err.println(e);
-            }
+           close();
         }
 
         return repartidor;
