@@ -30,7 +30,7 @@ public class ProductoDao {
     public void connect() {
         try {
             Class.forName("org.sqlite.JDBC");
-            conexion = DriverManager.getConnection("jdbc:sqlite:" + url);//todo poner enlace que conecta a la base de datos
+            conexion = DriverManager.getConnection("jdbc:sqlite:" + url);
             if (conexion != null) {
                 System.out.println("Conectado");
             }

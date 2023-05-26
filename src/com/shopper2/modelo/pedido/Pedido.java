@@ -69,6 +69,54 @@ public class Pedido implements IPedido {
     }
 
     /**
+     * Asignar el identificador del pedido
+     * @param codpe codigo del pedido
+     */
+    public void setCodpe(int codpe) {
+        this.codpe = codpe;
+    }
+
+    /**
+     * Asignar el nombre del cliente del pedido
+     * @param nomCliente nombre del cliente
+     */
+    public void setNomCliente(String nomCliente) {
+        this.nomCliente = nomCliente;
+    }
+
+    /**
+     * Asignar la dirección del cliente del pedido
+     * @param direccionCliente
+     */
+    public void setDireccionCliente(String direccionCliente) {
+        this.direccionCliente = direccionCliente;
+    }
+
+    /**
+     * Asignar la fecha del pedido
+     * @param fecha
+     */
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    /**
+     * Asignar el repartidor del pedido
+     * @param repartidor
+     */
+    public void setRepartidor(Repartidor repartidor) {
+        this.repartidor = repartidor;
+    }
+
+    /**
+     * Asignar el producto del pedido
+     * @param productos
+     */
+    public void setProductos(Map<IProducto, Integer> productos) {
+        this.productos = productos;
+    }
+
+    /**
      * Obtiene el identificador del pedido.
      *
      * @return identificador del pedido.
@@ -106,6 +154,10 @@ public class Pedido implements IPedido {
         return fecha;
     }
 
+    /**
+     * Obtener el repartidor del pedido
+     * @return
+     */
     @Override
     public Repartidor getRepartidor() {
         return repartidor;
