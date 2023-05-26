@@ -10,6 +10,11 @@ import java.util.logging.Logger;
 public class ProductoDao {
 
     /**
+     * Ruta de ubicación de la base de datos
+     */
+    String url = "file:///C://Users//Angita//IdeaProjects//Shopper2//base_de_datos//basededatos.db";
+
+    /**
      * Conjunto de resultados de la base de datos
      */
     ResultSet resultado = null;
@@ -20,13 +25,12 @@ public class ProductoDao {
     Connection conexion = null;
 
     /**
-     * Conectarse a la base de datos
+     * Realiza la conexión a la base de datos
      */
     public void connect() {
-
         try {
             Class.forName("org.sqlite.JDBC");
-            conexion = DriverManager.getConnection("jdbc:sqlite:");//todo poner enlace que conecta a la base de datos
+            conexion = DriverManager.getConnection("jdbc:sqlite:" + url);//todo poner enlace que conecta a la base de datos
             if (conexion != null) {
                 System.out.println("Conectado");
             }
@@ -36,8 +40,6 @@ public class ProductoDao {
         } catch (ClassNotFoundException e) {
             Logger.getLogger(RepartidorDao.class.getName()).log(Level.SEVERE, null, e);
         }
-
-
     }
 
     /**
@@ -51,7 +53,6 @@ public class ProductoDao {
         }
     }
 
-
     /**
      * Buscar producto en la base de datos según su código
      *
@@ -59,33 +60,21 @@ public class ProductoDao {
      * @return producto encontrado en la base de datos
      */
     public Producto buscar(Producto producto) {
-
         connect();
-
         try {
             PreparedStatement sentencia = conexion.prepareStatement("SELECT * from productos where codpr=?");
             sentencia.setInt(1, producto.getCodpr());
             resultado = sentencia.executeQuery();
-
             if (resultado.next()) {
                 producto.setCodpr(Integer.parseInt(resultado.getString("codpr")));
                 producto.setNombreProducto(resultado.getString("nombreProducto"));
                 producto.setCategoria(Categoria.valueOf(resultado.getString("categoria")));
             }
-
         } catch (SQLException e) {
             System.err.println(e);
         } finally {
-           close();
+            close();
         }
-
         return producto;
-
     }
-
-
-
-
-
-
 }

@@ -6,8 +6,12 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 public class RepartidorDao {
+
+    /**
+     * Ruta de ubicación de la base de datos
+     */
+    String url = "file:///C://Users//Angita//IdeaProjects//Shopper2//base_de_datos//basededatos.db";
 
     /**
      * Conjunto de resultados de la base de datos
@@ -20,24 +24,20 @@ public class RepartidorDao {
     Connection conexion = null;
 
     /**
-     * Conectarse a la base de datos
+     * Realiza la conexión a la base de datos
      */
     public void connect() {
-
         try {
             Class.forName("org.sqlite.JDBC");
-            conexion = DriverManager.getConnection("jdbc:sqlite:");//todo poner enlace que conecta a la base de datos
+            conexion = DriverManager.getConnection("jdbc:sqlite:" + url);//todo poner enlace que conecta a la base de datos
             if (conexion != null) {
                 System.out.println("Conectado");
             }
         } catch (SQLException ex) {
             System.err.println("No se ha podido conectar a la base de datos\n" + ex.getMessage());
-
         } catch (ClassNotFoundException e) {
             Logger.getLogger(RepartidorDao.class.getName()).log(Level.SEVERE, null, e);
         }
-
-
     }
 
     /**
@@ -51,7 +51,6 @@ public class RepartidorDao {
         }
     }
 
-
     /**
      * Buscar repartidor en la base de datos según su código
      *
@@ -59,27 +58,20 @@ public class RepartidorDao {
      * @return repartidor encontrado en la base de datos
      */
     public Repartidor buscar(Repartidor repartidor) {
-
         connect();
-
         try {
             PreparedStatement sentencia = conexion.prepareStatement("SELECT * from repartidores where codr=?");
             sentencia.setInt(1, repartidor.getCodr());
             resultado = sentencia.executeQuery();
-
             if (resultado.next()) {
                 repartidor.setCodr(Integer.parseInt(resultado.getString("codr")));
                 repartidor.setNomr(resultado.getString("nomr"));
             }
-
         } catch (SQLException e) {
             System.err.println(e);
         } finally {
-           close();
+            close();
         }
-
         return repartidor;
-
     }
-
 }
