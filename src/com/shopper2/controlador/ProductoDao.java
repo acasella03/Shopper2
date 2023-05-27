@@ -62,8 +62,7 @@ public class ProductoDao {
             sentencia.setInt(1, codpr);
             ResultSet resultado = sentencia.executeQuery();
             if (resultado.next()) {
-                
-                producto.setCodpr(Integer.parseInt(resultado.getString("codpr")));
+                producto.setCodpr(resultado.getInt("codpr"));
                 producto.setNombreProducto(resultado.getString("nombreProducto"));
                 producto.setCategoria(Categoria.valueOf(resultado.getString("categoria")));
             }

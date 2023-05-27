@@ -13,10 +13,6 @@ public class RepartidorDao {
      */
     String url = "file:///C://Users//Angita//IdeaProjects//Shopper2//base_de_datos//basededatos.db";
 
-    /**
-     * Conjunto de resultados de la base de datos
-     */
-    ResultSet resultado = null;
 
     /**
      * Conexion a la base de datos
@@ -54,17 +50,18 @@ public class RepartidorDao {
     /**
      * Buscar repartidor en la base de datos según su código
      *
-     * @param repartidor a buscar
+     * @param codr a buscar
      * @return repartidor encontrado en la base de datos
      */
-    public Repartidor buscar(Repartidor repartidor) {
+    public Repartidor buscar(int codr) {
         connect();
+        Repartidor repartidor = new Repartidor();
         try {
             PreparedStatement sentencia = conexion.prepareStatement("SELECT * from repartidores where codr=?");
-            sentencia.setInt(1, repartidor.getCodr());
-            resultado = sentencia.executeQuery();
+            sentencia.setInt(1, codr);
+            ResultSet resultado = sentencia.executeQuery();
             if (resultado.next()) {
-                repartidor.setCodr(Integer.parseInt(resultado.getString("codr")));
+                repartidor.setCodr(resultado.getInt("codr"));
                 repartidor.setNomr(resultado.getString("nomr"));
             }
         } catch (SQLException e) {

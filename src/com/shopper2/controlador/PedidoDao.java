@@ -54,21 +54,25 @@ public class PedidoDao {
     /**
      * Buscar pedido en la base de datos según su código
      *
-     * @param pedido a buscar
+     * @param codpe a buscar
      * @return pedido encontrado en la base de datos
      */
-    public Pedido buscar(Pedido pedido) {
+    public Pedido buscar(int codpe) {
         connect();
+        Pedido pedido = new Pedido();
         try {
             PreparedStatement sentencia = conexion.prepareStatement("SELECT * from pedidos where codpe=?");
-            sentencia.setInt(1, pedido.getCodpe());
+            sentencia.setInt(1, codpe);
             ResultSet resultado = sentencia.executeQuery();
             if (resultado.next()) {
-                pedido.setCodpe(Integer.parseInt(resultado.getString("codpe")));
+                pedido.setCodpe(resultado.getInt("codpe"));
                 pedido.setNomCliente(resultado.getString("nomCliente"));
                 pedido.setDireccionCliente(resultado.getString("direccionCliente"));
                 pedido.setFecha(resultado.getDate("fecha"));
-                pedido.setRepartidor((Repartidor) resultado.getObject("repartidor"));
+                Repartidor repartidor = new Repartidor();
+                repartidor.setCodr(resultado.getInt("codr"));
+                pedido.setRepartidor(repartidor);
+
             }
         } catch (SQLException e) {
             System.err.println(e);
@@ -80,6 +84,7 @@ public class PedidoDao {
 
     /**
      * Metodo que nos devuelve todos los pedidos
+     *
      * @return todos los pedidos
      */
     public ArrayList<Pedido> buscarTodos() {
