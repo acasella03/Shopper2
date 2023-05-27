@@ -32,6 +32,9 @@ public class Producto implements IProducto {
         this.categoria = categoria;
     }
 
+    /**
+     * Constructor vacio
+     */
     public Producto() {
     }
 

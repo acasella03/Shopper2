@@ -78,6 +78,10 @@ public class PedidoDao {
         return pedido;
     }
 
+    /**
+     * Metodo que nos devuelve todos los pedidos
+     * @return todos los pedidos
+     */
     public ArrayList<Pedido> buscarTodos() {
         connect();
         ArrayList<Pedido> pedidos = new ArrayList<>();

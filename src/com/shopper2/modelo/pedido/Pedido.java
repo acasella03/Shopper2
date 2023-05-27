@@ -28,6 +28,9 @@ public class Pedido implements IPedido {
      * Fecha del pedido.
      */
     private Date fecha;
+    /**
+     * Repartidor del pedido
+     */
     private Repartidor repartidor;
     /**
      * Lista del productos del pedido.
@@ -51,6 +54,9 @@ public class Pedido implements IPedido {
         this.productos = productos;
     }
 
+    /**
+     * Constructor vacío
+     */
     public Pedido() {
     }
 
@@ -168,7 +174,7 @@ public class Pedido implements IPedido {
     /**
      * Obtener el repartidor del pedido
      *
-     * @return
+     * @return repartidor del pedido
      */
     @Override
     public Repartidor getRepartidor() {

@@ -15,6 +15,7 @@ public class Repartidor implements IRepartidor {
 
     /**
      * Constructor parametrizado.
+     *
      * @param codr identificador del repartidor.
      * @param nomr nombre del repartidor.
      */
@@ -23,12 +24,16 @@ public class Repartidor implements IRepartidor {
         this.nomr = nomr;
     }
 
+    /**
+     * Constructor vacío
+     */
     public Repartidor() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
     }
 
     /**
      * Asignar un identificador al repartidor
+     *
      * @param codr codigo del repartidor
      */
     public void setCodr(int codr) {
@@ -37,6 +42,7 @@ public class Repartidor implements IRepartidor {
 
     /**
      * Asignar un nombre al repartidor
+     *
      * @param nomr nombre del repartidor
      */
     public void setNomr(String nomr) {
@@ -45,6 +51,7 @@ public class Repartidor implements IRepartidor {
 
     /**
      * Obtener el identificador del repartidor.
+     *
      * @return identificador del repartidor.
      */
     @Override
@@ -54,6 +61,7 @@ public class Repartidor implements IRepartidor {
 
     /**
      * Obtener el nombre del repartidor.
+     *
      * @return nombre del repartidor.
      */
     @Override
