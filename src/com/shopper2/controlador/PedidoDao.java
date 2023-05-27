@@ -4,6 +4,7 @@ import com.shopper2.modelo.pedido.Pedido;
 import com.shopper2.modelo.repartidores.Repartidor;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,11 +14,6 @@ public class PedidoDao {
      * Ruta de ubicación de la base de datos
      */
     String url = "file:///C://Users//Angita//IdeaProjects//Shopper2//base_de_datos//basededatos.db";
-
-    /**
-     * Conjunto de resultados de la base de datos
-     */
-    ResultSet resultado = null;
 
     /**
      * Conexion a la base de datos
@@ -64,15 +60,13 @@ public class PedidoDao {
         try {
             PreparedStatement sentencia = conexion.prepareStatement("SELECT * from pedidos where codpe=?");
             sentencia.setInt(1, pedido.getCodpe());
-            resultado = sentencia.executeQuery();
+            ResultSet resultado = sentencia.executeQuery();
             if (resultado.next()) {
                 pedido.setCodpe(Integer.parseInt(resultado.getString("codpe")));
                 pedido.setNomCliente(resultado.getString("nomCliente"));
                 pedido.setDireccionCliente(resultado.getString("direccionCliente"));
-                pedido.setFecha(resultado.getDate("fecha"));//comprobar
-                pedido.setRepartidor((Repartidor) resultado.getObject("repartidor"));//comprobar
-                //falta algo?
-
+                pedido.setFecha(resultado.getDate("fecha"));
+                pedido.setRepartidor((Repartidor) resultado.getObject("repartidor"));
             }
         } catch (SQLException e) {
             System.err.println(e);
@@ -81,6 +75,31 @@ public class PedidoDao {
         }
         return pedido;
     }
+    
+     public ArrayList<Pedido> buscarTodos() {
+        connect();
+        ArrayList<Pedido> pedidos=new ArrayList<>();
+        try {
+            PreparedStatement sentencia = conexion.prepareStatement("SELECT * from pedidos");
+            ResultSet resultado = sentencia.executeQuery();
+            while (resultado.next()) {
+                Pedido pedido=new Pedido();
+                pedido.setCodpe(resultado.getInt("codpe"));
+                pedido.setNomCliente(resultado.getString("nomCliente"));
+                pedido.setDireccionCliente(resultado.getString("direccionCliente"));
+                pedido.setFecha(resultado.getDate("fecha"));
+                Repartidor repartidor=new Repartidor();
+                repartidor.setCodr(resultado.getInt("codr"));
+                pedido.setRepartidor(repartidor);
+                pedidos.add(pedido);
+            }
+        } catch (SQLException e) {
+            System.err.println(e);
+        } finally {
+            close();
+        }
+        return pedidos;
+    }
 
     /**
      * Registrar pedido en la base de datos
@@ -88,24 +107,25 @@ public class PedidoDao {
      * @param pedido que queremos registrar
      * @return pedido registrado
      */
-    public Pedido registrar(Pedido pedido) {
+    public Pedido crear(Pedido pedido) {
 
         connect();
 
         try {
 
-            //direccionCliente es direccion en el Script, hay qué cambiarlo?
-            PreparedStatement sentencia = conexion.prepareStatement("INSERT into pedidos (codpe, nomCliente, direccionCliente, fecha, codr) VALUES (?,?,?,?,?)");
+            PreparedStatement insertarPedidos = conexion.prepareStatement("INSERT into pedidos (nomCliente, direccion, fecha, codr) VALUES (?,?,?,?)");
 
-            sentencia.setInt(1, pedido.getCodpe());
-            sentencia.setString(2, pedido.getNomCliente());
-            sentencia.setString(3, pedido.getDireccionCliente());
-            sentencia.setDate(4, (Date) pedido.getFecha());//bien casteado? - Hay dos tipos de date, cuál?
-            sentencia.setString(5, String.valueOf(pedido.getRepartidor()));//bien casteado?
-            sentencia.execute();
+            insertarPedidos.setString(1, pedido.getNomCliente());
+            insertarPedidos.setString(2, pedido.getDireccionCliente());
+            insertarPedidos.setDate(3, (Date) pedido.getFecha());//bien casteado? - Hay dos tipos de date, cuál?
+            insertarPedidos.setInt(4, pedido.getRepartidor().getCodr());
+            insertarPedidos.execute();
+            int codpe=2;
+            
+            PreparedStatement insertarProducto = conexion.prepareStatement("INSERT into tienen (codpe, codpr, cantidad) VALUES (?,?,?)");
 
-
-
+            
+            
         } catch (SQLException e) {
             System.err.println(e);
         } finally {

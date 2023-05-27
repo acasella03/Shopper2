@@ -52,6 +52,10 @@ public class Pedido implements IPedido {
         this.productos = productos;
     }
 
+    public Pedido() {
+    }
+    
+
     /**
      * Constructor parametrizado sin ID del pedido.
      *

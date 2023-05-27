@@ -23,6 +23,10 @@ public class Repartidor implements IRepartidor {
         this.nomr = nomr;
     }
 
+    public Repartidor() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     /**
      * Asignar un identificador al repartidor
      * @param codr codigo del repartidor

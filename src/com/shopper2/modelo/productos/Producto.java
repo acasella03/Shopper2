@@ -32,6 +32,9 @@ public class Producto implements IProducto {
         this.categoria = categoria;
     }
 
+    public Producto() {
+    }
+
     /**
      * Asignar un identificador al producto
      * @param codpr codigo del producto
