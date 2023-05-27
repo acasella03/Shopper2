@@ -108,11 +108,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void bNuevoPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevoPedidoActionPerformed
         NuevoPedido nuevoPedido = new NuevoPedido();
         nuevoPedido.setVisible(true);
+        dispose();
     }//GEN-LAST:event_bNuevoPedidoActionPerformed
 
     private void bVerPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVerPedidosActionPerformed
         ListaPedidos pedidos = new ListaPedidos();
         pedidos.setVisible(true);
+        dispose();
     }//GEN-LAST:event_bVerPedidosActionPerformed
 
     /**
