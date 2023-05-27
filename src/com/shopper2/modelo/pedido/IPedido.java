@@ -5,7 +5,6 @@ import com.shopper2.modelo.repartidores.Repartidor;
 
 import java.util.Date;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Datos necesarios para ser implementados en un pedido:

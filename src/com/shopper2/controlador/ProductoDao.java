@@ -15,11 +15,6 @@ public class ProductoDao {
     String url = "file:///C://Users//Angita//IdeaProjects//Shopper2//base_de_datos//basededatos.db";
 
     /**
-     * Conjunto de resultados de la base de datos
-     */
-    ResultSet resultado = null;
-
-    /**
      * Conexion a la base de datos
      */
     Connection conexion = null;
@@ -30,7 +25,7 @@ public class ProductoDao {
     public void connect() {
         try {
             Class.forName("org.sqlite.JDBC");
-            conexion = DriverManager.getConnection("jdbc:sqlite:" + url);//todo poner enlace que conecta a la base de datos
+            conexion = DriverManager.getConnection("jdbc:sqlite:" + url);
             if (conexion != null) {
                 System.out.println("Conectado");
             }
@@ -56,22 +51,25 @@ public class ProductoDao {
     /**
      * Buscar producto en la base de datos según su código
      *
-     * @param producto a buscar
+     * @param codpr a buscar
      * @return producto encontrado en la base de datos
      */
-    public Producto buscar(Producto producto) {
+    public Producto buscar(int codpr) {
         connect();
+        Producto producto=new Producto();
         try {
             PreparedStatement sentencia = conexion.prepareStatement("SELECT * from productos where codpr=?");
-            sentencia.setInt(1, producto.getCodpr());
-            resultado = sentencia.executeQuery();
+            sentencia.setInt(1, codpr);
+            ResultSet resultado = sentencia.executeQuery();
             if (resultado.next()) {
+                
                 producto.setCodpr(Integer.parseInt(resultado.getString("codpr")));
                 producto.setNombreProducto(resultado.getString("nombreProducto"));
                 producto.setCategoria(Categoria.valueOf(resultado.getString("categoria")));
             }
         } catch (SQLException e) {
             System.err.println(e);
+            return null;
         } finally {
             close();
         }

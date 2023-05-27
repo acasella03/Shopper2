@@ -33,6 +33,12 @@ public class Producto implements IProducto {
     }
 
     /**
+     * Constructor vacio
+     */
+    public Producto() {
+    }
+
+    /**
      * Asignar un identificador al producto
      * @param codpr codigo del producto
      */
