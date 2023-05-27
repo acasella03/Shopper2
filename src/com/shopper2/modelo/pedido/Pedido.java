@@ -5,14 +5,13 @@ import com.shopper2.modelo.productos.Producto;
 import com.shopper2.modelo.repartidores.Repartidor;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Datos del pedido.
  */
 public class Pedido implements IPedido {
+
     /**
      * Identificador del pedido.
      */
@@ -38,11 +37,11 @@ public class Pedido implements IPedido {
     /**
      * Constructor parametrizado con ID del pedido.
      *
-     * @param codpe            identificador del pedido.
-     * @param nomCliente       nombre del cliente del pedido.
+     * @param codpe identificador del pedido.
+     * @param nomCliente nombre del cliente del pedido.
      * @param direccionCliente del pedido.
-     * @param fecha            del pedido
-     * @param productos        contenidos en el pedido.
+     * @param fecha del pedido
+     * @param productos contenidos en el pedido.
      */
     public Pedido(int codpe, String nomCliente, String direccionCliente, Date fecha, Map<IProducto, Integer> productos) {
         this.codpe = codpe;
@@ -54,15 +53,15 @@ public class Pedido implements IPedido {
 
     public Pedido() {
     }
-    
 
     /**
      * Constructor parametrizado sin ID del pedido.
      *
-     * @param nomCliente       nombre del cliente del pedido.
+     * @param nomCliente nombre del cliente del pedido.
      * @param direccionCliente del pedido.
-     * @param fecha            del pedido
-     * @param productos        contenidos en el pedido.
+     * @param fecha del pedido
+     * @param repartidor del pedido.
+     * @param productos contenidos en el pedido.
      */
     public Pedido(String nomCliente, String direccionCliente, Date fecha, Repartidor repartidor, Map<IProducto, Integer> productos) {
         this.nomCliente = nomCliente;
@@ -74,6 +73,7 @@ public class Pedido implements IPedido {
 
     /**
      * Asignar el identificador del pedido
+     *
      * @param codpe codigo del pedido
      */
     public void setCodpe(int codpe) {
@@ -82,6 +82,7 @@ public class Pedido implements IPedido {
 
     /**
      * Asignar el nombre del cliente del pedido
+     *
      * @param nomCliente nombre del cliente
      */
     public void setNomCliente(String nomCliente) {
@@ -90,6 +91,7 @@ public class Pedido implements IPedido {
 
     /**
      * Asignar la dirección del cliente del pedido
+     *
      * @param direccionCliente
      */
     public void setDireccionCliente(String direccionCliente) {
@@ -98,6 +100,7 @@ public class Pedido implements IPedido {
 
     /**
      * Asignar la fecha del pedido
+     *
      * @param fecha
      */
     public void setFecha(Date fecha) {
@@ -106,6 +109,7 @@ public class Pedido implements IPedido {
 
     /**
      * Asignar el repartidor del pedido
+     *
      * @param repartidor
      */
     public void setRepartidor(Repartidor repartidor) {
@@ -114,6 +118,7 @@ public class Pedido implements IPedido {
 
     /**
      * Asignar el producto del pedido
+     *
      * @param productos
      */
     public void setProductos(Map<IProducto, Integer> productos) {
@@ -125,6 +130,7 @@ public class Pedido implements IPedido {
      *
      * @return identificador del pedido.
      */
+    @Override
     public int getCodpe() {
         return codpe;
     }
@@ -154,12 +160,14 @@ public class Pedido implements IPedido {
      *
      * @return fecha del pedido.
      */
+    @Override
     public Date getFecha() {
         return fecha;
     }
 
     /**
      * Obtener el repartidor del pedido
+     *
      * @return
      */
     @Override

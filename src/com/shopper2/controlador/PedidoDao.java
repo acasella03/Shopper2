@@ -1,10 +1,12 @@
 package com.shopper2.controlador;
 
 import com.shopper2.modelo.pedido.Pedido;
+import com.shopper2.modelo.productos.IProducto;
 import com.shopper2.modelo.repartidores.Repartidor;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -75,20 +77,20 @@ public class PedidoDao {
         }
         return pedido;
     }
-    
-     public ArrayList<Pedido> buscarTodos() {
+
+    public ArrayList<Pedido> buscarTodos() {
         connect();
-        ArrayList<Pedido> pedidos=new ArrayList<>();
+        ArrayList<Pedido> pedidos = new ArrayList<>();
         try {
             PreparedStatement sentencia = conexion.prepareStatement("SELECT * from pedidos");
             ResultSet resultado = sentencia.executeQuery();
             while (resultado.next()) {
-                Pedido pedido=new Pedido();
+                Pedido pedido = new Pedido();
                 pedido.setCodpe(resultado.getInt("codpe"));
                 pedido.setNomCliente(resultado.getString("nomCliente"));
                 pedido.setDireccionCliente(resultado.getString("direccionCliente"));
                 pedido.setFecha(resultado.getDate("fecha"));
-                Repartidor repartidor=new Repartidor();
+                Repartidor repartidor = new Repartidor();
                 repartidor.setCodr(resultado.getInt("codr"));
                 pedido.setRepartidor(repartidor);
                 pedidos.add(pedido);
@@ -107,7 +109,7 @@ public class PedidoDao {
      * @param pedido que queremos registrar
      * @return pedido registrado
      */
-    public Pedido crear(Pedido pedido) {
+    public boolean crear(Pedido pedido) { //botón GUARDAR
 
         connect();
 
@@ -120,19 +122,29 @@ public class PedidoDao {
             insertarPedidos.setDate(3, (Date) pedido.getFecha());//bien casteado? - Hay dos tipos de date, cuál?
             insertarPedidos.setInt(4, pedido.getRepartidor().getCodr());
             insertarPedidos.execute();
-            int codpe=2;
-            
-            PreparedStatement insertarProducto = conexion.prepareStatement("INSERT into tienen (codpe, codpr, cantidad) VALUES (?,?,?)");
 
-            
-            
+            PreparedStatement obtenerCodpe = conexion.prepareStatement("SELECT last_insert_rowid() AS codpe");
+            ResultSet resultado = obtenerCodpe.executeQuery();
+            int codpe = resultado.getInt("codpe");
+
+            PreparedStatement insertarProducto = conexion.prepareStatement("INSERT into tienen (codpe, codpr, cantidad) VALUES (?,?,?)");
+            for (Map.Entry<IProducto, Integer> entrada : pedido.getProductos().entrySet()) {
+                IProducto producto = entrada.getKey();
+                Integer cantidad = entrada.getValue();
+                insertarProducto.setInt(1, codpe);
+                insertarProducto.setInt(2, producto.getCodpr());
+                insertarProducto.setInt(3, cantidad);
+                insertarProducto.executeUpdate();
+            }
+
         } catch (SQLException e) {
             System.err.println(e);
+            return false;
         } finally {
             close();
         }
 
-        return pedido;
+        return true;
 
     }
 
@@ -145,7 +157,6 @@ public class PedidoDao {
     public Pedido modificar(Pedido pedido) {
 
         connect();
-
 
         try {
             PreparedStatement sentencia = conexion.prepareStatement("UPDATE pedidos SET codpe=?, nomCliente=?, direccionCliente=?, fecha=?, codr=? WHERE codpe=?");
@@ -170,6 +181,7 @@ public class PedidoDao {
 
     /**
      * Eliminar pedido de la base de datos según su código
+     *
      * @param pedido a eliminar
      * @return pedido eliminado
      */
@@ -191,6 +203,5 @@ public class PedidoDao {
         return pedido;
 
     }
-
 
 }
