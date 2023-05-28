@@ -5,6 +5,7 @@ import com.shopper2.modelo.productos.Producto;
 import com.shopper2.modelo.repartidores.Repartidor;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -35,23 +36,21 @@ public class Pedido implements IPedido {
     /**
      * Lista del productos del pedido.
      */
-    private Map<IProducto, Integer> productos;
+    private final Map<IProducto, Integer> productos = new HashMap<>();
 
     /**
      * Constructor parametrizado con ID del pedido.
      *
-     * @param codpe identificador del pedido.
-     * @param nomCliente nombre del cliente del pedido.
+     * @param codpe            identificador del pedido.
+     * @param nomCliente       nombre del cliente del pedido.
      * @param direccionCliente del pedido.
-     * @param fecha del pedido
-     * @param productos contenidos en el pedido.
+     * @param fecha            del pedido
      */
-    public Pedido(int codpe, String nomCliente, String direccionCliente, Date fecha, Map<IProducto, Integer> productos) {
+    public Pedido(int codpe, String nomCliente, String direccionCliente, Date fecha) {
         this.codpe = codpe;
         this.nomCliente = nomCliente;
         this.direccionCliente = direccionCliente;
         this.fecha = fecha;
-        this.productos = productos;
     }
 
     /**
@@ -63,18 +62,16 @@ public class Pedido implements IPedido {
     /**
      * Constructor parametrizado sin ID del pedido.
      *
-     * @param nomCliente nombre del cliente del pedido.
+     * @param nomCliente       nombre del cliente del pedido.
      * @param direccionCliente del pedido.
-     * @param fecha del pedido
-     * @param repartidor del pedido.
-     * @param productos contenidos en el pedido.
+     * @param fecha            del pedido
+     * @param repartidor       del pedido.
      */
-    public Pedido(String nomCliente, String direccionCliente, Date fecha, Repartidor repartidor, Map<IProducto, Integer> productos) {
+    public Pedido(String nomCliente, String direccionCliente, Date fecha, Repartidor repartidor) {
         this.nomCliente = nomCliente;
         this.direccionCliente = direccionCliente;
         this.fecha = fecha;
         this.repartidor = repartidor;
-        this.productos = productos;
     }
 
     /**
@@ -120,15 +117,6 @@ public class Pedido implements IPedido {
      */
     public void setRepartidor(Repartidor repartidor) {
         this.repartidor = repartidor;
-    }
-
-    /**
-     * Asignar el producto del pedido
-     *
-     * @param productos
-     */
-    public void setProductos(Map<IProducto, Integer> productos) {
-        this.productos = productos;
     }
 
     /**
