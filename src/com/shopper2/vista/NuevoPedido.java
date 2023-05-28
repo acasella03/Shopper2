@@ -287,20 +287,6 @@ public class NuevoPedido extends javax.swing.JFrame {
         //y se muestra en pantalla. Luego, se cierra la ventana actual (dispose()).
         if (PedidoDao.getInstance().crear(pedido)) {
             ListaPedidos pedidos = new ListaPedidos();
-            ArrayList<Pedido> listaPedidos = PedidoDao.getInstance().buscarTodos();
-            DefaultTableModel modelo = (DefaultTableModel) ListaPedidos.tablaPedidos.getModel();
-            for (Pedido pedido1 : listaPedidos) {
-                Object[] datos = new Object[5];
-                datos[0] = pedido1.getCodpe();
-                datos[1] = pedido1.getNomCliente();
-                datos[2] = pedido1.getDireccionCliente();
-                datos[3] = pedido1.getFecha();
-                datos[4] = pedido1.getRepartidor().getCodr();
-
-                //añado el modelo a la tabla
-                modelo.addRow(datos);
-            }
-
             pedidos.setVisible(true);
             dispose();
         }

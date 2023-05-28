@@ -4,6 +4,12 @@
  */
 package com.shopper2.vista;
 
+import com.shopper2.controlador.PedidoDao;
+import com.shopper2.modelo.pedido.Pedido;
+
+import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
+
 /**
  * @author Angita
  */
@@ -14,6 +20,23 @@ public class ListaPedidos extends javax.swing.JFrame {
      */
     public ListaPedidos() {
         initComponents();
+        initTabla();
+    }
+
+    private void initTabla() {
+        ArrayList<Pedido> listaPedidos = PedidoDao.getInstance().buscarTodos();
+        DefaultTableModel modelo = (DefaultTableModel) tablaPedidos.getModel();
+        for (Pedido pedido1 : listaPedidos) {
+            Object[] datos = new Object[5];
+            datos[0] = pedido1.getCodpe();
+            datos[1] = pedido1.getNomCliente();
+            datos[2] = pedido1.getDireccionCliente();
+            datos[3] = pedido1.getFecha();
+            datos[4] = pedido1.getRepartidor().getCodr();
+
+            //añado el modelo a la tabla
+            modelo.addRow(datos);
+        }
     }
 
     /**
@@ -151,6 +174,6 @@ public class ListaPedidos extends javax.swing.JFrame {
     private javax.swing.JButton bVolver;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panel;
-    public static javax.swing.JTable tablaPedidos;
+    private javax.swing.JTable tablaPedidos;
     // End of variables declaration//GEN-END:variables
 }

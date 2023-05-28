@@ -118,57 +118,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void bVerPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVerPedidosActionPerformed
         ListaPedidos pedidos = new ListaPedidos();
-        ArrayList<Pedido> listaPedidos = PedidoDao.getInstance().buscarTodos();
-            DefaultTableModel modelo = (DefaultTableModel) ListaPedidos.tablaPedidos.getModel();
-            for (Pedido pedido1 : listaPedidos) {
-                Object[] datos = new Object[5];
-                datos[0] = pedido1.getCodpe();
-                datos[1] = pedido1.getNomCliente();
-                datos[2] = pedido1.getDireccionCliente();
-                datos[3] = pedido1.getFecha();
-                datos[4] = pedido1.getRepartidor().getCodr();
-
-                //añado el modelo a la tabla
-                modelo.addRow(datos);
-            }
         pedidos.setVisible(true);
         dispose();
     }//GEN-LAST:event_bVerPedidosActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuPrincipal().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bNuevoPedido;
