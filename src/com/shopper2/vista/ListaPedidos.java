@@ -4,6 +4,12 @@
  */
 package com.shopper2.vista;
 
+import com.shopper2.controlador.PedidoDao;
+import com.shopper2.modelo.pedido.Pedido;
+
+import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
+
 /**
  * @author Angita
  */
@@ -14,6 +20,23 @@ public class ListaPedidos extends javax.swing.JFrame {
      */
     public ListaPedidos() {
         initComponents();
+        initTabla();
+    }
+
+    private void initTabla() {
+        ArrayList<Pedido> listaPedidos = PedidoDao.getInstance().buscarTodos();
+        DefaultTableModel modelo = (DefaultTableModel) tablaPedidos.getModel();
+        for (Pedido pedido1 : listaPedidos) {
+            Object[] datos = new Object[5];
+            datos[0] = pedido1.getCodpe();
+            datos[1] = pedido1.getNomCliente();
+            datos[2] = pedido1.getDireccionCliente();
+            datos[3] = pedido1.getFecha();
+            datos[4] = pedido1.getRepartidor().getCodr();
+
+            //añado el modelo a la tabla
+            modelo.addRow(datos);
+        }
     }
 
     /**
@@ -35,15 +58,12 @@ public class ListaPedidos extends javax.swing.JFrame {
         setTitle("LISTA DE PEDIDOS");
 
         tablaPedidos.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                        {null, null, null, null, null}
-                },
-                new String[]{
-                        "PEDIDO", "CLIENTE", "DIRECCIÓN", "FECHA", "REPARTIDOR"
-                }
+            new Object [][] {
+
+            },
+            new String [] {
+                "PEDIDO", "CLIENTE", "DIRECCIÓN", "FECHA", "REPARTIDOR"
+            }
         ));
         jScrollPane1.setViewportView(tablaPedidos);
 
@@ -64,39 +84,39 @@ public class ListaPedidos extends javax.swing.JFrame {
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
-                panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1)
-                        .addGroup(panelLayout.createSequentialGroup()
-                                .addGap(186, 186, 186)
-                                .addComponent(bVolver)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 282, Short.MAX_VALUE)
-                                .addComponent(bNuevoPedido)
-                                .addGap(197, 197, 197))
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
+            .addGroup(panelLayout.createSequentialGroup()
+                .addGap(186, 186, 186)
+                .addComponent(bVolver)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 282, Short.MAX_VALUE)
+                .addComponent(bNuevoPedido)
+                .addGap(197, 197, 197))
         );
         panelLayout.setVerticalGroup(
-                panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(panelLayout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(bVolver)
-                                        .addComponent(bNuevoPedido))
-                                .addGap(0, 15, Short.MAX_VALUE))
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bVolver)
+                    .addComponent(bNuevoPedido))
+                .addGap(0, 15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();

@@ -13,6 +13,7 @@ import com.shopper2.modelo.repartidores.Repartidor;
 
 import javax.swing.table.DefaultTableModel;
 import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  * @author Angita
@@ -276,9 +277,9 @@ public class NuevoPedido extends javax.swing.JFrame {
             //se crea un nuevo objeto Producto y se establece su código (codpr). 
             //Finalmente, se agrega el producto y la cantidad al objeto Pedido 
             //utilizando el método addProducto().
-            Producto producto=new Producto();
+            Producto producto = new Producto();
             producto.setCodpr(codpr);
-            pedido.addProducto(producto,cantidad);
+            pedido.addProducto(producto, cantidad);
         }
 
         //Finalmente, se llama al método crear() del PedidoDao para intentar crear el pedido en la base de datos. 
@@ -289,6 +290,8 @@ public class NuevoPedido extends javax.swing.JFrame {
             pedidos.setVisible(true);
             dispose();
         }
+
+
     }//GEN-LAST:event_bGuardarActionPerformed
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
