@@ -4,11 +4,6 @@
  */
 package com.shopper2.vista;
 
-import com.shopper2.controlador.PedidoDao;
-import com.shopper2.modelo.pedido.Pedido;
-import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
-
 /**
  * @author Angita
  */

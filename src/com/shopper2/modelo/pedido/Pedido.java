@@ -41,10 +41,10 @@ public class Pedido implements IPedido {
     /**
      * Constructor parametrizado con ID del pedido.
      *
-     * @param codpe            identificador del pedido.
-     * @param nomCliente       nombre del cliente del pedido.
+     * @param codpe identificador del pedido.
+     * @param nomCliente nombre del cliente del pedido.
      * @param direccionCliente del pedido.
-     * @param fecha            del pedido
+     * @param fecha del pedido
      */
     public Pedido(int codpe, String nomCliente, String direccionCliente, Date fecha) {
         this.codpe = codpe;
@@ -62,10 +62,10 @@ public class Pedido implements IPedido {
     /**
      * Constructor parametrizado sin ID del pedido.
      *
-     * @param nomCliente       nombre del cliente del pedido.
+     * @param nomCliente nombre del cliente del pedido.
      * @param direccionCliente del pedido.
-     * @param fecha            del pedido
-     * @param repartidor       del pedido.
+     * @param fecha del pedido
+     * @param repartidor del pedido.
      */
     public Pedido(String nomCliente, String direccionCliente, Date fecha, Repartidor repartidor) {
         this.nomCliente = nomCliente;
@@ -104,7 +104,7 @@ public class Pedido implements IPedido {
     /**
      * Asignar la fecha del pedido
      *
-     * @param fecha
+     * @param fecha del pedido
      */
     public void setFecha(Date fecha) {
         this.fecha = fecha;
@@ -113,7 +113,7 @@ public class Pedido implements IPedido {
     /**
      * Asignar el repartidor del pedido
      *
-     * @param repartidor
+     * @param repartidor asignado
      */
     public void setRepartidor(Repartidor repartidor) {
         this.repartidor = repartidor;

@@ -6,6 +6,7 @@ import com.shopper2.modelo.enums.Categoria;
  * Describe los datos necesarios de un producto.
  */
 public class Producto implements IProducto {
+
     /**
      * Identificador de un producto.
      */
@@ -22,8 +23,8 @@ public class Producto implements IProducto {
     /**
      * Constructor parametrizado.
      *
-     * @param codpr     código del producto.
-     * @param nombreProducto    del producto.
+     * @param codpr código del producto.
+     * @param nombreProducto del producto.
      * @param categoria del producto.
      */
     public Producto(int codpr, String nombreProducto, Categoria categoria) {
@@ -40,6 +41,7 @@ public class Producto implements IProducto {
 
     /**
      * Asignar un identificador al producto
+     *
      * @param codpr codigo del producto
      */
     public void setCodpr(int codpr) {
@@ -48,6 +50,7 @@ public class Producto implements IProducto {
 
     /**
      * Asignar un nombre al producto
+     *
      * @param nombreProducto del producto
      */
     public void setNombreProducto(String nombreProducto) {
@@ -56,6 +59,7 @@ public class Producto implements IProducto {
 
     /**
      * Asignar una categoria al producto
+     *
      * @param categoria del producto
      */
     public void setCategoria(Categoria categoria) {

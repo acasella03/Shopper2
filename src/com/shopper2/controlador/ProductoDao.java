@@ -1,7 +1,6 @@
 package com.shopper2.controlador;
 
 import com.shopper2.modelo.enums.Categoria;
-import com.shopper2.modelo.pedido.Pedido;
 import com.shopper2.modelo.productos.Producto;
 
 import java.sql.*;
@@ -10,29 +9,31 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ProductoDao {
+
     /**
      * Variable auxiliar para Singleton
      */
     private static ProductoDao instance = null;
-    
+
     /**
      * Método estático que retorna una única instancia
      *
      * @return instancia única
      */
-    public static ProductoDao getInstance(){
-        if(instance==null){
+    public static ProductoDao getInstance() {
+        if (instance == null) {
             instance = new ProductoDao();
         }
         return instance;
     }
+
     /**
      * Constructor privado para ser utilizado únicamente por el Singleton.
      */
-    private ProductoDao(){
-        
+    private ProductoDao() {
+
     }
-    
+
     /**
      * Ruta de ubicación de la base de datos
      */
@@ -114,7 +115,6 @@ public class ProductoDao {
                 Producto producto = new Producto();
                 producto.setCodpr(resultado.getInt("codpr"));
                 producto.setCategoria((Categoria) (Object) resultado.getString("categoria"));
-                Pedido pedido = new Pedido();
 
                 listaProductos.add(producto);
             }
@@ -125,4 +125,27 @@ public class ProductoDao {
         }
         return listaProductos;
     }
+
+    /**
+     * Eliminar producto de la base de datos según su código
+     *
+     * @param codpr código del producto a eliminar
+     * @return producto eliminado
+     */
+    public boolean eliminar(int codpr) {
+        connect();
+        Producto producto = new Producto();
+        try {
+            PreparedStatement sentencia = conexion.prepareStatement("DELETE FROM productos WHERE codpr=?");
+            sentencia.setInt(1, producto.getCodpr());
+            sentencia.execute();
+        } catch (SQLException e) {
+            System.err.println(e);
+            return false;
+        } finally {
+            close();
+        }
+        return true;
+    }
+
 }
