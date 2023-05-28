@@ -36,11 +36,6 @@ public class PedidoDao {
     }
 
     /**
-     * Ruta de ubicación de la base de datos
-     */
-    String url = "file:///C://Users//Angita//IdeaProjects//Shopper2//base_de_datos//basededatos.db";
-
-    /**
      * Conexion a la base de datos
      */
     Connection conexion = null;
@@ -51,7 +46,7 @@ public class PedidoDao {
     public void connect() {
         try {
             Class.forName("org.sqlite.JDBC");
-            conexion = DriverManager.getConnection("jdbc:sqlite:" + url);
+            conexion = DriverManager.getConnection("jdbc:sqlite:base_de_datos/basededatos.db");
             if (conexion != null) {
                 System.out.println("Conectado");
             }
