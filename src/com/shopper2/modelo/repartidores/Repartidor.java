@@ -4,6 +4,7 @@ package com.shopper2.modelo.repartidores;
  * Describe los datos necesarios de un repartidor.
  */
 public class Repartidor implements IRepartidor {
+
     /**
      * Identificador de un repartidor.
      */
@@ -69,5 +70,3 @@ public class Repartidor implements IRepartidor {
         return nomr;
     }
 }
-
-

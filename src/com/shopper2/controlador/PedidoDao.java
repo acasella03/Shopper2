@@ -95,7 +95,6 @@ public class PedidoDao {
                 Repartidor repartidor = new Repartidor();
                 repartidor.setCodr(resultado.getInt("codr"));
                 pedido.setRepartidor(repartidor);
-
             }
         } catch (SQLException e) {
             System.err.println(e);
@@ -142,13 +141,9 @@ public class PedidoDao {
      * @return pedido registrado
      */
     public boolean crear(Pedido pedido) { //botón GUARDAR
-
         connect();
-
         try {
-
             PreparedStatement insertarPedidos = conexion.prepareStatement("INSERT into pedidos (nomCliente, direccion, fecha, codr) VALUES (?,?,?,?)");
-
             insertarPedidos.setString(1, pedido.getNomCliente().toLowerCase());
             insertarPedidos.setString(2, pedido.getDireccionCliente().toLowerCase());
             insertarPedidos.setDate(3, (Date) pedido.getFecha());//bien casteado? - Hay dos tipos de date, cuál?
@@ -160,26 +155,24 @@ public class PedidoDao {
             int codpe = resultado.getInt("codpe");
             System.out.println(codpe);
 
-            if(pedido.getProductos() != null){
-            PreparedStatement insertarProducto = conexion.prepareStatement("INSERT into tienen (codpe, codpr, cantidad) VALUES (?,?,?)");
-            for (Map.Entry<IProducto, Integer> entrada : pedido.getProductos().entrySet()) {
-                IProducto producto = entrada.getKey();
-                Integer cantidad = entrada.getValue();
-                insertarProducto.setInt(1, codpe);
-                insertarProducto.setInt(2, producto.getCodpr());
-                insertarProducto.setInt(3, cantidad);
-                insertarProducto.executeUpdate();
-            }}
-
+            if (pedido.getProductos() != null) {
+                PreparedStatement insertarProducto = conexion.prepareStatement("INSERT into tienen (codpe, codpr, cantidad) VALUES (?,?,?)");
+                for (Map.Entry<IProducto, Integer> entrada : pedido.getProductos().entrySet()) {
+                    IProducto producto = entrada.getKey();
+                    Integer cantidad = entrada.getValue();
+                    insertarProducto.setInt(1, codpe);
+                    insertarProducto.setInt(2, producto.getCodpr());
+                    insertarProducto.setInt(3, cantidad);
+                    insertarProducto.executeUpdate();
+                }
+            }
         } catch (SQLException e) {
             System.err.println(e);
             return false;
         } finally {
             close();
         }
-
         return true;
-
     }
 
     /**
@@ -189,12 +182,9 @@ public class PedidoDao {
      * @return pedido modificado
      */
     public Pedido modificar(Pedido pedido) {
-
         connect();
-
         try {
             PreparedStatement sentencia = conexion.prepareStatement("UPDATE pedidos SET codpe=?, nomCliente=?, direccionCliente=?, fecha=?, codr=? WHERE codpe=?");
-
             sentencia.setInt(1, pedido.getCodpe());
             sentencia.setString(2, pedido.getNomCliente());
             sentencia.setString(3, pedido.getDireccionCliente());
@@ -202,15 +192,12 @@ public class PedidoDao {
             sentencia.setString(5, String.valueOf(pedido.getRepartidor()));//bien casteado?
             sentencia.setInt(6, pedido.getCodpe());
             sentencia.executeUpdate();
-
         } catch (SQLException e) {
             System.err.println(e);
-
         } finally {
             close();
         }
         return pedido;
-
     }
 
     /**
@@ -220,9 +207,7 @@ public class PedidoDao {
      * @return pedido eliminado
      */
     public Pedido eliminar(Pedido pedido) {
-
         connect();
-
         try {
             PreparedStatement sentencia = conexion.prepareStatement("DELETE FROM pedidos WHERE codpe=?");
             sentencia.setInt(1, pedido.getCodpe());
@@ -230,12 +215,10 @@ public class PedidoDao {
 
         } catch (SQLException e) {
             System.err.println(e);
-
         } finally {
             close();
         }
         return pedido;
-
     }
 
 }

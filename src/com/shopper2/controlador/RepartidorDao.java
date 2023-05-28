@@ -13,7 +13,6 @@ public class RepartidorDao {
      */
     String url = "file:///C://Users//Angita//IdeaProjects//Shopper2//base_de_datos//basededatos.db";
 
-
     /**
      * Conexion a la base de datos
      */
