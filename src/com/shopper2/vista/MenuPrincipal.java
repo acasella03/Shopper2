@@ -4,6 +4,11 @@
  */
 package com.shopper2.vista;
 
+import com.shopper2.controlador.PedidoDao;
+import com.shopper2.modelo.pedido.Pedido;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  * @author Angita
  */
@@ -113,6 +118,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void bVerPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVerPedidosActionPerformed
         ListaPedidos pedidos = new ListaPedidos();
+        ArrayList<Pedido> listaPedidos = PedidoDao.getInstance().buscarTodos();
+            DefaultTableModel modelo = (DefaultTableModel) ListaPedidos.tablaPedidos.getModel();
+            for (Pedido pedido1 : listaPedidos) {
+                Object[] datos = new Object[5];
+                datos[0] = pedido1.getCodpe();
+                datos[1] = pedido1.getNomCliente();
+                datos[2] = pedido1.getDireccionCliente();
+                datos[3] = pedido1.getFecha();
+                datos[4] = pedido1.getRepartidor().getCodr();
+
+                //añado el modelo a la tabla
+                modelo.addRow(datos);
+            }
         pedidos.setVisible(true);
         dispose();
     }//GEN-LAST:event_bVerPedidosActionPerformed

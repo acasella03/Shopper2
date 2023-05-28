@@ -13,6 +13,7 @@ import com.shopper2.modelo.repartidores.Repartidor;
 
 import javax.swing.table.DefaultTableModel;
 import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  * @author Angita
@@ -276,9 +277,9 @@ public class NuevoPedido extends javax.swing.JFrame {
             //se crea un nuevo objeto Producto y se establece su código (codpr). 
             //Finalmente, se agrega el producto y la cantidad al objeto Pedido 
             //utilizando el método addProducto().
-            Producto producto=new Producto();
+            Producto producto = new Producto();
             producto.setCodpr(codpr);
-            pedido.addProducto(producto,cantidad);
+            pedido.addProducto(producto, cantidad);
         }
 
         //Finalmente, se llama al método crear() del PedidoDao para intentar crear el pedido en la base de datos. 
@@ -286,9 +287,25 @@ public class NuevoPedido extends javax.swing.JFrame {
         //y se muestra en pantalla. Luego, se cierra la ventana actual (dispose()).
         if (PedidoDao.getInstance().crear(pedido)) {
             ListaPedidos pedidos = new ListaPedidos();
+            ArrayList<Pedido> listaPedidos = PedidoDao.getInstance().buscarTodos();
+            DefaultTableModel modelo = (DefaultTableModel) ListaPedidos.tablaPedidos.getModel();
+            for (Pedido pedido1 : listaPedidos) {
+                Object[] datos = new Object[5];
+                datos[0] = pedido1.getCodpe();
+                datos[1] = pedido1.getNomCliente();
+                datos[2] = pedido1.getDireccionCliente();
+                datos[3] = pedido1.getFecha();
+                datos[4] = pedido1.getRepartidor().getCodr();
+
+                //añado el modelo a la tabla
+                modelo.addRow(datos);
+            }
+
             pedidos.setVisible(true);
             dispose();
         }
+
+
     }//GEN-LAST:event_bGuardarActionPerformed
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed

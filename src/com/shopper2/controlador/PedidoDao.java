@@ -90,7 +90,7 @@ public class PedidoDao {
             if (resultado.next()) {
                 pedido.setCodpe(resultado.getInt("codpe"));
                 pedido.setNomCliente(resultado.getString("nomCliente"));
-                pedido.setDireccionCliente(resultado.getString("direccionCliente"));
+                pedido.setDireccionCliente(resultado.getString("direccion"));
                 pedido.setFecha(resultado.getDate("fecha"));
                 Repartidor repartidor = new Repartidor();
                 repartidor.setCodr(resultado.getInt("codr"));
@@ -120,7 +120,7 @@ public class PedidoDao {
                 Pedido pedido = new Pedido();
                 pedido.setCodpe(resultado.getInt("codpe"));
                 pedido.setNomCliente(resultado.getString("nomCliente"));
-                pedido.setDireccionCliente(resultado.getString("direccionCliente"));
+                pedido.setDireccionCliente(resultado.getString("direccion"));
                 pedido.setFecha(resultado.getDate("fecha"));
                 Repartidor repartidor = new Repartidor();
                 repartidor.setCodr(resultado.getInt("codr"));

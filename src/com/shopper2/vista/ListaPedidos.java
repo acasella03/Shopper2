@@ -35,15 +35,12 @@ public class ListaPedidos extends javax.swing.JFrame {
         setTitle("LISTA DE PEDIDOS");
 
         tablaPedidos.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                        {null, null, null, null, null}
-                },
-                new String[]{
-                        "PEDIDO", "CLIENTE", "DIRECCIÓN", "FECHA", "REPARTIDOR"
-                }
+            new Object [][] {
+
+            },
+            new String [] {
+                "PEDIDO", "CLIENTE", "DIRECCIÓN", "FECHA", "REPARTIDOR"
+            }
         ));
         jScrollPane1.setViewportView(tablaPedidos);
 
@@ -64,39 +61,39 @@ public class ListaPedidos extends javax.swing.JFrame {
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
-                panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1)
-                        .addGroup(panelLayout.createSequentialGroup()
-                                .addGap(186, 186, 186)
-                                .addComponent(bVolver)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 282, Short.MAX_VALUE)
-                                .addComponent(bNuevoPedido)
-                                .addGap(197, 197, 197))
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
+            .addGroup(panelLayout.createSequentialGroup()
+                .addGap(186, 186, 186)
+                .addComponent(bVolver)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 282, Short.MAX_VALUE)
+                .addComponent(bNuevoPedido)
+                .addGap(197, 197, 197))
         );
         panelLayout.setVerticalGroup(
-                panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(panelLayout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(bVolver)
-                                        .addComponent(bNuevoPedido))
-                                .addGap(0, 15, Short.MAX_VALUE))
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bVolver)
+                    .addComponent(bNuevoPedido))
+                .addGap(0, 15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -154,6 +151,6 @@ public class ListaPedidos extends javax.swing.JFrame {
     private javax.swing.JButton bVolver;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panel;
-    private javax.swing.JTable tablaPedidos;
+    public static javax.swing.JTable tablaPedidos;
     // End of variables declaration//GEN-END:variables
 }
