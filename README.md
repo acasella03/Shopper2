@@ -1,3 +1,12 @@
+![shopper.png](shopper.png)
+# Descripción de la aplicación
+El proyecto Shopper consiste en el desarrollo de una aplicación de gestión de pedidos para una tienda online,
+que permitirá a los usuarios realizar y administrar pedidos de manera eficiente.<br>
+La aplicación también llevará un registro detallado de los productos disponibles, así como de los repartidores
+asociados a cada pedido, brindando así un control completo sobre todo el proceso de entrega.<br>
+Con Shopper, los clientes podrán disfrutar de una experiencia de compra cómoda y fluida, mientras que los administradores 
+de la tienda podrán gestionar de manera eficaz todos los aspectos relacionados con los pedidos y la logística.
+
 ## DIAGRAMA DE CLASES
 
 ```mermaid
