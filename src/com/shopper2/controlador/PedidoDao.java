@@ -13,6 +13,29 @@ import java.util.logging.Logger;
 public class PedidoDao {
 
     /**
+     * Variable auxiliar para Singleton
+     */
+    private static PedidoDao instance = null;
+
+    /**
+     * Método estático que retorna una única instancia
+     *
+     * @return instancia única
+     */
+    public static PedidoDao getInstance() {
+        if (instance == null) {
+            instance = new PedidoDao();
+        }
+        return instance;
+    }
+
+    /**
+     * Constructor privado para ser utilizado únicamente por el Singleton.
+     */
+    private PedidoDao() {
+    }
+
+    /**
      * Ruta de ubicación de la base de datos
      */
     String url = "file:///C://Users//Angita//IdeaProjects//Shopper2//base_de_datos//basededatos.db";
@@ -126,16 +149,18 @@ public class PedidoDao {
 
             PreparedStatement insertarPedidos = conexion.prepareStatement("INSERT into pedidos (nomCliente, direccion, fecha, codr) VALUES (?,?,?,?)");
 
-            insertarPedidos.setString(1, pedido.getNomCliente());
-            insertarPedidos.setString(2, pedido.getDireccionCliente());
+            insertarPedidos.setString(1, pedido.getNomCliente().toLowerCase());
+            insertarPedidos.setString(2, pedido.getDireccionCliente().toLowerCase());
             insertarPedidos.setDate(3, (Date) pedido.getFecha());//bien casteado? - Hay dos tipos de date, cuál?
             insertarPedidos.setInt(4, pedido.getRepartidor().getCodr());
-            insertarPedidos.execute();
+            insertarPedidos.executeUpdate();
 
-            PreparedStatement obtenerCodpe = conexion.prepareStatement("SELECT last_insert_rowid() AS codpe");
+            PreparedStatement obtenerCodpe = conexion.prepareStatement("SELECT last_insert_rowid() AS codpe");
             ResultSet resultado = obtenerCodpe.executeQuery();
             int codpe = resultado.getInt("codpe");
+            System.out.println(codpe);
 
+            if(pedido.getProductos() != null){
             PreparedStatement insertarProducto = conexion.prepareStatement("INSERT into tienen (codpe, codpr, cantidad) VALUES (?,?,?)");
             for (Map.Entry<IProducto, Integer> entrada : pedido.getProductos().entrySet()) {
                 IProducto producto = entrada.getKey();
@@ -144,7 +169,7 @@ public class PedidoDao {
                 insertarProducto.setInt(2, producto.getCodpr());
                 insertarProducto.setInt(3, cantidad);
                 insertarProducto.executeUpdate();
-            }
+            }}
 
         } catch (SQLException e) {
             System.err.println(e);
