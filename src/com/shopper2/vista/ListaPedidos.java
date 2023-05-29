@@ -23,6 +23,11 @@ public class ListaPedidos extends javax.swing.JFrame {
         initTabla();
     }
 
+    /**
+     * Inicializa la tabla de pedidos con los datos obtenidos de la base de
+     * datos. Recupera la lista de pedidos y agrega cada pedido como una fila en
+     * la tabla.
+     */
     private void initTabla() {
         ArrayList<Pedido> listaPedidos = PedidoDao.getInstance().buscarTodos();
         DefaultTableModel modelo = (DefaultTableModel) tablaPedidos.getModel();
