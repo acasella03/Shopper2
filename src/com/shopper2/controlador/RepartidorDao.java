@@ -3,10 +3,35 @@ package com.shopper2.controlador;
 import com.shopper2.modelo.repartidores.Repartidor;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class RepartidorDao {
+
+    /**
+     * Variable auxiliar para Singleton
+     */
+    private static RepartidorDao instance = null;
+
+    /**
+     * Método estático que retorna una única instancia
+     *
+     * @return instancia única
+     */
+    public static RepartidorDao getInstance() {
+        if (instance == null) {
+            instance = new RepartidorDao();
+        }
+        return instance;
+    }
+
+    /**
+     * Constructor privado para ser utilizado únicamente por el Singleton.
+     */
+    private RepartidorDao() {
+
+    }
 
     /**
      * Conexion a la base de datos
@@ -64,5 +89,33 @@ public class RepartidorDao {
             close();
         }
         return repartidor;
+    }
+
+    /**
+     * Consulta los datos de los reparrtidores en la base de datos.
+     *
+     * @return los dator de los repartidores
+     */
+    public ArrayList<Repartidor> obtenerRepartidores() {
+        ArrayList<Repartidor> repartidores = new ArrayList<>();
+
+        // Realizar la consulta a la base de datos y obtener los datos de los repartidores
+        try {
+            connect();
+            Statement statement = conexion.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT codr, nomr FROM repartidores");
+            while (resultSet.next()) {
+                int codr = resultSet.getInt("codr");
+                String nomr = resultSet.getString("nomr");
+                Repartidor repartidor = new Repartidor(codr, nomr);
+                repartidores.add(repartidor);
+            }
+        } catch (SQLException e) {
+            System.err.println(e);
+        } finally {
+            close();
+        }
+
+        return repartidores;
     }
 }

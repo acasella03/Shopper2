@@ -7,11 +7,14 @@ package com.shopper2.vista;
 import com.angi.datos.PedirDatos;
 import com.shopper2.controlador.PedidoDao;
 import com.shopper2.controlador.ProductoDao;
+import com.shopper2.controlador.RepartidorDao;
 import com.shopper2.modelo.pedido.Pedido;
 import com.shopper2.modelo.productos.Producto;
 import com.shopper2.modelo.repartidores.Repartidor;
 import javax.swing.table.DefaultTableModel;
 import java.sql.Date;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  * @author Angita
@@ -49,6 +52,7 @@ public class NuevoPedido extends javax.swing.JFrame {
         tDireccionCliente = new javax.swing.JTextField();
         tFechaPedido = new javax.swing.JTextField();
         tCodRepartidor = new javax.swing.JTextField();
+        boxRepartidores = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("NUEVO PEDIDO");
@@ -71,6 +75,11 @@ public class NuevoPedido extends javax.swing.JFrame {
                 "ID", "PRODUCTO", "CATEGORIA", "CANTIDAD"
             }
         ));
+        tablaProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaProductosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaProductos);
 
         bAddProducto.setText("AGREGAR PRODUCTO");
@@ -109,6 +118,13 @@ public class NuevoPedido extends javax.swing.JFrame {
             }
         });
 
+        boxRepartidores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1-manuel", "2-ricardo", "3-sara" }));
+        boxRepartidores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxRepartidoresActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
@@ -131,7 +147,10 @@ public class NuevoPedido extends javax.swing.JFrame {
                                     .addGroup(panelLayout.createSequentialGroup()
                                         .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(tFechaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(tCodRepartidor, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(panelLayout.createSequentialGroup()
+                                                .addComponent(tCodRepartidor, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(74, 74, 74)
+                                                .addComponent(boxRepartidores, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE))
                         .addGap(29, 29, 29)
@@ -161,9 +180,11 @@ public class NuevoPedido extends javax.swing.JFrame {
                     .addComponent(eFechaPedido)
                     .addComponent(tFechaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(eCodRepartidor)
-                    .addComponent(tCodRepartidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(eCodRepartidor)
+                        .addComponent(tCodRepartidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(boxRepartidores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -216,18 +237,18 @@ public class NuevoPedido extends javax.swing.JFrame {
     }//GEN-LAST:event_bAddProductoActionPerformed
 
     private void bDelProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDelProductoActionPerformed
-        int codpr = PedirDatos.pedirEntero("Introduce el ID del producto a eliminar:");
-        Producto producto = ProductoDao.getInstance().buscar(codpr);
-        if (producto != null) {
-            DefaultTableModel model = (DefaultTableModel) tablaProductos.getModel();
-            int rowCount = model.getRowCount();
-            for (int i = 0; i < rowCount; i++) {
-                int productId = (int) model.getValueAt(i, 0); // Suponiendo que el ID del producto está en la columna 0
-                if (productId == codpr) {
-                    model.removeRow(i);
-                    break; // Se encontró y eliminó la fila, se sale del bucle
-                }
-            }
+        DefaultTableModel model = (DefaultTableModel) tablaProductos.getModel();
+        int filaSeleccionada = tablaProductos.getSelectedRow();
+
+        if (filaSeleccionada != -1) {
+            // Obtener el valor de la columna 0 (suponiendo que sea la columna primaria)
+            int productoId = (int) model.getValueAt(filaSeleccionada, 0);
+
+            // Eliminar la fila seleccionada del modelo de tabla
+            model.removeRow(filaSeleccionada);
+
+            // Eliminar el producto de la base de datos utilizando el ID
+            ProductoDao.getInstance().eliminar(productoId);
         }
     }//GEN-LAST:event_bDelProductoActionPerformed
 
@@ -241,9 +262,14 @@ public class NuevoPedido extends javax.swing.JFrame {
         //Almacenamiento del dato fecha del pedido
         pedido.setFecha(Date.valueOf(tFechaPedido.getText()));
         //Almacenamiento del dato repartidor
-        Repartidor repartidor = new Repartidor();
-        repartidor.setCodr(Integer.parseInt(tCodRepartidor.getText()));
+        String selectedItem = (String) boxRepartidores.getSelectedItem();
+        String[] parts = selectedItem.split(" - ");
+        int codr = Integer.parseInt(parts[0]);
+        Repartidor repartidor = RepartidorDao.getInstance().buscar(codr);
         pedido.setRepartidor(repartidor);
+        /*Repartidor repartidor = new Repartidor();
+        repartidor.setCodr(Integer.parseInt(tCodRepartidor.getText()));
+        pedido.setRepartidor(repartidor);*/
         //Se obtiene el modelo de la tabla asociada a la tablaProductos
         DefaultTableModel model = (DefaultTableModel) tablaProductos.getModel();
         //Se obtiene la cantidad de filas que tiene la tabla
@@ -281,11 +307,34 @@ public class NuevoPedido extends javax.swing.JFrame {
         tFechaPedido.setText(null);
     }//GEN-LAST:event_tFechaPedidoMouseClicked
 
+    private void tablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosMouseClicked
+        tablaProductos.getSelectedRow();
+    }//GEN-LAST:event_tablaProductosMouseClicked
+
+    private void boxRepartidoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxRepartidoresActionPerformed
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+        ArrayList<Repartidor> repartidores = RepartidorDao.getInstance().obtenerRepartidores();
+        for (Repartidor repartidor : repartidores) {
+            model.addElement(repartidor.getCodr() + " - " + repartidor.getNomr());
+        }
+        boxRepartidores.setModel(model);
+
+        // Obtener el índice de la opción seleccionada actualmente (si lo deseas)
+        int selectedIndex = boxRepartidores.getSelectedIndex();
+
+        // Asegurarse de que haya elementos en el JComboBox
+        if (selectedIndex >= 0 && selectedIndex < boxRepartidores.getItemCount()) {
+            // Establecer la opción seleccionada para que quede visible
+            boxRepartidores.setSelectedIndex(selectedIndex);
+        }
+    }//GEN-LAST:event_boxRepartidoresActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAddProducto;
     private javax.swing.JButton bCancelar;
     private javax.swing.JButton bDelProducto;
     private javax.swing.JButton bGuardar;
+    private javax.swing.JComboBox<String> boxRepartidores;
     private javax.swing.JLabel eCliente;
     private javax.swing.JLabel eCodRepartidor;
     private javax.swing.JLabel eDireccionCliente;
