@@ -143,4 +143,32 @@ public class ProductoDao {
         return true;
     }
 
+    /**
+     * Consulta los datos de los productos en la base de datos.
+     *
+     * @return los dator de los productos
+     */
+    public ArrayList<Producto> obtenerProductos() {
+        ArrayList<Producto> productos = new ArrayList<>();
+
+        // Realizar la consulta a la base de datos y obtener los datos de los productos
+        try {
+            connect();
+            Statement statement = conexion.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT codpr, nompr FROM productos");
+            while (resultSet.next()) {
+                int codpr = resultSet.getInt("codpr");
+                String nompr = resultSet.getString("nompr");
+                Producto producto = new Producto(codpr, nompr);
+                productos.add(producto);
+            }
+        } catch (SQLException e) {
+            System.err.println(e);
+        } finally {
+            close();
+        }
+
+        return productos;
+    }
+
 }

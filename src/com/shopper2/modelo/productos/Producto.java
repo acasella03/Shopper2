@@ -34,6 +34,17 @@ public class Producto implements IProducto {
     }
 
     /**
+     * Constructor parametrizado
+     *
+     * @param codpr codigo del producto
+     * @param nombreProducto del producto
+     */
+    public Producto(int codpr, String nombreProducto) {
+        this.codpr = codpr;
+        this.nombreProducto = nombreProducto;
+    }
+
+    /**
      * Constructor vacio
      */
     public Producto() {
