@@ -68,11 +68,12 @@
                                       <Component id="tDireccionCliente" max="32767" attributes="0"/>
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="tFechaPedido" min="-2" pref="155" max="-2" attributes="0"/>
+                                              <Component id="boxRepartidores" min="-2" pref="115" max="-2" attributes="0"/>
+                                              <Component id="eFormatoFecha" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="tCodRepartidor" min="-2" pref="71" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-                                                  <Component id="boxRepartidores" min="-2" pref="107" max="-2" attributes="0"/>
+                                                  <Component id="tFechaPedido" min="-2" pref="155" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="etiquetaEjemploFormatoFecha" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -115,20 +116,18 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="eFechaPedido" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tFechaPedido" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="etiquetaEjemploFormatoFecha" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="eCodRepartidor" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tCodRepartidor" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="boxRepartidores" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                  <Component id="eFormatoFecha" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="eCodRepartidor" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="boxRepartidores" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" pref="224" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jScrollPane1" min="-2" pref="224" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                           <Component id="bAddProducto" min="-2" max="-2" attributes="0"/>
@@ -212,9 +211,6 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablaProductosMouseClicked"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -257,30 +253,31 @@
         </Component>
         <Component class="javax.swing.JTextField" name="tFechaPedido">
           <Properties>
-            <Property name="text" type="java.lang.String" value="AAAA-MM-DD"/>
+            <Property name="toolTipText" type="java.lang.String" value="AAAA-MM-DD"/>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tFechaPedidoMouseClicked"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JTextField" name="tCodRepartidor">
         </Component>
         <Component class="javax.swing.JComboBox" name="boxRepartidores">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value="1-manuel"/>
-                <StringItem index="1" value="2-ricardo"/>
-                <StringItem index="2" value="3-sara"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boxRepartidoresActionPerformed"/>
-          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="etiquetaEjemploFormatoFecha">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ejemplo: 2023-12-01"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="eFormatoFecha">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="8" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="AAAA-MM-DD "/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

@@ -26,6 +26,16 @@ public class NuevoPedido extends javax.swing.JFrame {
      */
     public NuevoPedido() {
         initComponents();
+        initRepartidores();
+    }
+    
+    private void initRepartidores() {
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+        ArrayList<Repartidor> repartidores = RepartidorDao.getInstance().obtenerRepartidores();
+        for (Repartidor repartidor : repartidores) {
+            model.addElement(repartidor.getCodr() + " - " + repartidor.getNomr());
+        }
+        boxRepartidores.setModel(model);
     }
 
     /**
@@ -51,8 +61,9 @@ public class NuevoPedido extends javax.swing.JFrame {
         tNombreCliente = new javax.swing.JTextField();
         tDireccionCliente = new javax.swing.JTextField();
         tFechaPedido = new javax.swing.JTextField();
-        tCodRepartidor = new javax.swing.JTextField();
         boxRepartidores = new javax.swing.JComboBox<>();
+        etiquetaEjemploFormatoFecha = new javax.swing.JLabel();
+        eFormatoFecha = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("NUEVO PEDIDO");
@@ -75,11 +86,6 @@ public class NuevoPedido extends javax.swing.JFrame {
                 "ID", "PRODUCTO", "CATEGORIA", "CANTIDAD"
             }
         ));
-        tablaProductos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaProductosMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(tablaProductos);
 
         bAddProducto.setText("AGREGAR PRODUCTO");
@@ -111,19 +117,12 @@ public class NuevoPedido extends javax.swing.JFrame {
             }
         });
 
-        tFechaPedido.setText("AAAA-MM-DD");
-        tFechaPedido.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tFechaPedidoMouseClicked(evt);
-            }
-        });
+        tFechaPedido.setToolTipText("AAAA-MM-DD");
 
-        boxRepartidores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1-manuel", "2-ricardo", "3-sara" }));
-        boxRepartidores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boxRepartidoresActionPerformed(evt);
-            }
-        });
+        etiquetaEjemploFormatoFecha.setText("Ejemplo: 2023-12-01");
+
+        eFormatoFecha.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
+        eFormatoFecha.setText("AAAA-MM-DD ");
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
@@ -146,11 +145,12 @@ public class NuevoPedido extends javax.swing.JFrame {
                                     .addComponent(tDireccionCliente)
                                     .addGroup(panelLayout.createSequentialGroup()
                                         .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(tFechaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(boxRepartidores, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(eFormatoFecha)
                                             .addGroup(panelLayout.createSequentialGroup()
-                                                .addComponent(tCodRepartidor, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(74, 74, 74)
-                                                .addComponent(boxRepartidores, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addComponent(tFechaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(etiquetaEjemploFormatoFecha)))
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE))
                         .addGap(29, 29, 29)
@@ -178,17 +178,17 @@ public class NuevoPedido extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(eFechaPedido)
-                    .addComponent(tFechaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(tFechaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etiquetaEjemploFormatoFecha))
+                .addGap(2, 2, 2)
+                .addComponent(eFormatoFecha)
+                .addGap(5, 5, 5)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(eCodRepartidor)
+                    .addComponent(boxRepartidores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(eCodRepartidor)
-                        .addComponent(tCodRepartidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(boxRepartidores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelLayout.createSequentialGroup()
                         .addGap(61, 61, 61)
                         .addComponent(bAddProducto)
@@ -267,9 +267,6 @@ public class NuevoPedido extends javax.swing.JFrame {
         int codr = Integer.parseInt(parts[0]);
         Repartidor repartidor = RepartidorDao.getInstance().buscar(codr);
         pedido.setRepartidor(repartidor);
-        /*Repartidor repartidor = new Repartidor();
-        repartidor.setCodr(Integer.parseInt(tCodRepartidor.getText()));
-        pedido.setRepartidor(repartidor);*/
         //Se obtiene el modelo de la tabla asociada a la tablaProductos
         DefaultTableModel model = (DefaultTableModel) tablaProductos.getModel();
         //Se obtiene la cantidad de filas que tiene la tabla
@@ -303,32 +300,6 @@ public class NuevoPedido extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_bCancelarActionPerformed
 
-    private void tFechaPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tFechaPedidoMouseClicked
-        tFechaPedido.setText(null);
-    }//GEN-LAST:event_tFechaPedidoMouseClicked
-
-    private void tablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosMouseClicked
-        tablaProductos.getSelectedRow();
-    }//GEN-LAST:event_tablaProductosMouseClicked
-
-    private void boxRepartidoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxRepartidoresActionPerformed
-        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
-        ArrayList<Repartidor> repartidores = RepartidorDao.getInstance().obtenerRepartidores();
-        for (Repartidor repartidor : repartidores) {
-            model.addElement(repartidor.getCodr() + " - " + repartidor.getNomr());
-        }
-        boxRepartidores.setModel(model);
-
-        // Obtener el índice de la opción seleccionada actualmente (si lo deseas)
-        int selectedIndex = boxRepartidores.getSelectedIndex();
-
-        // Asegurarse de que haya elementos en el JComboBox
-        if (selectedIndex >= 0 && selectedIndex < boxRepartidores.getItemCount()) {
-            // Establecer la opción seleccionada para que quede visible
-            boxRepartidores.setSelectedIndex(selectedIndex);
-        }
-    }//GEN-LAST:event_boxRepartidoresActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAddProducto;
     private javax.swing.JButton bCancelar;
@@ -339,9 +310,10 @@ public class NuevoPedido extends javax.swing.JFrame {
     private javax.swing.JLabel eCodRepartidor;
     private javax.swing.JLabel eDireccionCliente;
     private javax.swing.JLabel eFechaPedido;
+    private javax.swing.JLabel eFormatoFecha;
+    private javax.swing.JLabel etiquetaEjemploFormatoFecha;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panel;
-    private javax.swing.JTextField tCodRepartidor;
     private javax.swing.JTextField tDireccionCliente;
     private javax.swing.JTextField tFechaPedido;
     private javax.swing.JTextField tNombreCliente;
