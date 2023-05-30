@@ -53,6 +53,8 @@ public class ListaPedidos extends javax.swing.JFrame {
         tablaPedidos = new javax.swing.JTable();
         bVolver = new javax.swing.JButton();
         bNuevoPedido = new javax.swing.JButton();
+        bEditarPedido = new javax.swing.JButton();
+        bEliminarPedido = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LISTA DE PEDIDOS");
@@ -81,17 +83,35 @@ public class ListaPedidos extends javax.swing.JFrame {
             }
         });
 
+        bEditarPedido.setText("EDITAR PEDIDO");
+        bEditarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bEditarPedidoActionPerformed(evt);
+            }
+        });
+
+        bEliminarPedido.setText("ELIMINAR PEDIDO");
+        bEliminarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bEliminarPedidoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 932, Short.MAX_VALUE)
             .addGroup(panelLayout.createSequentialGroup()
-                .addGap(186, 186, 186)
+                .addGap(68, 68, 68)
                 .addComponent(bVolver)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 282, Short.MAX_VALUE)
+                .addGap(113, 113, 113)
                 .addComponent(bNuevoPedido)
-                .addGap(197, 197, 197))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bEliminarPedido)
+                .addGap(114, 114, 114)
+                .addComponent(bEditarPedido)
+                .addGap(52, 52, 52))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,7 +120,9 @@ public class ListaPedidos extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bVolver)
-                    .addComponent(bNuevoPedido))
+                    .addComponent(bNuevoPedido)
+                    .addComponent(bEditarPedido)
+                    .addComponent(bEliminarPedido))
                 .addGap(0, 15, Short.MAX_VALUE))
         );
 
@@ -134,11 +156,36 @@ public class ListaPedidos extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_bNuevoPedidoActionPerformed
 
+    private void bEditarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditarPedidoActionPerformed
+        EditarPedido editarPedido = new EditarPedido();
+        editarPedido.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_bEditarPedidoActionPerformed
+
+    private void bEliminarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarPedidoActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tablaPedidos.getModel();
+        int filaSeleccionada = tablaPedidos.getSelectedRow();
+
+        if (filaSeleccionada != -1) {
+            // Obtener el valor de la columna 0 (suponiendo que sea la columna primaria)
+            int pedidoId = (int) model.getValueAt(filaSeleccionada, 0);
+
+            // Eliminar la fila seleccionada del modelo de tabla
+            model.removeRow(filaSeleccionada);
+
+            // Eliminar el producto de la base de datos utilizando el ID
+            PedidoDao.getInstance().eliminar(pedidoId);
+        }
+
+    }//GEN-LAST:event_bEliminarPedidoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bEditarPedido;
+    private javax.swing.JButton bEliminarPedido;
     private javax.swing.JButton bNuevoPedido;
     private javax.swing.JButton bVolver;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panel;
-    private javax.swing.JTable tablaPedidos;
+    public static javax.swing.JTable tablaPedidos;
     // End of variables declaration//GEN-END:variables
 }

@@ -18,12 +18,12 @@ import javax.swing.DefaultComboBoxModel;
 /**
  * @author Angita
  */
-public class NuevoPedido extends javax.swing.JFrame {
+public class EditarPedido extends javax.swing.JFrame {
 
     /**
      * Creates new form NuevoPedido
      */
-    public NuevoPedido() {
+    public EditarPedido() {
         initComponents();
         initRepartidores();
     }
@@ -77,6 +77,8 @@ public class NuevoPedido extends javax.swing.JFrame {
         boxRepartidores = new javax.swing.JComboBox<>();
         etiquetaEjemploFormatoFecha = new javax.swing.JLabel();
         eFormatoFecha = new javax.swing.JLabel();
+        bModificar = new javax.swing.JButton();
+        bLimpiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("NUEVO PEDIDO");
@@ -137,6 +139,10 @@ public class NuevoPedido extends javax.swing.JFrame {
         eFormatoFecha.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
         eFormatoFecha.setText("AAAA-MM-DD ");
 
+        bModificar.setText("MODIFICAR");
+
+        bLimpiar.setText("LIMPIAR");
+
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
@@ -145,11 +151,13 @@ public class NuevoPedido extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelLayout.createSequentialGroup()
-                        .addGap(90, 90, 90)
                         .addComponent(bGuardar)
+                        .addGap(64, 64, 64)
+                        .addComponent(bModificar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bCancelar)
-                        .addGap(78, 78, 78))
+                        .addComponent(bLimpiar)
+                        .addGap(63, 63, 63)
+                        .addComponent(bCancelar))
                     .addGroup(panelLayout.createSequentialGroup()
                         .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(eCodRepartidor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -209,7 +217,9 @@ public class NuevoPedido extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bGuardar)
-                    .addComponent(bCancelar))
+                    .addComponent(bCancelar)
+                    .addComponent(bModificar)
+                    .addComponent(bLimpiar))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
@@ -234,8 +244,8 @@ public class NuevoPedido extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bAddProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddProductoActionPerformed
-        AgregarProductos agregarProductos = new AgregarProductos(this);
-        agregarProductos.setVisible(true);
+      //  AgregarProductos agregarProductos = new AgregarProductos(this);
+       // agregarProductos.setVisible(true);
     }//GEN-LAST:event_bAddProductoActionPerformed
 
     private void bDelProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDelProductoActionPerformed
@@ -297,8 +307,8 @@ public class NuevoPedido extends javax.swing.JFrame {
     }//GEN-LAST:event_bGuardarActionPerformed
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-        MenuPrincipal menu = new MenuPrincipal();
-        menu.setVisible(true);
+        ListaPedidos listaPedidos = new ListaPedidos();
+        listaPedidos.setVisible(true);
         dispose();
     }//GEN-LAST:event_bCancelarActionPerformed
 
@@ -307,6 +317,8 @@ public class NuevoPedido extends javax.swing.JFrame {
     private javax.swing.JButton bCancelar;
     private javax.swing.JButton bDelProducto;
     private javax.swing.JButton bGuardar;
+    private javax.swing.JButton bLimpiar;
+    private javax.swing.JButton bModificar;
     private javax.swing.JComboBox<String> boxRepartidores;
     private javax.swing.JLabel eCliente;
     private javax.swing.JLabel eCodRepartidor;

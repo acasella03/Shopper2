@@ -4,6 +4,7 @@ import com.shopper2.modelo.repartidores.Repartidor;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -118,4 +119,46 @@ public class RepartidorDao {
 
         return repartidores;
     }
+    
+    public int buscarNombre(String nomr) {
+        connect();
+        int codigo = 0;
+        try {
+            PreparedStatement sentencia = conexion.prepareStatement("SELECT * from repartidores where nomr=?");
+            sentencia.setString(1, nomr);
+            ResultSet resultado = sentencia.executeQuery();
+            if (resultado.next()) {
+                codigo = resultado.getInt("codr");
+            }
+        } catch (SQLException e) {
+            System.err.println(e);
+        } finally {
+            close();
+        }
+        return codigo;
+    }
+    
+    public List<String> buscarListaComboBox(int codr) {
+    connect();
+    List<String> resultado = new ArrayList<>();
+
+    try {
+        PreparedStatement sentencia = conexion.prepareStatement("SELECT * FROM repartidores WHERE codr = ?");
+        sentencia.setInt(1, codr);
+        ResultSet rs = sentencia.executeQuery();
+
+        while (rs.next()) {
+            String nombreRepartidor = rs.getString("codr")+" - "+rs.getString("nomr");
+            resultado.add(nombreRepartidor);
+        }
+    } catch (SQLException e) {
+        System.err.println(e);
+    } finally {
+        close();
+    }
+
+    return resultado;
+}
+
+    
 }

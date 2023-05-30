@@ -45,13 +45,17 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" alignment="0" pref="932" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="186" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                   <Component id="bVolver" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="282" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
                   <Component id="bNuevoPedido" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="197" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="bEliminarPedido" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
+                  <Component id="bEditarPedido" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -63,6 +67,8 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="bVolver" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="bNuevoPedido" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="bEditarPedido" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="bEliminarPedido" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="15" max="32767" attributes="0"/>
               </Group>
@@ -141,6 +147,22 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bNuevoPedidoActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="bEditarPedido">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="EDITAR PEDIDO"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bEditarPedidoActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="bEliminarPedido">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="ELIMINAR PEDIDO"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bEliminarPedidoActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
