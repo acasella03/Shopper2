@@ -187,23 +187,23 @@ public class PedidoDao {
      * @param pedido que queremos modificar
      * @return pedido modificado
      */
-    public Pedido modificar(Pedido pedido) {
+    public boolean modificar(Pedido pedido) {
         connect();
         try {
-            PreparedStatement sentencia = conexion.prepareStatement("UPDATE pedidos SET codpe=?, nomCliente=?, direccionCliente=?, fecha=?, codr=? WHERE codpe=?");
-            sentencia.setInt(1, pedido.getCodpe());
-            sentencia.setString(2, pedido.getNomCliente());
-            sentencia.setString(3, pedido.getDireccionCliente());
-            sentencia.setDate(4, (Date) pedido.getFecha());//bien casteado? - Hay dos tipos de date
-            sentencia.setString(5, String.valueOf(pedido.getRepartidor()));//bien casteado?
-            sentencia.setInt(6, pedido.getCodpe());
+            PreparedStatement sentencia = conexion.prepareStatement("UPDATE pedidos SET nomCliente=?, direccion=?, fecha=?, codr=? WHERE codpe=?");
+            sentencia.setString(1, pedido.getNomCliente());
+            sentencia.setString(2, pedido.getDireccionCliente());
+            sentencia.setDate(3, (Date) pedido.getFecha());
+            sentencia.setInt(4, pedido.getRepartidor().getCodr());
+            sentencia.setInt(5, pedido.getCodpe());
             sentencia.executeUpdate();
         } catch (SQLException e) {
             System.err.println(e);
+            return false;
         } finally {
             close();
         }
-        return pedido;
+        return true;
     }
 
     /**
