@@ -33,6 +33,11 @@ public class Producto implements IProducto {
         this.categoria = categoria;
     }
 
+    public Producto(int codpr, String nombreProducto) {
+        this.codpr = codpr;
+        this.nombreProducto = nombreProducto;
+    }
+
     /**
      * Constructor vacio
      */

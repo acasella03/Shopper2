@@ -143,4 +143,24 @@ public class ProductoDao {
         return true;
     }
 
+    public ArrayList<Producto> obtenerProductos() {
+        ArrayList<Producto> productos = new ArrayList<>();
+
+        try {
+            connect();
+            Statement statement = conexion.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT codpr, nompr FROM productos");
+            while (resultSet.next()) {
+                int codpr = resultSet.getInt("codpr");
+                String nompr = resultSet.getString("nompr");
+                Producto producto = new Producto(codpr, nompr);
+                productos.add(producto);
+            }
+        } catch (SQLException e) {
+            System.err.println(e);
+        } finally {
+            close();
+        }
+        return productos;
+    }
 }

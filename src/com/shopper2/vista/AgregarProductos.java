@@ -4,17 +4,38 @@
  */
 package com.shopper2.vista;
 
+import com.shopper2.controlador.ProductoDao;
+import com.shopper2.modelo.productos.Producto;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Angita
  */
 public class AgregarProductos extends javax.swing.JFrame {
+    
+    private NuevoPedido nuevoPedido;
 
     /**
      * Creates new form AgregarProductos
+     *
+     * @param nuevoPedido
      */
-    public AgregarProductos() {
+    public AgregarProductos(NuevoPedido nuevoPedido) {
+        this.nuevoPedido = nuevoPedido;
         initComponents();
+        initProductos();
+    }
+    
+    private void initProductos() {
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+        ArrayList<Producto> productos = ProductoDao.getInstance().obtenerProductos();
+        for (Producto producto : productos) {
+            model.addElement(producto.getCodpr() + " - " + producto.getNombreProducto());
+        }
+        boxSeleccionarProducto.setModel(model);
     }
 
     /**
@@ -41,6 +62,11 @@ public class AgregarProductos extends javax.swing.JFrame {
         eCantidad.setText("INDICA LA CANTIDAD:");
 
         bAgregar.setText("AGREGAR");
+        bAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAgregarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
@@ -48,14 +74,18 @@ public class AgregarProductos extends javax.swing.JFrame {
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(eCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(eSeleccionaProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bAgregar)
-                    .addComponent(boxSeleccionarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tCantidadProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(eCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(eSeleccionaProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(boxSeleccionarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tCantidadProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addComponent(bAgregar)
+                        .addGap(183, 183, 183)))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         panelLayout.setVerticalGroup(
@@ -69,9 +99,9 @@ public class AgregarProductos extends javax.swing.JFrame {
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(eCantidad)
                     .addComponent(tCantidadProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addComponent(bAgregar)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addGap(40, 40, 40))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -87,6 +117,27 @@ public class AgregarProductos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarActionPerformed
+        int cantidad = Integer.parseInt(tCantidadProducto.getText());
+        String selectedItem = (String) boxSeleccionarProducto.getSelectedItem();
+        String[] parts = selectedItem.split(" - ");
+        int codpr = Integer.parseInt(parts[0]);
+        Producto producto = ProductoDao.getInstance().buscar(codpr);
+        if(cantidad >= 0){
+            nuevoPedido.agregarProducto(producto, cantidad);
+            tCantidadProducto.setText(null);
+        }else{
+            JOptionPane.showMessageDialog(null, "Debes escribir un número positivo");
+            tCantidadProducto.setText(null);
+        }
+            
+        
+            
+            
+        
+      
+    }//GEN-LAST:event_bAgregarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
