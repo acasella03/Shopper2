@@ -2,6 +2,7 @@ package com.shopper2.controlador;
 
 import com.shopper2.modelo.pedido.Pedido;
 import com.shopper2.modelo.productos.IProducto;
+import com.shopper2.modelo.productos.Producto;
 import com.shopper2.modelo.repartidores.Repartidor;
 
 import java.sql.*;
@@ -79,17 +80,28 @@ public class PedidoDao {
         connect();
         Pedido pedido = new Pedido();
         try {
-            PreparedStatement sentencia = conexion.prepareStatement("SELECT * from pedidos where codpe=?");
-            sentencia.setInt(1, codpe);
-            ResultSet resultado = sentencia.executeQuery();
-            if (resultado.next()) {
-                pedido.setCodpe(resultado.getInt("codpe"));
-                pedido.setNomCliente(resultado.getString("nomCliente"));
-                pedido.setDireccionCliente(resultado.getString("direccion"));
-                pedido.setFecha(resultado.getDate("fecha"));
+            PreparedStatement buscarPedido = conexion.prepareStatement("SELECT * from pedidos where codpe=?");
+            buscarPedido.setInt(1, codpe);
+            ResultSet resultadoPedido = buscarPedido.executeQuery();
+            if (resultadoPedido.next()) {
+                pedido.setCodpe(resultadoPedido.getInt("codpe"));
+                pedido.setNomCliente(resultadoPedido.getString("nomCliente"));
+                pedido.setDireccionCliente(resultadoPedido.getString("direccion"));
+                pedido.setFecha(resultadoPedido.getDate("fecha"));
                 Repartidor repartidor = new Repartidor();
-                repartidor.setCodr(resultado.getInt("codr"));
+                repartidor.setCodr(resultadoPedido.getInt("codr"));
                 pedido.setRepartidor(repartidor);
+
+                PreparedStatement buscarProducto = conexion.prepareStatement("SELECT * from tienen where codpe=?");
+                buscarProducto.setInt(1, codpe);
+                ResultSet resultadoProducto = buscarProducto.executeQuery();
+                close();
+                while (resultadoProducto.next()) {
+                    int cantidad = resultadoProducto.getInt("cantidad");
+                    int codpr = resultadoProducto.getInt("codpr");
+                    Producto producto = ProductoDao.getInstance().buscar(codpr);
+                    pedido.addProducto(producto,cantidad);
+                }
             }
         } catch (SQLException e) {
             System.err.println(e);
@@ -207,7 +219,7 @@ public class PedidoDao {
             PreparedStatement eliminarTienen = conexion.prepareStatement("DELETE FROM tienen WHERE codpe=?");
             eliminarTienen.setInt(1, codpe);
             eliminarTienen.execute();
-            
+
             PreparedStatement eliminarPedido = conexion.prepareStatement("DELETE FROM pedidos WHERE codpe=?");
             eliminarPedido.setInt(1, codpe);
             eliminarPedido.execute();
