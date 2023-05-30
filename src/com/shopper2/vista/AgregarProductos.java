@@ -4,44 +4,17 @@
  */
 package com.shopper2.vista;
 
-import com.shopper2.controlador.ProductoDao;
-import com.shopper2.modelo.productos.Producto;
-import java.util.ArrayList;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author Angita
  */
 public class AgregarProductos extends javax.swing.JFrame {
 
-    private NuevoPedido nuevoPedido;
-
     /**
-     * Constructor de la clase AgregarProductos.
-     *
-     * @param nuevoPedido el objeto NuevoPedido en el que se agregarán los
-     * productos.
+     * Creates new form AgregarProductos
      */
-    public AgregarProductos(NuevoPedido nuevoPedido) {
-        this.nuevoPedido = nuevoPedido;
+    public AgregarProductos() {
         initComponents();
-        initProductos();
-    }
-
-    /**
-     * Inicializa el combo box de productos con los datos obtenidos de la base
-     * de datos. Utiliza un modelo de combo box predeterminado
-     * (DefaultComboBoxModel) para agregar los productos.
-     */
-    private void initProductos() {
-        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
-        ArrayList<Producto> productos = ProductoDao.getInstance().obtenerProductos();
-        for (Producto producto : productos) {
-            model.addElement(producto.getCodpr() + " - " + producto.getNombreProducto());
-        }
-        boxSeleccionarProducto.setModel(model);
     }
 
     /**
@@ -68,11 +41,6 @@ public class AgregarProductos extends javax.swing.JFrame {
         eCantidad.setText("INDICA LA CANTIDAD:");
 
         bAgregar.setText("AGREGAR");
-        bAgregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bAgregarActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
@@ -120,22 +88,7 @@ public class AgregarProductos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarActionPerformed
-        int cantidad = Integer.parseInt(tCantidadProducto.getText());
-        String selectedItem = (String) boxSeleccionarProducto.getSelectedItem();
-        String[] parts = selectedItem.split(" - ");
-        int codpr = Integer.parseInt(parts[0]);
-        Producto producto = ProductoDao.getInstance().buscar(codpr);
 
-        while (cantidad >= 0) {
-            nuevoPedido.agregarProducto(producto, cantidad);
-            tCantidadProducto.setText(null);
-        }
-        JOptionPane.showMessageDialog(null, "Debes escribir un número positivo");
-        tCantidadProducto.setText(null);
-
-
-    }//GEN-LAST:event_bAgregarActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAgregar;
     private javax.swing.JComboBox<String> boxSeleccionarProducto;

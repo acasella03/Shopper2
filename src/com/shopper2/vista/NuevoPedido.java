@@ -4,6 +4,7 @@
  */
 package com.shopper2.vista;
 
+import com.angi.datos.PedirDatos;
 import com.shopper2.controlador.PedidoDao;
 import com.shopper2.controlador.ProductoDao;
 import com.shopper2.controlador.RepartidorDao;
@@ -27,12 +28,7 @@ public class NuevoPedido extends javax.swing.JFrame {
         initComponents();
         initRepartidores();
     }
-
-    /**
-     * Inicializa el combo box de repartidores con los datos obtenidos de la
-     * base de datos. Utiliza un modelo de combo box predeterminado
-     * (DefaultComboBoxModel) para agregar los repartidores.
-     */
+    
     private void initRepartidores() {
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
         ArrayList<Repartidor> repartidores = RepartidorDao.getInstance().obtenerRepartidores();
@@ -40,26 +36,6 @@ public class NuevoPedido extends javax.swing.JFrame {
             model.addElement(repartidor.getCodr() + " - " + repartidor.getNomr());
         }
         boxRepartidores.setModel(model);
-    }
-
-    /**
-     * Agrega un producto a la tabla de productos con la cantidad especificada.
-     * Si el producto no es nulo, se añaden los datos del producto a la tabla.
-     *
-     * @param producto el producto a agregar a la tabla.
-     * @param cantidad la cantidad del producto a agregar.
-     */
-    public void agregarProducto(Producto producto, int cantidad) {
-
-        if (producto != null) {
-            DefaultTableModel model = (DefaultTableModel) tablaProductos.getModel();
-            Object[] datos = new Object[4];
-            datos[0] = producto.getCodpr();
-            datos[1] = producto.getNombreProducto();
-            datos[2] = producto.getCategoria();
-            datos[3] = cantidad;
-            model.addRow(datos);
-        }
     }
 
     /**
@@ -288,10 +264,18 @@ public class NuevoPedido extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bAddProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddProductoActionPerformed
-
-        AgregarProductos agregarProductos = new AgregarProductos(this);
-        agregarProductos.setVisible(true);
-
+        int codpr = PedirDatos.pedirEntero("Introduce el ID del producto:");
+        int cantidad = PedirDatos.pedirEntero("Indica las unidades del producto:");
+        Producto producto = ProductoDao.getInstance().buscar(codpr);
+        if (producto != null) {
+            DefaultTableModel model = (DefaultTableModel) tablaProductos.getModel();
+            Object[] datos = new Object[4];
+            datos[0] = producto.getCodpr();
+            datos[1] = producto.getNombreProducto();
+            datos[2] = producto.getCategoria();
+            datos[3] = cantidad;
+            model.addRow(datos);
+        }
     }//GEN-LAST:event_bAddProductoActionPerformed
 
     private void bDelProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDelProductoActionPerformed
