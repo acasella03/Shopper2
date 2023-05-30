@@ -198,22 +198,46 @@ public class PedidoDao {
     /**
      * Eliminar pedido de la base de datos según su código
      *
-     * @param pedido a eliminar
+     * @param codpe pedido a eliminar
      * @return pedido eliminado
      */
-    public Pedido eliminar(Pedido pedido) {
+    public boolean eliminar(int codpe) {
         connect();
         try {
-            PreparedStatement sentencia = conexion.prepareStatement("DELETE FROM pedidos WHERE codpe=?");
-            sentencia.setInt(1, pedido.getCodpe());
-            sentencia.execute();
+            PreparedStatement eliminarTienen = conexion.prepareStatement("DELETE FROM tienen WHERE codpe=?");
+            eliminarTienen.setInt(1, codpe);
+            eliminarTienen.execute();
+            
+            PreparedStatement eliminarPedido = conexion.prepareStatement("DELETE FROM pedidos WHERE codpe=?");
+            eliminarPedido.setInt(1, codpe);
+            eliminarPedido.execute();
 
+        } catch (SQLException e) {
+            System.err.println(e);
+            return false;
+        } finally {
+            close();
+        }
+        return true;
+    }
+
+    public int consultarCantidad(int codpe, int codpr) {
+        connect();
+        int cantidad = 0;
+        try {
+            PreparedStatement consulta = conexion.prepareStatement("SELECT cantidad FROM tienen WHERE codpe=? AND codpr=?");
+            consulta.setInt(1, codpe);
+            consulta.setInt(2, codpr);
+            ResultSet resultado = consulta.executeQuery();
+            if (resultado.next()) {
+                cantidad = resultado.getInt("cantidad");
+            }
         } catch (SQLException e) {
             System.err.println(e);
         } finally {
             close();
         }
-        return pedido;
+        return cantidad;
     }
 
 }

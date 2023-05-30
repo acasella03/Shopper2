@@ -17,8 +17,8 @@ import javax.swing.JOptionPane;
 public class AgregarProductos extends javax.swing.JFrame {
     
     private NuevoPedido nuevoPedido;
-
-    /**
+    
+      /**
      * Creates new form AgregarProductos
      *
      * @param nuevoPedido
@@ -54,7 +54,7 @@ public class AgregarProductos extends javax.swing.JFrame {
         tCantidadProducto = new javax.swing.JTextField();
         bAgregar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("AGREGAR PRODUCTOS AL PEDIDO");
 
         eSeleccionaProducto.setText("SELECCIONA PRODUCTO:");
