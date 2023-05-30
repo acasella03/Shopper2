@@ -64,11 +64,6 @@ public class NuevoPedido extends javax.swing.JFrame {
         boxRepartidores = new javax.swing.JComboBox<>();
         etiquetaEjemploFormatoFecha = new javax.swing.JLabel();
         eFormatoFecha = new javax.swing.JLabel();
-        bModificar = new javax.swing.JButton();
-        bLimpiar = new javax.swing.JButton();
-        bBuscar = new javax.swing.JButton();
-        tBuscar = new javax.swing.JTextField();
-        eEjemploIdPedido = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("NUEVO PEDIDO");
@@ -129,71 +124,45 @@ public class NuevoPedido extends javax.swing.JFrame {
         eFormatoFecha.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
         eFormatoFecha.setText("AAAA-MM-DD ");
 
-        bModificar.setText("MODIFICAR");
-
-        bLimpiar.setText("LIMPIAR");
-
-        bBuscar.setText("BUSCAR");
-        bBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bBuscarActionPerformed(evt);
-            }
-        });
-
-        tBuscar.setToolTipText("");
-
-        eEjemploIdPedido.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
-        eEjemploIdPedido.setText("Indica ID Pedido");
-
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelLayout.createSequentialGroup()
-                        .addComponent(bGuardar)
-                        .addGap(68, 68, 68)
-                        .addComponent(bModificar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bLimpiar)
-                        .addGap(61, 61, 61)
-                        .addComponent(bCancelar))
-                    .addGroup(panelLayout.createSequentialGroup()
-                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(eCodRepartidor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(eFechaPedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(eCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(eDireccionCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tNombreCliente)
-                            .addComponent(tDireccionCliente)
                             .addGroup(panelLayout.createSequentialGroup()
+                                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(eCodRepartidor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(eFechaPedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(eCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(eDireccionCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(boxRepartidores, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(eFormatoFecha)
+                                    .addComponent(tNombreCliente)
+                                    .addComponent(tDireccionCliente)
                                     .addGroup(panelLayout.createSequentialGroup()
-                                        .addComponent(tFechaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(etiquetaEjemploFormatoFecha)))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE))
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelLayout.createSequentialGroup()
+                                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(boxRepartidores, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(eFormatoFecha)
+                                            .addGroup(panelLayout.createSequentialGroup()
+                                                .addComponent(tFechaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(etiquetaEjemploFormatoFecha)))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE))
                         .addGap(29, 29, 29)
                         .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(bAddProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bDelProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bBuscar)
-                            .addComponent(eEjemploIdPedido))
-                        .addGap(45, 45, 45))))
+                            .addComponent(bDelProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addGap(123, 123, 123)
+                        .addComponent(bGuardar)
+                        .addGap(157, 157, 157)
+                        .addComponent(bCancelar)))
+                .addContainerGap())
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,21 +170,12 @@ public class NuevoPedido extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(eCliente)
-                    .addComponent(tNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bBuscar))
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(eDireccionCliente)
-                            .addComponent(tDireccionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(22, 22, 22))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(eEjemploIdPedido)
-                        .addGap(19, 19, 19)))
+                    .addComponent(tNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(eDireccionCliente)
+                    .addComponent(tDireccionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(eFechaPedido)
                     .addComponent(tFechaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -237,9 +197,7 @@ public class NuevoPedido extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bGuardar)
-                    .addComponent(bCancelar)
-                    .addComponent(bModificar)
-                    .addComponent(bLimpiar))
+                    .addComponent(bCancelar))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
@@ -342,29 +300,20 @@ public class NuevoPedido extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_bCancelarActionPerformed
 
-    private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bBuscarActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAddProducto;
-    private javax.swing.JButton bBuscar;
     private javax.swing.JButton bCancelar;
     private javax.swing.JButton bDelProducto;
     private javax.swing.JButton bGuardar;
-    private javax.swing.JButton bLimpiar;
-    private javax.swing.JButton bModificar;
     private javax.swing.JComboBox<String> boxRepartidores;
     private javax.swing.JLabel eCliente;
     private javax.swing.JLabel eCodRepartidor;
     private javax.swing.JLabel eDireccionCliente;
-    private javax.swing.JLabel eEjemploIdPedido;
     private javax.swing.JLabel eFechaPedido;
     private javax.swing.JLabel eFormatoFecha;
     private javax.swing.JLabel etiquetaEjemploFormatoFecha;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panel;
-    private javax.swing.JTextField tBuscar;
     private javax.swing.JTextField tDireccionCliente;
     private javax.swing.JTextField tFechaPedido;
     private javax.swing.JTextField tNombreCliente;

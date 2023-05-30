@@ -51,63 +51,51 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="bGuardar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
-                          <Component id="bModificar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="bLimpiar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                          <Component id="bCancelar" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="eCodRepartidor" max="32767" attributes="0"/>
-                              <Component id="eFechaPedido" max="32767" attributes="0"/>
-                              <Component id="eCliente" max="32767" attributes="0"/>
-                              <Component id="eDireccionCliente" pref="120" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tNombreCliente" max="32767" attributes="0"/>
-                              <Component id="tDireccionCliente" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="eCodRepartidor" max="32767" attributes="0"/>
+                                      <Component id="eFechaPedido" max="32767" attributes="0"/>
+                                      <Component id="eCliente" max="32767" attributes="0"/>
+                                      <Component id="eDireccionCliente" pref="120" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="boxRepartidores" min="-2" pref="115" max="-2" attributes="0"/>
-                                      <Component id="eFormatoFecha" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="tFechaPedido" min="-2" pref="155" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="etiquetaEjemploFormatoFecha" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tNombreCliente" max="32767" attributes="0"/>
+                                      <Component id="tDireccionCliente" max="32767" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="boxRepartidores" min="-2" pref="115" max="-2" attributes="0"/>
+                                              <Component id="eFormatoFecha" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="tFechaPedido" min="-2" pref="155" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="etiquetaEjemploFormatoFecha" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
+                              <Component id="jScrollPane1" pref="538" max="32767" attributes="0"/>
                           </Group>
-                      </Group>
-                      <Component id="jScrollPane1" pref="538" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="bAddProducto" max="32767" attributes="0"/>
                               <Component id="bDelProducto" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tBuscar" min="-2" pref="71" max="-2" attributes="0"/>
-                              <Component id="bBuscar" min="-2" max="-2" attributes="0"/>
-                              <Component id="eEjemploIdPedido" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
+                          <Component id="bGuardar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
+                          <Component id="bCancelar" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -118,25 +106,13 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="eCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tNombreCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="bBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="eDireccionCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tDireccionCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="tBuscar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="eEjemploIdPedido" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                      </Group>
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="eDireccionCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tDireccionCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="eFechaPedido" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tFechaPedido" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -163,8 +139,6 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="bGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="bCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="bModificar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="bLimpiar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="36" max="32767" attributes="0"/>
               </Group>
@@ -303,37 +277,6 @@
               <Font name="Segoe UI" size="8" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="AAAA-MM-DD "/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="bModificar">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="MODIFICAR"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="bLimpiar">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="LIMPIAR"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="bBuscar">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="BUSCAR"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bBuscarActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JTextField" name="tBuscar">
-          <Properties>
-            <Property name="toolTipText" type="java.lang.String" value=""/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="eEjemploIdPedido">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="8" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Indica ID Pedido"/>
           </Properties>
         </Component>
       </SubComponents>
