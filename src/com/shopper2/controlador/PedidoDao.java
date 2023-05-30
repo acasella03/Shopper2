@@ -190,13 +190,29 @@ public class PedidoDao {
     public boolean modificar(Pedido pedido) {
         connect();
         try {
-            PreparedStatement sentencia = conexion.prepareStatement("UPDATE pedidos SET nomCliente=?, direccion=?, fecha=?, codr=? WHERE codpe=?");
-            sentencia.setString(1, pedido.getNomCliente());
-            sentencia.setString(2, pedido.getDireccionCliente());
-            sentencia.setDate(3, (Date) pedido.getFecha());
-            sentencia.setInt(4, pedido.getRepartidor().getCodr());
-            sentencia.setInt(5, pedido.getCodpe());
-            sentencia.executeUpdate();
+            PreparedStatement modificarDatos = conexion.prepareStatement("UPDATE pedidos SET nomCliente=?, direccion=?, fecha=?, codr=? WHERE codpe=?");
+            modificarDatos.setString(1, pedido.getNomCliente());
+            modificarDatos.setString(2, pedido.getDireccionCliente());
+            modificarDatos.setDate(3, (Date) pedido.getFecha());
+            modificarDatos.setInt(4, pedido.getRepartidor().getCodr());
+            modificarDatos.setInt(5, pedido.getCodpe());
+            modificarDatos.executeUpdate();
+
+            PreparedStatement eliminarProductos = conexion.prepareStatement("DELETE from tienen where codpe=?");
+            eliminarProductos.setInt(1,pedido.getCodpe());
+            eliminarProductos.execute();
+
+            if (pedido.getProductos() != null) {
+                PreparedStatement insertarProducto = conexion.prepareStatement("INSERT into tienen (codpe, codpr, cantidad) VALUES (?,?,?)");
+                for (Map.Entry<IProducto, Integer> entrada : pedido.getProductos().entrySet()) {
+                    IProducto producto = entrada.getKey();
+                    Integer cantidad = entrada.getValue();
+                    insertarProducto.setInt(1, pedido.getCodpe());
+                    insertarProducto.setInt(2, producto.getCodpr());
+                    insertarProducto.setInt(3, cantidad);
+                    insertarProducto.executeUpdate();
+                }
+            }
         } catch (SQLException e) {
             System.err.println(e);
             return false;
