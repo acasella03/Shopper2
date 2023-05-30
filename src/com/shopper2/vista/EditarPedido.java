@@ -8,17 +8,20 @@ import com.shopper2.controlador.PedidoDao;
 import com.shopper2.controlador.ProductoDao;
 import com.shopper2.controlador.RepartidorDao;
 import com.shopper2.modelo.pedido.Pedido;
+import com.shopper2.modelo.productos.IAgregarProducto;
+import com.shopper2.modelo.productos.IProducto;
 import com.shopper2.modelo.productos.Producto;
 import com.shopper2.modelo.repartidores.Repartidor;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * @author Angita
  */
-public class EditarPedido extends javax.swing.JFrame {
+public class EditarPedido extends javax.swing.JFrame implements IAgregarProducto {
 
     private int codpe;
 
@@ -46,6 +49,16 @@ public class EditarPedido extends javax.swing.JFrame {
                 boxRepartidores.setSelectedIndex(i);
                 break;
             }
+        }
+
+        for (Map.Entry<IProducto, Integer> entrada : pedido.getProductos().entrySet()) {
+            DefaultTableModel model = (DefaultTableModel) tablaProductos.getModel();
+            Object[] datos = new Object[4];
+            datos[0] = entrada.getKey().getCodpr();
+            datos[1] = entrada.getKey().getNombreProducto();
+            datos[2] = entrada.getKey().getCategoria();
+            datos[3] = entrada.getValue();
+            model.addRow(datos);
         }
     }
 
@@ -248,8 +261,8 @@ public class EditarPedido extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bAddProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddProductoActionPerformed
-        //  AgregarProductos agregarProductos = new AgregarProductos(this);
-        // agregarProductos.setVisible(true);
+        AgregarProductos agregarProductos = new AgregarProductos(this);
+        agregarProductos.setVisible(true);
     }//GEN-LAST:event_bAddProductoActionPerformed
 
     private void bDelProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDelProductoActionPerformed

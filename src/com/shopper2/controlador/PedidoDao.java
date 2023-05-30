@@ -95,7 +95,6 @@ public class PedidoDao {
                 PreparedStatement buscarProducto = conexion.prepareStatement("SELECT * from tienen where codpe=?");
                 buscarProducto.setInt(1, codpe);
                 ResultSet resultadoProducto = buscarProducto.executeQuery();
-                close();
                 while (resultadoProducto.next()) {
                     int cantidad = resultadoProducto.getInt("cantidad");
                     int codpr = resultadoProducto.getInt("codpr");

@@ -8,6 +8,7 @@ import com.shopper2.controlador.PedidoDao;
 import com.shopper2.controlador.ProductoDao;
 import com.shopper2.controlador.RepartidorDao;
 import com.shopper2.modelo.pedido.Pedido;
+import com.shopper2.modelo.productos.IAgregarProducto;
 import com.shopper2.modelo.productos.Producto;
 import com.shopper2.modelo.repartidores.Repartidor;
 import javax.swing.table.DefaultTableModel;
@@ -18,7 +19,7 @@ import javax.swing.DefaultComboBoxModel;
 /**
  * @author Angita
  */
-public class NuevoPedido extends javax.swing.JFrame {
+public class NuevoPedido extends javax.swing.JFrame implements IAgregarProducto {
 
     /**
      * Creates new form NuevoPedido
