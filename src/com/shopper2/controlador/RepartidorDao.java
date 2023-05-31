@@ -11,14 +11,14 @@ import java.util.logging.Logger;
 public class RepartidorDao {
 
     /**
-     * Variable auxiliar para Singleton
+     * Variable auxiliar para Singleton.
      */
     private static RepartidorDao instance = null;
 
     /**
-     * Método estático que retorna una única instancia
+     * Método estático que retorna una única instancia.
      *
-     * @return instancia única
+     * @return instancia única.
      */
     public static RepartidorDao getInstance() {
         if (instance == null) {
@@ -35,12 +35,12 @@ public class RepartidorDao {
     }
 
     /**
-     * Conexion a la base de datos
+     * Conexion a la base de datos.
      */
     Connection conexion = null;
 
     /**
-     * Realiza la conexión a la base de datos
+     * Realiza la conexión a la base de datos.
      */
     public void connect() {
         try {
@@ -57,7 +57,7 @@ public class RepartidorDao {
     }
 
     /**
-     * Realiza la desconexión de la base de datos
+     * Realiza la desconexión de la base de datos.
      */
     public void close() {
         try {
@@ -68,10 +68,10 @@ public class RepartidorDao {
     }
 
     /**
-     * Buscar repartidor en la base de datos según su código
+     * Busca un repartidor en la base de datos según su código.
      *
-     * @param codr a buscar
-     * @return repartidor encontrado en la base de datos
+     * @param codr cógido del repartidor a buscar.
+     * @return repartidor encontrado en la base de datos.
      */
     public Repartidor buscar(int codr) {
         connect();
@@ -95,11 +95,10 @@ public class RepartidorDao {
     /**
      * Consulta los datos de los reparrtidores en la base de datos.
      *
-     * @return los dator de los repartidores
+     * @return los datos de los repartidores.
      */
     public ArrayList<Repartidor> obtenerRepartidores() {
         ArrayList<Repartidor> repartidores = new ArrayList<>();
-
         // Realizar la consulta a la base de datos y obtener los datos de los repartidores
         try {
             connect();
@@ -116,49 +115,6 @@ public class RepartidorDao {
         } finally {
             close();
         }
-
         return repartidores;
     }
-    
-    public int buscarNombre(String nomr) {
-        connect();
-        int codigo = 0;
-        try {
-            PreparedStatement sentencia = conexion.prepareStatement("SELECT * from repartidores where nomr=?");
-            sentencia.setString(1, nomr);
-            ResultSet resultado = sentencia.executeQuery();
-            if (resultado.next()) {
-                codigo = resultado.getInt("codr");
-            }
-        } catch (SQLException e) {
-            System.err.println(e);
-        } finally {
-            close();
-        }
-        return codigo;
-    }
-    
-    public List<String> buscarListaComboBox(int codr) {
-    connect();
-    List<String> resultado = new ArrayList<>();
-
-    try {
-        PreparedStatement sentencia = conexion.prepareStatement("SELECT * FROM repartidores WHERE codr = ?");
-        sentencia.setInt(1, codr);
-        ResultSet rs = sentencia.executeQuery();
-
-        while (rs.next()) {
-            String nombreRepartidor = rs.getString("codr")+" - "+rs.getString("nomr");
-            resultado.add(nombreRepartidor);
-        }
-    } catch (SQLException e) {
-        System.err.println(e);
-    } finally {
-        close();
-    }
-
-    return resultado;
-}
-
-    
 }

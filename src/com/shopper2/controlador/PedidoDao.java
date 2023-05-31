@@ -14,14 +14,14 @@ import java.util.logging.Logger;
 public class PedidoDao {
 
     /**
-     * Variable auxiliar para Singleton
+     * Variable auxiliar para Singleton.
      */
     private static PedidoDao instance = null;
 
     /**
-     * Método estático que retorna una única instancia
+     * Método estático que retorna una única instancia.
      *
-     * @return instancia única
+     * @return instancia única.
      */
     public static PedidoDao getInstance() {
         if (instance == null) {
@@ -37,12 +37,12 @@ public class PedidoDao {
     }
 
     /**
-     * Conexion a la base de datos
+     * Conexion a la base de datos.
      */
     Connection conexion = null;
 
     /**
-     * Realiza la conexión a la base de datos
+     * Realiza la conexión a la base de datos.
      */
     public void connect() {
         try {
@@ -60,7 +60,7 @@ public class PedidoDao {
     }
 
     /**
-     * Realiza la desconexión de la base de datos
+     * Realiza la desconexión de la base de datos.
      */
     public void close() {
         try {
@@ -71,10 +71,10 @@ public class PedidoDao {
     }
 
     /**
-     * Buscar pedido en la base de datos según su código
+     * Busca un pedido en la base de datos según su código.
      *
-     * @param codpe a buscar
-     * @return pedido encontrado en la base de datos
+     * @param codpe código del pedidodp a buscar.
+     * @return pedido encontrado en la base de datos.
      */
     public Pedido buscar(int codpe) {
         connect();
@@ -111,9 +111,9 @@ public class PedidoDao {
     }
 
     /**
-     * Metodo que nos devuelve todos los pedidos
+     * Busca todos los pedidos existentes en la base de datos.
      *
-     * @return todos los pedidos
+     * @return todos los pedidos.
      */
     public ArrayList<Pedido> buscarTodos() {
         connect();
@@ -141,10 +141,10 @@ public class PedidoDao {
     }
 
     /**
-     * Registrar pedido en la base de datos
+     * Registra pedido en la base de datos.
      *
-     * @param pedido que queremos registrar
-     * @return pedido registrado
+     * @param pedido a crear.
+     * @return true si creó el pedido, false si no lo creó.
      */
     public boolean crear(Pedido pedido) { //botón GUARDAR
         connect();
@@ -182,10 +182,10 @@ public class PedidoDao {
     }
 
     /**
-     * Modificar elementos de un pedido
+     * Modificar elementos de un pedido.
      *
-     * @param pedido que queremos modificar
-     * @return pedido modificado
+     * @param pedido que queremos modificar.
+     * @return true si modifica el pedido y false si no lo modifica.
      */
     public boolean modificar(Pedido pedido) {
         connect();
@@ -223,10 +223,10 @@ public class PedidoDao {
     }
 
     /**
-     * Eliminar pedido de la base de datos según su código
+     * Elimina pedido de la base de datos según su código.
      *
-     * @param codpe pedido a eliminar
-     * @return pedido eliminado
+     * @param codpe pedido a eliminar.
+     * @return true si lo eliminó y false si no lo pudo eliminar.
      */
     public boolean eliminar(int codpe) {
         connect();
@@ -246,25 +246,6 @@ public class PedidoDao {
             close();
         }
         return true;
-    }
-
-    public int consultarCantidad(int codpe, int codpr) {
-        connect();
-        int cantidad = 0;
-        try {
-            PreparedStatement consulta = conexion.prepareStatement("SELECT cantidad FROM tienen WHERE codpe=? AND codpr=?");
-            consulta.setInt(1, codpe);
-            consulta.setInt(2, codpr);
-            ResultSet resultado = consulta.executeQuery();
-            if (resultado.next()) {
-                cantidad = resultado.getInt("cantidad");
-            }
-        } catch (SQLException e) {
-            System.err.println(e);
-        } finally {
-            close();
-        }
-        return cantidad;
     }
 
 }

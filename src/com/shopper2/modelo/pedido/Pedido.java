@@ -64,7 +64,7 @@ public class Pedido implements IPedido {
      *
      * @param nomCliente nombre del cliente del pedido.
      * @param direccionCliente del pedido.
-     * @param fecha del pedido
+     * @param fecha del pedido.
      * @param repartidor del pedido.
      */
     public Pedido(String nomCliente, String direccionCliente, Date fecha, Repartidor repartidor) {
@@ -75,25 +75,25 @@ public class Pedido implements IPedido {
     }
 
     /**
-     * Asignar el identificador del pedido
+     * Asigna el identificador del pedido.
      *
-     * @param codpe codigo del pedido
+     * @param codpe codigo del pedido.
      */
     public void setCodpe(int codpe) {
         this.codpe = codpe;
     }
 
     /**
-     * Asignar el nombre del cliente del pedido
+     * Asigna el nombre del cliente del pedido.
      *
-     * @param nomCliente nombre del cliente
+     * @param nomCliente nombre del cliente.
      */
     public void setNomCliente(String nomCliente) {
         this.nomCliente = nomCliente;
     }
 
     /**
-     * Asignar la dirección del cliente del pedido
+     * Asigna la dirección del cliente del pedido.
      *
      * @param direccionCliente
      */
@@ -102,18 +102,18 @@ public class Pedido implements IPedido {
     }
 
     /**
-     * Asignar la fecha del pedido
+     * Asigna la fecha del pedido.
      *
-     * @param fecha del pedido
+     * @param fecha del pedido.
      */
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
     /**
-     * Asignar el repartidor del pedido
+     * Asigna el repartidor del pedido.
      *
-     * @param repartidor asignado
+     * @param repartidor asignado al pedido.
      */
     public void setRepartidor(Repartidor repartidor) {
         this.repartidor = repartidor;
@@ -130,7 +130,7 @@ public class Pedido implements IPedido {
     }
 
     /**
-     * Obtener el nombre del cliente del pedido.
+     * Obtiene el nombre del cliente del pedido.
      *
      * @return nombre del cliente del pedido.
      */
@@ -140,7 +140,7 @@ public class Pedido implements IPedido {
     }
 
     /**
-     * Obtener la dirección del cliente del pedido.
+     * Obtiene la dirección del cliente del pedido.
      *
      * @return dirección del cliente del pedido
      */
@@ -150,7 +150,7 @@ public class Pedido implements IPedido {
     }
 
     /**
-     * Obtener la fecha del pedido.
+     * Obtiene la fecha del pedido.
      *
      * @return fecha del pedido.
      */
@@ -160,7 +160,7 @@ public class Pedido implements IPedido {
     }
 
     /**
-     * Obtener el repartidor del pedido
+     * Obtiene el repartidor del pedido
      *
      * @return repartidor del pedido
      */
@@ -170,9 +170,9 @@ public class Pedido implements IPedido {
     }
 
     /**
-     * Obtiene el producto del pedido.
+     * Obtiene productos del pedido.
      *
-     * @return producto del pedido.
+     * @return productos del pedido.
      */
     @Override
     public Map<IProducto, Integer> getProductos() {
@@ -180,7 +180,7 @@ public class Pedido implements IPedido {
     }
 
     /**
-     * Agregar producto al pedido.
+     * Agrega productos al pedido.
      *
      * @param producto para agregar.
      * @param cantidad para agregar.

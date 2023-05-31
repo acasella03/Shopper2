@@ -11,14 +11,14 @@ import java.util.logging.Logger;
 public class ProductoDao {
 
     /**
-     * Variable auxiliar para Singleton
+     * Variable auxiliar para Singleton.
      */
     private static ProductoDao instance = null;
 
     /**
-     * Método estático que retorna una única instancia
+     * Método estático que retorna una única instancia.
      *
-     * @return instancia única
+     * @return instancia única.
      */
     public static ProductoDao getInstance() {
         if (instance == null) {
@@ -35,12 +35,12 @@ public class ProductoDao {
     }
 
     /**
-     * Conexion a la base de datos
+     * Conexion a la base de datos.
      */
     Connection conexion = null;
 
     /**
-     * Realiza la conexión a la base de datos
+     * Realiza la conexión a la base de datos.
      */
     public void connect() {
         try {
@@ -58,7 +58,7 @@ public class ProductoDao {
     }
 
     /**
-     * Realiza la desconexión de la base de datos
+     * Realiza la desconexión de la base de datos.
      */
     public void close() {
         try {
@@ -69,10 +69,10 @@ public class ProductoDao {
     }
 
     /**
-     * Buscar producto en la base de datos según su código
+     * Busca un producto en la base de datos según su código.
      *
-     * @param codpr a buscar
-     * @return producto encontrado en la base de datos
+     * @param codpr código del producto a buscar.
+     * @return producto encontrado en la base de datos.
      */
     public Producto buscar(int codpr) {
         connect();
@@ -96,9 +96,9 @@ public class ProductoDao {
     }
 
     /**
-     * Realiza consultas de una tabla
+     * Realiza consulta de todos los productos de la base de datos con la categoría de cada uno.
      *
-     * @return la lista con todos los productos
+     * @return la lista con todos los productos.
      */
     public ArrayList<Producto> listaProductos() {
         connect();
@@ -122,10 +122,10 @@ public class ProductoDao {
     }
 
     /**
-     * Eliminar producto de la base de datos según su código
+     * Elimina un producto de la base de datos según su código.
      *
-     * @param codpr código del producto a eliminar
-     * @return producto eliminado
+     * @param codpr código del producto a eliminar.
+     * @return true si elimina el producto, false si no lo elimina.
      */
     public boolean eliminar(int codpr) {
         connect();
@@ -143,6 +143,11 @@ public class ProductoDao {
         return true;
     }
 
+    /**
+     * Obtiene los productos con el código y el nombre de cada producto de la base de datos.
+     *
+     * @return lista de los productos.
+     */
     public ArrayList<Producto> obtenerProductos() {
         ArrayList<Producto> productos = new ArrayList<>();
 
