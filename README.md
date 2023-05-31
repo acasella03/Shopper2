@@ -11,89 +11,140 @@ de la tienda podrán gestionar de manera eficaz todos los aspectos relacionados 
 
 ```mermaid
 classDiagram
-    class IPedido{
-    +getCodpe()int
-    +getNomCliente()String
-    +getDireccionCliente()String
-    +getFecha()Date
-    +getRepartidor()Repartidor
-    +getProductos()Map
+    class Modelo {
     }
-    class IProducto{
-    +getCodpr()int
-    +getNombreProducto()String
-    +getCategoria()Categoria
+
+    class Vista {
     }
-    class IRepartidor{
-    +getCodr()int
-    +getNomr()String
+
+    class Controlador {
     }
-    class Pedido{
-    -int: codpe
-    -String: nomCliente
-    -String: direccionCliente
-    -Date: fecha
-    -Repartidor: repartidor
-    -Map: productos
-    +addProducto(Producto, Integer)
+
+    class PedidoDao {
+    -PedidoDao: instance
+    +Connection: conexion
+    +getInstance()PedidoDao
+    +connect()
+    +close()
+    +buscar(int)Pedido
+    +buscarTodos()ArrayList
+    +crear(Pedido)boolean
+    +modificar(Pedido)boolean
+    +eliminar(int)boolean
     }
-    class Producto{
-    -int: codpr
-    -String: nombreProducto
-    -Categoria: categoria
+
+    class ProductoDao {
+    -ProductoDao: instance
+    +Connection: conexion
+    +getInstance()ProductoDao
+    +connect()
+    +close()
+    +buscar(int)Producto
+    +listaProductos()ArrayList
+    +eliminar(int)boolean
+    +obtenerProductos()ArrayList
     }
-    class Categoria{
+
+    class RepartidorDao {
+    -RepartidorDao: instance
+    +Connection: conexion
+    +getInstance()RepartidorDao
+    +connect()
+    +close()
+    +buscar(int)Repartidor
+    +obtenerRepartidores()ArrayList        
+    }
+
+    class Categoria {
     <<enumeration>>
     ALIMENTACION
     DROGUERIA
     HIGIENE
     MASCOTAS
+    -String: stringValue
+    +getStringValue()String
+    +fromString(String)Categoria
     }
-    class Repartidor{
-    -int: codr
-    -String: nombr
+
+    class IPedido {
+    +getCodpe()int
+    +getNomCliente()String
+    +getDireccionCliente()String
+    +getFecha()Date
+    +getRepartidor()Repartidor
+    +getProducto()Map   
     }
-    class PedidoDao{
-    +String: url
-    +Connection: conexion
-    +connect()
-    +close()
-    +buscar(Pedido)Pedido
-    +buscarTodos()ArrayList<Pedidos>
-    +crear(Pedido)Pedido
-    +modificar(Pedido)Pedido
-    +eliminar(Pedido)Pedido
+
+    class Pedido {
+        <<implementa>>
+        IPedido
     }
-    class ProductoDao{
-    +String: url
-    +Connection: conexion
-    +connect()
-    +cloase()
-    +buscar(int)Producto
+
+    class IAgregarProducto {
     }
-    class RepartidorDao{
-    +String: url
-    +ResultSet: resultado
-    +Connection: conexion
-    +connect()
-    +close()
-    +buscar(Repartidor)Repartidor
-    }   
-    class ListaPedidos{
+
+    class IProducto {
+    }
+
+    class Producto {
+        <<implementa>>
+        IProducto
+    }
+
+    class IRepartidor {
+    }
+
+    class Repartidor {
+        <<implementa>>
+        IRepartidor
+    }
+
+    class AgregarProductos {
+   
+    }
+
+    class EditarPedido {
+     <<implementa>>
+    IAgregarProducto
+    }
+
+    class ListaPedidos {
+    }
+
+    class MenuPrincipal {
+    }
+
+    class NuevoPedido {
+     <<implementa>>
+    IAgregarProducto
+    }
+
+   
+    Producto o-- Categoria
     
-    }
-    class MenuPrincipal{
+    Modelo o-- Producto
+    Modelo o-- Pedido    
+    Modelo o-- Repartidor
+
+    Controlador o-- PedidoDao
+    Controlador o-- ProductoDao
+    Controlador o-- RepartidorDao
+
+    Modelo <|-- Controlador
+    Vista <|-- Controlador
+
+    Vista o-- AgregarProductos
+    Vista o-- EditarPedido
+    Vista o-- ListaPedidos
+    Vista o-- MenuPrincipal
+    Vista o-- NuevoPedido
     
-    }
-    class NuevoPedido{
-    
-    }    
-    Pedido "1"-- "1" PedidoDao: association
-    Repartidor "1"-- "1" RepartidorDao: association
-    Producto "1"-- "1" ProductoDao: association 
-    Producto <-- Categoria
-    IPedido<|--Pedido
-    IProducto<|--Producto
-    IRepartidor<|--Repartidor
-      
+    IRepartidor <.. Repartidor
+    IPedido <.. Pedido
+    IProducto <.. Producto
+   
+    IAgregarProducto <.. EditarPedido
+    IAgregarProducto <.. NuevoPedido
+
+
 ```
