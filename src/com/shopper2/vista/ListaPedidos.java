@@ -157,9 +157,15 @@ public class ListaPedidos extends javax.swing.JFrame {
     }//GEN-LAST:event_bNuevoPedidoActionPerformed
 
     private void bEditarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditarPedidoActionPerformed
-        EditarPedido editarPedido = new EditarPedido();
-        editarPedido.setVisible(true);
-        dispose();
+        DefaultTableModel model = (DefaultTableModel) tablaPedidos.getModel();
+        int filaSeleccionada = tablaPedidos.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            int pedidoId = (int) model.getValueAt(filaSeleccionada, 0);
+            EditarPedido editarPedido = new EditarPedido(pedidoId);
+            editarPedido.setVisible(true);
+            dispose();
+        }
+
     }//GEN-LAST:event_bEditarPedidoActionPerformed
 
     private void bEliminarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarPedidoActionPerformed

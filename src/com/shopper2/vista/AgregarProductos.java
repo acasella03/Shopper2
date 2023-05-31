@@ -5,6 +5,7 @@
 package com.shopper2.vista;
 
 import com.shopper2.controlador.ProductoDao;
+import com.shopper2.modelo.productos.IAgregarProducto;
 import com.shopper2.modelo.productos.Producto;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
@@ -16,15 +17,15 @@ import javax.swing.JOptionPane;
  */
 public class AgregarProductos extends javax.swing.JFrame {
     
-    private NuevoPedido nuevoPedido;
+    private IAgregarProducto agregarProducto;
     
       /**
      * Creates new form AgregarProductos
      *
-     * @param nuevoPedido
+     * @param
      */
-    public AgregarProductos(NuevoPedido nuevoPedido) {
-        this.nuevoPedido = nuevoPedido;
+    public AgregarProductos(IAgregarProducto agregarProducto) {
+        this.agregarProducto = agregarProducto;
         initComponents();
         initProductos();
     }
@@ -125,7 +126,7 @@ public class AgregarProductos extends javax.swing.JFrame {
         int codpr = Integer.parseInt(parts[0]);
         Producto producto = ProductoDao.getInstance().buscar(codpr);
         if(cantidad >= 0){
-            nuevoPedido.agregarProducto(producto, cantidad);
+            agregarProducto.agregarProducto(producto, cantidad);
             tCantidadProducto.setText(null);
         }else{
             JOptionPane.showMessageDialog(null, "Debes escribir un número positivo");
