@@ -26,32 +26,32 @@ public class Repartidor implements IRepartidor {
     }
 
     /**
-     * Constructor vacío
+     * Constructor vacío.
      */
     public Repartidor() {
 
     }
 
     /**
-     * Asignar un identificador al repartidor
+     * Asigna un identificador al repartidor.
      *
-     * @param codr codigo del repartidor
+     * @param codr codigo del repartidor.
      */
     public void setCodr(int codr) {
         this.codr = codr;
     }
 
     /**
-     * Asignar un nombre al repartidor
+     * Asigna un nombre al repartidor.
      *
-     * @param nomr nombre del repartidor
+     * @param nomr nombre del repartidor.
      */
     public void setNomr(String nomr) {
         this.nomr = nomr;
     }
 
     /**
-     * Obtener el identificador del repartidor.
+     * Obtiene el identificador del repartidor.
      *
      * @return identificador del repartidor.
      */
@@ -61,7 +61,7 @@ public class Repartidor implements IRepartidor {
     }
 
     /**
-     * Obtener el nombre del repartidor.
+     * Obtiene el nombre del repartidor.
      *
      * @return nombre del repartidor.
      */

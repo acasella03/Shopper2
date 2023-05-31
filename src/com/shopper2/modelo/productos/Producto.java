@@ -33,46 +33,51 @@ public class Producto implements IProducto {
         this.categoria = categoria;
     }
 
+    /**
+     * Constructor parametrizado.
+     * @param codpr código del producto.
+     * @param nombreProducto
+     */
     public Producto(int codpr, String nombreProducto) {
         this.codpr = codpr;
         this.nombreProducto = nombreProducto;
     }
 
     /**
-     * Constructor vacio
+     * Constructor vacio.
      */
     public Producto() {
     }
 
     /**
-     * Asignar un identificador al producto
+     * Asigna un identificador al producto.
      *
-     * @param codpr codigo del producto
+     * @param codpr código del producto.
      */
     public void setCodpr(int codpr) {
         this.codpr = codpr;
     }
 
     /**
-     * Asignar un nombre al producto
+     * Asigna un nombre al producto.
      *
-     * @param nombreProducto del producto
+     * @param nombreProducto del producto.
      */
     public void setNombreProducto(String nombreProducto) {
         this.nombreProducto = nombreProducto;
     }
 
     /**
-     * Asignar una categoria al producto
+     * Asigna una categoria al producto.
      *
-     * @param categoria del producto
+     * @param categoria del producto.
      */
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 
     /**
-     * Obtener el identificador del producto.
+     * Obtiene el identificador del producto.
      *
      * @return identificador del producto.
      */
@@ -82,7 +87,7 @@ public class Producto implements IProducto {
     }
 
     /**
-     * Obtener el nombre del producto.
+     * Obtiene el nombre del producto.
      *
      * @return nombre del producto.
      */
@@ -92,7 +97,7 @@ public class Producto implements IProducto {
     }
 
     /**
-     * Obtener la categoría del producto.
+     * Obtiene la categoría del producto.
      *
      * @return categoría del producto.
      */
