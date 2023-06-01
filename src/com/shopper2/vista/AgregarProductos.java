@@ -4,6 +4,7 @@
  */
 package com.shopper2.vista;
 
+import com.angi.datos.ValidarNumero;
 import com.shopper2.modelo.dao.ProductoDao;
 import com.shopper2.modelo.productos.IAgregarProducto;
 import com.shopper2.modelo.productos.Producto;
@@ -11,9 +12,6 @@ import com.shopper2.modelo.productos.Producto;
 import javax.swing.*;
 import java.util.ArrayList;
 
-/**
- * @author Angita
- */
 public class AgregarProductos extends javax.swing.JFrame {
 
     private final IAgregarProducto agregarProducto;
@@ -124,7 +122,7 @@ public class AgregarProductos extends javax.swing.JFrame {
         String[] parts = selectedItem.split(" - ");
         int codpr = Integer.parseInt(parts[0]);
         Producto producto = ProductoDao.getInstance().buscar(codpr);
-        if (cantidad >= 0) {
+        if (ValidarNumero.validarNumeroPositivo(cantidad)) {
             agregarProducto.agregarProducto(producto, cantidad);
             tCantidadProducto.setText(null);
         } else {
