@@ -44,8 +44,8 @@ public class ListaPedidosControlador {
         int filaSeleccionada = tablaPedidos.getSelectedRow();
         if (filaSeleccionada != -1) {
             int pedidoId = (int) model.getValueAt(filaSeleccionada, 0);
-            EditarPedido editarPedido = new EditarPedido(pedidoId);
-            editarPedido.setVisible(true);
+            EditarPedidoControlador editarPedido=new EditarPedidoControlador(pedidoId);
+            editarPedido.abrirEditarPedido();
             vista.dispose();
         }
     }
