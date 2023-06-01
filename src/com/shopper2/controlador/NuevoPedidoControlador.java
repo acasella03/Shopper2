@@ -15,12 +15,21 @@ import javax.swing.table.DefaultTableModel;
 import java.sql.Date;
 import java.util.ArrayList;
 
+/**
+ * Controlador para la creación de un nuevo pedido.
+ */
 public class NuevoPedidoControlador implements IAgregarProducto {
     NuevoPedido vista;
 
+    /**
+     * Constructor de la clase NuevoPedidoControlador.
+     */
     public NuevoPedidoControlador() {
     }
 
+    /**
+     * Abre la vista para crear un nuevo pedido.
+     */
     public void abrirNuevoPedido() {
         vista = new NuevoPedido(this);
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
@@ -32,6 +41,11 @@ public class NuevoPedidoControlador implements IAgregarProducto {
         vista.setVisible(true);
     }
 
+    /**
+     * Borra un producto de la tabla de productos.
+     *
+     * @param tablaProductos La tabla de productos.
+     */
     public void borrarProducto(JTable tablaProductos) {
         DefaultTableModel model = (DefaultTableModel) tablaProductos.getModel();
         int filaSeleccionada = tablaProductos.getSelectedRow();
@@ -48,6 +62,9 @@ public class NuevoPedidoControlador implements IAgregarProducto {
         }
     }
 
+    /**
+     * Guarda el pedido creado por el usuario.
+     */
     public void guardarPedido() {
         //Objeto de tipo Pedido para recoger la información introducida por el usuario
         Pedido pedido = new Pedido();
@@ -90,12 +107,22 @@ public class NuevoPedidoControlador implements IAgregarProducto {
         }
     }
 
+    /**
+     * Cancela la creación del nuevo pedido y vuelve al menú principal.
+     */
     public void cancelar() {
         MenuPrincipalControlador menuPrincipal = new MenuPrincipalControlador();
         menuPrincipal.abrirMenuPrincipal();
         vista.dispose();
     }
 
+    /**
+     * Implementación del método agregarProducto de la interfaz IAgregarProducto.
+     * Agrega un producto a la tabla de productos.
+     *
+     * @param producto El producto a agregar.
+     * @param cantidad La cantidad del producto a agregar.
+     */
     @Override
     public void agregarProducto(Producto producto, int cantidad) {
         if (producto != null) {
@@ -109,6 +136,9 @@ public class NuevoPedidoControlador implements IAgregarProducto {
         }
     }
 
+    /**
+     * Abre la vista para agregar productos al pedido.
+     */
     public void abrirAgregarProductos() {
         AgregarProductos agregarProductos = new AgregarProductos(this);
         agregarProductos.setVisible(true);

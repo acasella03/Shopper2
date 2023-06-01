@@ -11,6 +11,9 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Clase DAO (Data Access Object) para la gestión de pedidos en la base de datos.
+ */
 public class PedidoDao {
 
     /**

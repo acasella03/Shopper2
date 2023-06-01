@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Clase DAO (Data Access Object) para la gestión de repartidores en la base de datos.
+ */
 public class RepartidorDao {
 
     /**

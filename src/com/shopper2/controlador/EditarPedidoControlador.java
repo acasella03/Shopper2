@@ -17,21 +17,35 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Map;
 
+/**
+ * Controlador para la edición de pedidos que implementa la interfaz IAgregarProducto.
+ */
 public class EditarPedidoControlador implements IAgregarProducto {
     EditarPedido vista;
     private final int codpe;
 
+    /**
+     * Constructor de la clase EditarPedidoControlador.
+     *
+     * @param codpe El código del pedido a editar.
+     */
     public EditarPedidoControlador(int codpe) {
         this.codpe = codpe;
     }
 
+    /**
+     * Abre la vista de edición de pedido.
+     */
     public void abrirEditarPedido() {
-        vista =new EditarPedido(this);
+        vista = new EditarPedido(this);
         initRepartidores();
         initPedido();
         vista.setVisible(true);
     }
 
+    /**
+     * Inicializa el ComboBox de repartidores con los datos obtenidos de la base de datos.
+     */
     private void initRepartidores() {
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
         ArrayList<Repartidor> repartidores = RepartidorDao.getInstance().obtenerRepartidores();
@@ -41,6 +55,9 @@ public class EditarPedidoControlador implements IAgregarProducto {
         vista.getBoxRepartidores().setModel(model);
     }
 
+    /**
+     * Inicializa los datos del pedido en la vista de edición.
+     */
     public void initPedido() {
         Pedido pedido = PedidoDao.getInstance().buscar(codpe);
         vista.gettNombreCliente().setText(pedido.getNomCliente());
@@ -68,6 +85,12 @@ public class EditarPedidoControlador implements IAgregarProducto {
         }
     }
 
+    /**
+     * Agrega un producto a la tabla de productos.
+     *
+     * @param producto El producto a agregar.
+     * @param cantidad La cantidad del producto a agregar.
+     */
     @Override
     public void agregarProducto(Producto producto, int cantidad) {
         if (producto != null) {
@@ -82,6 +105,11 @@ public class EditarPedidoControlador implements IAgregarProducto {
         }
     }
 
+    /**
+     * Borra un producto de la tabla de productos y también de la base de datos.
+     *
+     * @param tablaProductos La tabla de productos.
+     */
     public void borrarProducto(JTable tablaProductos) {
         DefaultTableModel model = (DefaultTableModel) tablaProductos.getModel();
         int filaSeleccionada = tablaProductos.getSelectedRow();
@@ -98,17 +126,26 @@ public class EditarPedidoControlador implements IAgregarProducto {
         }
     }
 
+    /**
+     * Abre la vista de agregar productos.
+     */
     public void abrirAgregarProductos() {
         AgregarProductos agregarProductos = new AgregarProductos(this);
         agregarProductos.setVisible(true);
     }
 
-    public void abrirListaPedidos(){
-        ListaPedidosControlador listaPedidos=new ListaPedidosControlador();
+    /**
+     * Abre la lista de pedidos y cierra la vista de edición.
+     */
+    public void abrirListaPedidos() {
+        ListaPedidosControlador listaPedidos = new ListaPedidosControlador();
         listaPedidos.abrirListaPedidos();
         vista.dispose();
     }
 
+    /**
+     * Modifica el pedido con los datos ingresados por el usuario.
+     */
     public void modificarPedido() {
         //Objeto de tipo Pedido para recoger la información introducida por el usuario
         Pedido pedido = new Pedido();
