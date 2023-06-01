@@ -4,7 +4,7 @@
  */
 package com.shopper2.vista;
 
-import com.shopper2.controlador.PedidoDao;
+import com.shopper2.modelo.dao.PedidoDao;
 import com.shopper2.modelo.pedido.Pedido;
 
 import javax.swing.table.DefaultTableModel;
@@ -145,8 +145,8 @@ public class ListaPedidos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVolverActionPerformed
-        MenuPrincipal menu = new MenuPrincipal();
-        menu.setVisible(true);
+        //MenuPrincipal menu = new MenuPrincipal();
+        //menu.setVisible(true);
         dispose();
     }//GEN-LAST:event_bVolverActionPerformed
 

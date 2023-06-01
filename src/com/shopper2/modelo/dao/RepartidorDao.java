@@ -1,10 +1,9 @@
-package com.shopper2.controlador;
+package com.shopper2.modelo.dao;
 
 import com.shopper2.modelo.repartidores.Repartidor;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

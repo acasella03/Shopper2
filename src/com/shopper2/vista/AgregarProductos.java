@@ -4,7 +4,7 @@
  */
 package com.shopper2.vista;
 
-import com.shopper2.controlador.ProductoDao;
+import com.shopper2.modelo.dao.ProductoDao;
 import com.shopper2.modelo.productos.IAgregarProducto;
 import com.shopper2.modelo.productos.Producto;
 import java.util.ArrayList;

@@ -4,9 +4,9 @@
  */
 package com.shopper2.vista;
 
-import com.shopper2.controlador.PedidoDao;
-import com.shopper2.controlador.ProductoDao;
-import com.shopper2.controlador.RepartidorDao;
+import com.shopper2.modelo.dao.PedidoDao;
+import com.shopper2.modelo.dao.ProductoDao;
+import com.shopper2.modelo.dao.RepartidorDao;
 import com.shopper2.modelo.pedido.Pedido;
 import com.shopper2.modelo.productos.IAgregarProducto;
 import com.shopper2.modelo.productos.Producto;
@@ -298,8 +298,8 @@ public class NuevoPedido extends javax.swing.JFrame implements IAgregarProducto 
     }//GEN-LAST:event_bGuardarActionPerformed
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-        MenuPrincipal menu = new MenuPrincipal();
-        menu.setVisible(true);
+        //MenuPrincipal menu = new MenuPrincipal();
+        //menu.setVisible(true);
         dispose();
     }//GEN-LAST:event_bCancelarActionPerformed
 

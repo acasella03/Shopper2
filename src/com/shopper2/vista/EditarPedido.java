@@ -4,9 +4,9 @@
  */
 package com.shopper2.vista;
 
-import com.shopper2.controlador.PedidoDao;
-import com.shopper2.controlador.ProductoDao;
-import com.shopper2.controlador.RepartidorDao;
+import com.shopper2.modelo.dao.PedidoDao;
+import com.shopper2.modelo.dao.ProductoDao;
+import com.shopper2.modelo.dao.RepartidorDao;
 import com.shopper2.modelo.pedido.Pedido;
 import com.shopper2.modelo.productos.IAgregarProducto;
 import com.shopper2.modelo.productos.IProducto;

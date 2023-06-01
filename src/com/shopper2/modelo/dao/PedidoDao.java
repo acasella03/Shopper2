@@ -1,4 +1,4 @@
-package com.shopper2.controlador;
+package com.shopper2.modelo.dao;
 
 import com.shopper2.modelo.pedido.Pedido;
 import com.shopper2.modelo.productos.IProducto;

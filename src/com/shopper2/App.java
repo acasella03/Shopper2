@@ -1,10 +1,10 @@
 package com.shopper2;
 
-import com.shopper2.vista.MenuPrincipal;
+import com.shopper2.controlador.MenuPrincipalControlador;
 
 public class App {
     public static void main(String[] args) {
-        MenuPrincipal menu = new MenuPrincipal();
-        menu.setVisible(true);
+        MenuPrincipalControlador controlador = new MenuPrincipalControlador();
+        controlador.abrirMenuPrincipal();
     }
 }
