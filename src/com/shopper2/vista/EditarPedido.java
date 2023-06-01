@@ -288,8 +288,8 @@ public class EditarPedido extends javax.swing.JFrame implements IAgregarProducto
     }//GEN-LAST:event_bDelProductoActionPerformed
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-        ListaPedidos listaPedidos = new ListaPedidos();
-        listaPedidos.setVisible(true);
+        //ListaPedidos listaPedidos = new ListaPedidos();
+        //listaPedidos.setVisible(true);
         dispose();
     }//GEN-LAST:event_bCancelarActionPerformed
 
@@ -329,8 +329,8 @@ public class EditarPedido extends javax.swing.JFrame implements IAgregarProducto
 
 
         if (PedidoDao.getInstance().modificar(pedido)) {
-            ListaPedidos pedidos = new ListaPedidos();
-            pedidos.setVisible(true);
+            //ListaPedidos pedidos = new ListaPedidos();
+            //pedidos.setVisible(true);
             dispose();
         }
     }//GEN-LAST:event_bModificarActionPerformed

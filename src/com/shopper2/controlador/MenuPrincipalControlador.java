@@ -20,7 +20,7 @@ public class MenuPrincipalControlador {
     }
 
     public void abrirListaPedidos() {
-        ListaPedidos pedidos = new ListaPedidos();
-        pedidos.setVisible(true);
+        ListaPedidosControlador pedidos = new ListaPedidosControlador();
+        pedidos.abrirListaPedidos();
     }
 }

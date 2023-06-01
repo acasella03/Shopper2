@@ -291,8 +291,8 @@ public class NuevoPedido extends javax.swing.JFrame implements IAgregarProducto 
         //Si el pedido se crea con éxito (la llamada al método retorna true), se crea una instancia de ListaPedidos
         //y se muestra en pantalla. Luego, se cierra la ventana actual (dispose()).
         if (PedidoDao.getInstance().crear(pedido)) {
-            ListaPedidos pedidos = new ListaPedidos();
-            pedidos.setVisible(true);
+            //ListaPedidos pedidos = new ListaPedidos();
+           // pedidos.setVisible(true);
             dispose();
         }
     }//GEN-LAST:event_bGuardarActionPerformed

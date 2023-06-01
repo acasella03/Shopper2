@@ -4,39 +4,28 @@
  */
 package com.shopper2.vista;
 
+import com.shopper2.controlador.ListaPedidosControlador;
 import com.shopper2.modelo.dao.PedidoDao;
 import com.shopper2.modelo.pedido.Pedido;
 
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 
-/**
- * @author Angita
- */
 public class ListaPedidos extends javax.swing.JFrame {
+
+    ListaPedidosControlador controlador;
 
     /**
      * Creates new form ListaPedidos
      */
-    public ListaPedidos() {
+    public ListaPedidos(ListaPedidosControlador controlador) {
+        this.controlador=controlador;
         initComponents();
-        initTabla();
     }
 
-    private void initTabla() {
-        ArrayList<Pedido> listaPedidos = PedidoDao.getInstance().buscarTodos();
-        DefaultTableModel modelo = (DefaultTableModel) tablaPedidos.getModel();
-        for (Pedido pedido1 : listaPedidos) {
-            Object[] datos = new Object[5];
-            datos[0] = pedido1.getCodpe();
-            datos[1] = pedido1.getNomCliente();
-            datos[2] = pedido1.getDireccionCliente();
-            datos[3] = pedido1.getFecha();
-            datos[4] = pedido1.getRepartidor().getCodr();
-
-            //añado el modelo a la tabla
-            modelo.addRow(datos);
-        }
+    public JTable getTablaPedidos() {
+        return tablaPedidos;
     }
 
     /**
@@ -145,9 +134,7 @@ public class ListaPedidos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVolverActionPerformed
-        //MenuPrincipal menu = new MenuPrincipal();
-        //menu.setVisible(true);
-        dispose();
+        controlador.volverMenuPrincipal();
     }//GEN-LAST:event_bVolverActionPerformed
 
     private void bNuevoPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevoPedidoActionPerformed
@@ -157,32 +144,11 @@ public class ListaPedidos extends javax.swing.JFrame {
     }//GEN-LAST:event_bNuevoPedidoActionPerformed
 
     private void bEditarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditarPedidoActionPerformed
-        DefaultTableModel model = (DefaultTableModel) tablaPedidos.getModel();
-        int filaSeleccionada = tablaPedidos.getSelectedRow();
-        if (filaSeleccionada != -1) {
-            int pedidoId = (int) model.getValueAt(filaSeleccionada, 0);
-            EditarPedido editarPedido = new EditarPedido(pedidoId);
-            editarPedido.setVisible(true);
-            dispose();
-        }
-
+        controlador.editarPedido(tablaPedidos);
     }//GEN-LAST:event_bEditarPedidoActionPerformed
 
     private void bEliminarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarPedidoActionPerformed
-        DefaultTableModel model = (DefaultTableModel) tablaPedidos.getModel();
-        int filaSeleccionada = tablaPedidos.getSelectedRow();
-
-        if (filaSeleccionada != -1) {
-            // Obtener el valor de la columna 0 (suponiendo que sea la columna primaria)
-            int pedidoId = (int) model.getValueAt(filaSeleccionada, 0);
-
-            // Eliminar la fila seleccionada del modelo de tabla
-            model.removeRow(filaSeleccionada);
-
-            // Eliminar el producto de la base de datos utilizando el ID
-            PedidoDao.getInstance().eliminar(pedidoId);
-        }
-
+        controlador.eliminarPedido(tablaPedidos);
     }//GEN-LAST:event_bEliminarPedidoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -192,6 +158,6 @@ public class ListaPedidos extends javax.swing.JFrame {
     private javax.swing.JButton bVolver;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panel;
-    public static javax.swing.JTable tablaPedidos;
+    private javax.swing.JTable tablaPedidos;
     // End of variables declaration//GEN-END:variables
 }
