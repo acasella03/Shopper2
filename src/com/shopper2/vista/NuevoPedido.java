@@ -4,52 +4,39 @@
  */
 package com.shopper2.vista;
 
-import com.shopper2.controlador.PedidoDao;
-import com.shopper2.controlador.ProductoDao;
-import com.shopper2.controlador.RepartidorDao;
-import com.shopper2.modelo.pedido.Pedido;
-import com.shopper2.modelo.productos.IAgregarProducto;
-import com.shopper2.modelo.productos.Producto;
-import com.shopper2.modelo.repartidores.Repartidor;
-import javax.swing.table.DefaultTableModel;
-import java.sql.Date;
-import java.util.ArrayList;
-import javax.swing.DefaultComboBoxModel;
+import com.shopper2.controlador.NuevoPedidoControlador;
 
-/**
- * @author Angita
- */
-public class NuevoPedido extends javax.swing.JFrame implements IAgregarProducto {
+import javax.swing.*;
+
+public class NuevoPedido extends javax.swing.JFrame {
+    NuevoPedidoControlador controlador;
 
     /**
      * Creates new form NuevoPedido
      */
-    public NuevoPedido() {
+    public NuevoPedido(NuevoPedidoControlador controlador) {
+        this.controlador = controlador;
         initComponents();
-        initRepartidores();
     }
 
-    private void initRepartidores() {
-        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
-        ArrayList<Repartidor> repartidores = RepartidorDao.getInstance().obtenerRepartidores();
-        for (Repartidor repartidor : repartidores) {
-            model.addElement(repartidor.getCodr() + " - " + repartidor.getNomr());
-        }
-        boxRepartidores.setModel(model);
+    public JComboBox<String> getBoxRepartidores() {
+        return boxRepartidores;
     }
 
-    public void agregarProducto(Producto producto, int cantidad) {
+    public JTextField gettDireccionCliente() {
+        return tDireccionCliente;
+    }
 
-        if (producto != null) {
-            DefaultTableModel model = (DefaultTableModel) tablaProductos.getModel();
-            Object[] datos = new Object[4];
-            datos[0] = producto.getCodpr();
-            datos[1] = producto.getNombreProducto();
-            datos[2] = producto.getCategoria();
-            datos[3] = cantidad;
-            model.addRow(datos);
+    public JTextField gettFechaPedido() {
+        return tFechaPedido;
+    }
 
-        }
+    public JTextField gettNombreCliente() {
+        return tNombreCliente;
+    }
+
+    public JTable getTablaProductos() {
+        return tablaProductos;
     }
 
     /**
@@ -93,12 +80,12 @@ public class NuevoPedido extends javax.swing.JFrame implements IAgregarProducto 
         eCodRepartidor.setText("ID REPARTIDOR");
 
         tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+                new Object[][]{
 
-            },
-            new String [] {
-                "ID", "PRODUCTO", "CATEGORIA", "CANTIDAD"
-            }
+                },
+                new String[]{
+                        "ID", "PRODUCTO", "CATEGORIA", "CANTIDAD"
+                }
         ));
         jScrollPane1.setViewportView(tablaProductos);
 
@@ -141,166 +128,114 @@ public class NuevoPedido extends javax.swing.JFrame implements IAgregarProducto 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
-            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelLayout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(bGuardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bCancelar)
-                        .addGap(78, 78, 78))
-                    .addGroup(panelLayout.createSequentialGroup()
-                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(eCodRepartidor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(eFechaPedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(eCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(eDireccionCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tNombreCliente)
-                            .addComponent(tDireccionCliente)
-                            .addGroup(panelLayout.createSequentialGroup()
+                panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
                                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(boxRepartidores, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(eFormatoFecha)
-                                    .addGroup(panelLayout.createSequentialGroup()
-                                        .addComponent(tFechaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(etiquetaEjemploFormatoFecha)))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE))
-                .addGap(29, 29, 29)
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(bAddProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bDelProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                                        .addGroup(panelLayout.createSequentialGroup()
+                                                .addGap(90, 90, 90)
+                                                .addComponent(bGuardar)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(bCancelar)
+                                                .addGap(78, 78, 78))
+                                        .addGroup(panelLayout.createSequentialGroup()
+                                                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(eCodRepartidor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(eFechaPedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(eCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(eDireccionCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(tNombreCliente)
+                                                        .addComponent(tDireccionCliente)
+                                                        .addGroup(panelLayout.createSequentialGroup()
+                                                                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(boxRepartidores, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(eFormatoFecha)
+                                                                        .addGroup(panelLayout.createSequentialGroup()
+                                                                                .addComponent(tFechaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                                .addComponent(etiquetaEjemploFormatoFecha)))
+                                                                .addGap(0, 0, Short.MAX_VALUE))))
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE))
+                                .addGap(29, 29, 29)
+                                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(bAddProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(bDelProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap())
         );
         panelLayout.setVerticalGroup(
-            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(eCliente)
-                    .addComponent(tNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(eDireccionCliente)
-                    .addComponent(tDireccionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(eFechaPedido)
-                    .addComponent(tFechaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etiquetaEjemploFormatoFecha))
-                .addGap(2, 2, 2)
-                .addComponent(eFormatoFecha)
-                .addGap(5, 5, 5)
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(eCodRepartidor)
-                    .addComponent(boxRepartidores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(3, 3, 3)
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelLayout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(bAddProducto)
-                        .addGap(92, 92, 92)
-                        .addComponent(bDelProducto)))
-                .addGap(34, 34, 34)
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bGuardar)
-                    .addComponent(bCancelar))
-                .addContainerGap(36, Short.MAX_VALUE))
+                panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelLayout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(eCliente)
+                                        .addComponent(tNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(20, 20, 20)
+                                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(eDireccionCliente)
+                                        .addComponent(tDireccionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(13, 13, 13)
+                                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(eFechaPedido)
+                                        .addComponent(tFechaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(etiquetaEjemploFormatoFecha))
+                                .addGap(2, 2, 2)
+                                .addComponent(eFormatoFecha)
+                                .addGap(5, 5, 5)
+                                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(eCodRepartidor)
+                                        .addComponent(boxRepartidores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(3, 3, 3)
+                                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(panelLayout.createSequentialGroup()
+                                                .addGap(61, 61, 61)
+                                                .addComponent(bAddProducto)
+                                                .addGap(92, 92, 92)
+                                                .addComponent(bDelProducto)))
+                                .addGap(34, 34, 34)
+                                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(bGuardar)
+                                        .addComponent(bCancelar))
+                                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void bAddProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddProductoActionPerformed
-        AgregarProductos agregarProductos = new AgregarProductos(this);
-        agregarProductos.setVisible(true);
+        controlador.abrirAgregarProductos();
     }//GEN-LAST:event_bAddProductoActionPerformed
 
     private void bDelProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDelProductoActionPerformed
-        DefaultTableModel model = (DefaultTableModel) tablaProductos.getModel();
-        int filaSeleccionada = tablaProductos.getSelectedRow();
-
-        if (filaSeleccionada != -1) {
-            // Obtener el valor de la columna 0 (suponiendo que sea la columna primaria)
-            int productoId = (int) model.getValueAt(filaSeleccionada, 0);
-
-            // Eliminar la fila seleccionada del modelo de tabla
-            model.removeRow(filaSeleccionada);
-
-            // Eliminar el producto de la base de datos utilizando el ID
-            ProductoDao.getInstance().eliminar(productoId);
-        }
+        controlador.borrarProducto(tablaProductos);
     }//GEN-LAST:event_bDelProductoActionPerformed
 
     private void bGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarActionPerformed
-        //Objeto de tipo Pedido para recoger la información introducida por el usuario
-        Pedido pedido = new Pedido();
-        //Almacenamiento del dato nombre del cliente
-        pedido.setNomCliente(tNombreCliente.getText());
-        //Almacenamiento del dato dirección del cliente
-        pedido.setDireccionCliente(tDireccionCliente.getText());
-        //Almacenamiento del dato fecha del pedido
-        pedido.setFecha(Date.valueOf(tFechaPedido.getText()));
-        //Almacenamiento del dato repartidor
-        String selectedItem = (String) boxRepartidores.getSelectedItem();
-        String[] parts = selectedItem.split(" - ");
-        int codr = Integer.parseInt(parts[0]);
-        Repartidor repartidor = RepartidorDao.getInstance().buscar(codr);
-        pedido.setRepartidor(repartidor);
-        //Se obtiene el modelo de la tabla asociada a la tablaProductos
-        DefaultTableModel model = (DefaultTableModel) tablaProductos.getModel();
-        //Se obtiene la cantidad de filas que tiene la tabla
-        int cantidadDeFilas = model.getRowCount();
-        //Se inicia el bucle que recorre cada fila de la tablaProductos
-        for (int fila = 0; fila < cantidadDeFilas; fila++) {
-            //Se extrae el valor de la columna 0 de cada fila y se guarda en la variable codpr
-            int codpr = (Integer) (model.getValueAt(fila, 0));
-            //Se extrae el valor de la columna 3 de cada fila y se guarda en la variable cantidad
-            int cantidad = (Integer) (model.getValueAt(fila, 3));
-            //se crea un nuevo objeto Producto y se establece su código (codpr). 
-            //Finalmente, se agrega el producto y la cantidad al objeto Pedido 
-            //utilizando el método addProducto().
-            Producto producto = new Producto();
-            producto.setCodpr(codpr);
-            pedido.addProducto(producto, cantidad);
-        }
-        //Finalmente, se llama al método crear() del PedidoDao para intentar crear el pedido en la base de datos. 
-        //Si el pedido se crea con éxito (la llamada al método retorna true), se crea una instancia de ListaPedidos
-        //y se muestra en pantalla. Luego, se cierra la ventana actual (dispose()).
-        if (PedidoDao.getInstance().crear(pedido)) {
-            ListaPedidos pedidos = new ListaPedidos();
-            pedidos.setVisible(true);
-            dispose();
-        }
+        controlador.guardarPedido();
+
     }//GEN-LAST:event_bGuardarActionPerformed
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-        MenuPrincipal menu = new MenuPrincipal();
-        menu.setVisible(true);
-        dispose();
+        controlador.cancelar();
     }//GEN-LAST:event_bCancelarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

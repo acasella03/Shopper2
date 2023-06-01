@@ -1,4 +1,4 @@
-package com.shopper2.controlador;
+package com.shopper2.modelo.dao;
 
 import com.shopper2.modelo.enums.Categoria;
 import com.shopper2.modelo.productos.Producto;
@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Clase DAO (Data Access Object) para la gestión de productos en la base de datos.
+ */
 public class ProductoDao {
 
     /**

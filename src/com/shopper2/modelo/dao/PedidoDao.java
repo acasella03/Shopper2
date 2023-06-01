@@ -1,4 +1,4 @@
-package com.shopper2.controlador;
+package com.shopper2.modelo.dao;
 
 import com.shopper2.modelo.pedido.Pedido;
 import com.shopper2.modelo.productos.IProducto;
@@ -11,6 +11,9 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Clase DAO (Data Access Object) para la gestión de pedidos en la base de datos.
+ */
 public class PedidoDao {
 
     /**
@@ -99,7 +102,7 @@ public class PedidoDao {
                     int cantidad = resultadoProducto.getInt("cantidad");
                     int codpr = resultadoProducto.getInt("codpr");
                     Producto producto = ProductoDao.getInstance().buscar(codpr);
-                    pedido.addProducto(producto,cantidad);
+                    pedido.addProducto(producto, cantidad);
                 }
             }
         } catch (SQLException e) {
@@ -199,7 +202,7 @@ public class PedidoDao {
             modificarDatos.executeUpdate();
 
             PreparedStatement eliminarProductos = conexion.prepareStatement("DELETE from tienen where codpe=?");
-            eliminarProductos.setInt(1,pedido.getCodpe());
+            eliminarProductos.setInt(1, pedido.getCodpe());
             eliminarProductos.execute();
 
             if (pedido.getProductos() != null) {

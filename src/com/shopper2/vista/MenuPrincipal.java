@@ -4,15 +4,17 @@
  */
 package com.shopper2.vista;
 
-/**
- * @author Angita
- */
+import com.shopper2.controlador.MenuPrincipalControlador;
+
 public class MenuPrincipal extends javax.swing.JFrame {
+
+    MenuPrincipalControlador controlador;
 
     /**
      * Creates new form MenuPrincipal
      */
-    public MenuPrincipal() {
+    public MenuPrincipal(MenuPrincipalControlador controlador) {
+        this.controlador = controlador;
         initComponents();
     }
 
@@ -106,14 +108,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bNuevoPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevoPedidoActionPerformed
-        NuevoPedido nuevoPedido = new NuevoPedido();
-        nuevoPedido.setVisible(true);
+        controlador.abrirNuevoPedido();
         dispose();
     }//GEN-LAST:event_bNuevoPedidoActionPerformed
 
     private void bVerPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVerPedidosActionPerformed
-        ListaPedidos pedidos = new ListaPedidos();
-        pedidos.setVisible(true);
+        controlador.abrirListaPedidos();
         dispose();
     }//GEN-LAST:event_bVerPedidosActionPerformed
 

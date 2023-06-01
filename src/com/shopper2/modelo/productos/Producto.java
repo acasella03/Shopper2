@@ -23,9 +23,9 @@ public class Producto implements IProducto {
     /**
      * Constructor parametrizado.
      *
-     * @param codpr código del producto.
+     * @param codpr          código del producto.
      * @param nombreProducto del producto.
-     * @param categoria del producto.
+     * @param categoria      del producto.
      */
     public Producto(int codpr, String nombreProducto, Categoria categoria) {
         this.codpr = codpr;
@@ -35,7 +35,8 @@ public class Producto implements IProducto {
 
     /**
      * Constructor parametrizado.
-     * @param codpr código del producto.
+     *
+     * @param codpr          código del producto.
      * @param nombreProducto
      */
     public Producto(int codpr, String nombreProducto) {
