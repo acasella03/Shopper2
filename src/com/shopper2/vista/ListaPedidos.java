@@ -5,12 +5,8 @@
 package com.shopper2.vista;
 
 import com.shopper2.controlador.ListaPedidosControlador;
-import com.shopper2.modelo.dao.PedidoDao;
-import com.shopper2.modelo.pedido.Pedido;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.util.ArrayList;
 
 public class ListaPedidos extends javax.swing.JFrame {
 
@@ -20,7 +16,7 @@ public class ListaPedidos extends javax.swing.JFrame {
      * Creates new form ListaPedidos
      */
     public ListaPedidos(ListaPedidosControlador controlador) {
-        this.controlador=controlador;
+        this.controlador = controlador;
         initComponents();
     }
 
@@ -49,12 +45,12 @@ public class ListaPedidos extends javax.swing.JFrame {
         setTitle("LISTA DE PEDIDOS");
 
         tablaPedidos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+                new Object[][]{
 
-            },
-            new String [] {
-                "PEDIDO", "CLIENTE", "DIRECCIÓN", "FECHA", "REPARTIDOR"
-            }
+                },
+                new String[]{
+                        "PEDIDO", "CLIENTE", "DIRECCIÓN", "FECHA", "REPARTIDOR"
+                }
         ));
         jScrollPane1.setViewportView(tablaPedidos);
 
@@ -89,45 +85,45 @@ public class ListaPedidos extends javax.swing.JFrame {
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
-            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 932, Short.MAX_VALUE)
-            .addGroup(panelLayout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addComponent(bVolver)
-                .addGap(113, 113, 113)
-                .addComponent(bNuevoPedido)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(bEliminarPedido)
-                .addGap(114, 114, 114)
-                .addComponent(bEditarPedido)
-                .addGap(52, 52, 52))
+                panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 932, Short.MAX_VALUE)
+                        .addGroup(panelLayout.createSequentialGroup()
+                                .addGap(68, 68, 68)
+                                .addComponent(bVolver)
+                                .addGap(113, 113, 113)
+                                .addComponent(bNuevoPedido)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(bEliminarPedido)
+                                .addGap(114, 114, 114)
+                                .addComponent(bEditarPedido)
+                                .addGap(52, 52, 52))
         );
         panelLayout.setVerticalGroup(
-            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bVolver)
-                    .addComponent(bNuevoPedido)
-                    .addComponent(bEditarPedido)
-                    .addComponent(bEliminarPedido))
-                .addGap(0, 15, Short.MAX_VALUE))
+                panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelLayout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(bVolver)
+                                        .addComponent(bNuevoPedido)
+                                        .addComponent(bEditarPedido)
+                                        .addComponent(bEliminarPedido))
+                                .addGap(0, 15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -138,9 +134,7 @@ public class ListaPedidos extends javax.swing.JFrame {
     }//GEN-LAST:event_bVolverActionPerformed
 
     private void bNuevoPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevoPedidoActionPerformed
-        NuevoPedido nuevoPedido = new NuevoPedido();
-        nuevoPedido.setVisible(true);
-        dispose();
+        controlador.abrirNuevoPedido();
     }//GEN-LAST:event_bNuevoPedidoActionPerformed
 
     private void bEditarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditarPedidoActionPerformed

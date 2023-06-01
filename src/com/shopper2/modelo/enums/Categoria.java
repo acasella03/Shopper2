@@ -5,7 +5,7 @@ package com.shopper2.modelo.enums;
  */
 public enum Categoria {
 
-    ALIMENTACION("alimentacion"), DROGUERIA("drogueria"), 
+    ALIMENTACION("alimentacion"), DROGUERIA("drogueria"),
     HIGIENE("higiene"), MASCOTAS("mascotas");
 
     private final String stringValue;
@@ -15,7 +15,7 @@ public enum Categoria {
      *
      * @param stringValue el valor de la categoría como cadena de texto.
      */
-    private Categoria(String stringValue) {
+    Categoria(String stringValue) {
         this.stringValue = stringValue;
     }
 
@@ -34,7 +34,7 @@ public enum Categoria {
      * @param stringValue la cadena de texto a convertir.
      * @return la instancia de Categoria correspondiente a la cadena de texto.
      * @throws IllegalArgumentException si no se encuentra ninguna categoría con
-     * el valor especificado.
+     *                                  el valor especificado.
      */
     public static Categoria fromString(String stringValue) {
         for (Categoria categoria : Categoria.values()) {

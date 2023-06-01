@@ -6,9 +6,6 @@ package com.shopper2.vista;
 
 import com.shopper2.controlador.MenuPrincipalControlador;
 
-/**
- * @author Angita
- */
 public class MenuPrincipal extends javax.swing.JFrame {
 
     MenuPrincipalControlador controlador;

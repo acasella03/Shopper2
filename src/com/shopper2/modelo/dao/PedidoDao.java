@@ -99,7 +99,7 @@ public class PedidoDao {
                     int cantidad = resultadoProducto.getInt("cantidad");
                     int codpr = resultadoProducto.getInt("codpr");
                     Producto producto = ProductoDao.getInstance().buscar(codpr);
-                    pedido.addProducto(producto,cantidad);
+                    pedido.addProducto(producto, cantidad);
                 }
             }
         } catch (SQLException e) {
@@ -199,7 +199,7 @@ public class PedidoDao {
             modificarDatos.executeUpdate();
 
             PreparedStatement eliminarProductos = conexion.prepareStatement("DELETE from tienen where codpe=?");
-            eliminarProductos.setInt(1,pedido.getCodpe());
+            eliminarProductos.setInt(1, pedido.getCodpe());
             eliminarProductos.execute();
 
             if (pedido.getProductos() != null) {

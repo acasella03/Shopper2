@@ -1,8 +1,6 @@
 package com.shopper2.controlador;
 
-import com.shopper2.vista.ListaPedidos;
 import com.shopper2.vista.MenuPrincipal;
-import com.shopper2.vista.NuevoPedido;
 
 public class MenuPrincipalControlador {
 
@@ -15,8 +13,8 @@ public class MenuPrincipalControlador {
     }
 
     public void abrirNuevoPedido() {
-        NuevoPedido nuevoPedido = new NuevoPedido();
-        nuevoPedido.setVisible(true);
+        NuevoPedidoControlador nuevoPedido = new NuevoPedidoControlador();
+        nuevoPedido.abrirNuevoPedido();
     }
 
     public void abrirListaPedidos() {

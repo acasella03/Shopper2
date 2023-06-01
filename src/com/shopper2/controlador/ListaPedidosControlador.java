@@ -65,4 +65,10 @@ public class ListaPedidosControlador {
             PedidoDao.getInstance().eliminar(pedidoId);
         }
     }
+
+    public void abrirNuevoPedido() {
+        NuevoPedidoControlador nuevoPedido = new NuevoPedidoControlador();
+        nuevoPedido.abrirNuevoPedido();
+        vista.dispose();
+    }
 }

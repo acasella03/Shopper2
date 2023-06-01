@@ -19,12 +19,9 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Map;
 
-/**
- * @author Angita
- */
 public class EditarPedido extends javax.swing.JFrame implements IAgregarProducto {
 
-    private int codpe;
+    private final int codpe;
 
     /**
      * Creates new form NuevoPedido
