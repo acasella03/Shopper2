@@ -78,29 +78,64 @@ classDiagram
     class Pedido {
         <<implementa>>
         IPedido
+     -int: codpe
+     -String: nomCliente
+     -String: direccionCliente
+     -Date: data
+     -Repartidor: repartidor
+     -Map: productos
+     +setCodpe(int)
+     +setNomCliente(String)
+     +setFecha(Date)
+     +setRepartidor(Repartidor)
+     +getCodpe()int
+     +getNomCliente()String
+     +getFecha()Date
+     +getRepartidor()Repartidor
+     +getProductos()Map
+     +addProducto(Producto, Integer)
     }
 
     class IAgregarProducto {
+      +agregarProducto(Producto, int)
     }
 
     class IProducto {
+    -getCodpr()int
+    -getNombreProducto()String
+    -getCategoria()Categoria
     }
 
     class Producto {
         <<implementa>>
         IProducto
+     -int:codpr
+     -String: nombreProducto
+     -Categoria: categoria   
+     +setCodpr(int)
+     +setNombreProducto(String)
+     +setCategoria(Categoria)
+ 
     }
 
     class IRepartidor {
+    +getCodr()int
+    +getNomr()String
     }
 
     class Repartidor {
         <<implementa>>
         IRepartidor
+     -int: codr
+     -String: nomr
+     +setCodr(int)
+     +setNombr(String)
     }
 
     class AgregarProductos {
-   
+    -IAgregarProducto: agregarProducto
+    -initProductos()
+    -initComponents() 
     }
 
     class EditarPedido {
@@ -109,14 +144,19 @@ classDiagram
     }
 
     class ListaPedidos {
+    -initTabla()
+    -initComponents()
     }
 
     class MenuPrincipal {
+    -initComponents()
     }
 
     class NuevoPedido {
      <<implementa>>
     IAgregarProducto
+   -initRepartidores()
+   -initComponents()
     }
 
    
@@ -126,9 +166,9 @@ classDiagram
     Modelo o-- Pedido    
     Modelo o-- Repartidor
 
-    Controlador o-- PedidoDao
-    Controlador o-- ProductoDao
-    Controlador o-- RepartidorDao
+    Modelo o-- PedidoDao
+    Modelo o-- ProductoDao
+    Modelo o-- RepartidorDao
 
     Modelo <|-- Controlador
     Vista <|-- Controlador
