@@ -11,14 +11,9 @@ de la tienda podrán gestionar de manera eficaz todos los aspectos relacionados 
 
 ```mermaid
 classDiagram
+
     class Modelo {
-    }
-
-    class Vista {
-    }
-
-    class Controlador {
-    }
+    } 
 
     class PedidoDao {
     -PedidoDao: instance
@@ -95,10 +90,9 @@ classDiagram
      +getProductos()Map
      +addProducto(Producto, Integer)
     }
-
     class IAgregarProducto {
       +agregarProducto(Producto, int)
-    }
+    }    
 
     class IProducto {
     -getCodpr()int
@@ -131,35 +125,62 @@ classDiagram
      +setCodr(int)
      +setNombr(String)
     }
-
-    class AgregarProductos {
-    -IAgregarProducto: agregarProducto
-    -initProductos()
-    -initComponents() 
-    }
-
+     class Vista  {
+     Class AgregarProdutos
+     Class ListaPedidos
+     Class MenuPrincipal
+    }   
+ 
     class EditarPedido {
-     <<implementa>>
-    IAgregarProducto
-    }
-
-    class ListaPedidos {
-    -initTabla()
-    -initComponents()
-    }
-
-    class MenuPrincipal {
-    -initComponents()
+     -initComponents()
     }
 
     class NuevoPedido {
-     <<implementa>>
-    IAgregarProducto
-   -initRepartidores()
    -initComponents()
     }
-
-   
+      class Controlador {
+    }
+    
+    class EditarPedidoControlador{
+    -EditarPedido: vista
+    -int: codpe
+    +abrirEditarPedido()
+    +initRepartidores()
+    +initPedido()
+    +agregarProducto(Producto, int)
+    +borrarProducto(JTable)
+    +abrirAgregarProductos()
+    +abrirListaPedidos()
+    +modificarPedido()     
+    }
+    class ListaPedidosControlador{
+    -ListaPedidos: vista
+    +abrirListaPedidos()
+    +volverMenuPrincipal()
+    +editarPedido(JTable)
+    +eliminarPedido(JTable)
+    +abrirNuevoPedido()
+    }
+    class MenuPrincipalControlador{
+    +abrirMenuPrincipal()
+    +abrirNuevoPedido()
+    +abrirListaPedidos()
+    }
+    class NuevoPedidoControlador{
+    -NuevoPedido: vista
+    +abrirNuevoPedido()
+    +borrarProducto(JTable)
+    +guardarPedido()
+    +cancelar()
+    +agregarProducto(Producto, int)
+    +abrirAgregarProductos()
+    }
+    
+    Controlador o-- EditarPedidoControlador
+    Controlador o-- ListaPedidosControlador
+    Controlador o-- MenuPrincipalControlador
+    Controlador o-- NuevoPedidoControlador
+    
     Producto o-- Categoria
     
     Modelo o-- Producto
@@ -173,18 +194,20 @@ classDiagram
     Modelo <|-- Controlador
     Vista <|-- Controlador
 
-    Vista o-- AgregarProductos
-    Vista o-- EditarPedido
-    Vista o-- ListaPedidos
-    Vista o-- MenuPrincipal
+   
+    Vista o-- EditarPedido    
     Vista o-- NuevoPedido
+     IAgregarProducto <.. EditarPedido
+    IAgregarProducto <.. NuevoPedido
     
     IRepartidor <.. Repartidor
     IPedido <.. Pedido
     IProducto <.. Producto
    
-    IAgregarProducto <.. EditarPedido
-    IAgregarProducto <.. NuevoPedido
+ 
 
 
 ```
+
+
+
