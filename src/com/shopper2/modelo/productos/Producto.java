@@ -1,55 +1,110 @@
 package com.shopper2.modelo.productos;
 
-import com.shopper2.modelo.contenedores.IContenedor;
 import com.shopper2.modelo.enums.Categoria;
 
+/**
+ * Describe los datos necesarios de un producto.
+ */
 public class Producto implements IProducto {
-    private String referencia;
-    private int peso;
-    private int volumen;
-    private IContenedor contenedor;
+
+    /**
+     * Identificador de un producto.
+     */
+    private int codpr;
+    /**
+     * Nombre de un producto.
+     */
+    private String nombreProducto;
+    /**
+     * Categoría de un producto.
+     */
     private Categoria categoria;
 
-    public Producto(String referencia, int peso, int volumen, Categoria categoria) {
-        this.referencia = referencia;
-        this.peso = peso;
-        this.volumen = volumen;
-        this.categoria=categoria;
+    /**
+     * Constructor parametrizado.
+     *
+     * @param codpr          código del producto.
+     * @param nombreProducto del producto.
+     * @param categoria      del producto.
+     */
+    public Producto(int codpr, String nombreProducto, Categoria categoria) {
+        this.codpr = codpr;
+        this.nombreProducto = nombreProducto;
+        this.categoria = categoria;
     }
 
+    /**
+     * Constructor parametrizado.
+     *
+     * @param codpr          código del producto.
+     * @param nombreProducto
+     */
+    public Producto(int codpr, String nombreProducto) {
+        this.codpr = codpr;
+        this.nombreProducto = nombreProducto;
+    }
+
+    /**
+     * Constructor vacio.
+     */
+    public Producto() {
+    }
+
+    /**
+     * Asigna un identificador al producto.
+     *
+     * @param codpr código del producto.
+     */
+    public void setCodpr(int codpr) {
+        this.codpr = codpr;
+    }
+
+    /**
+     * Asigna un nombre al producto.
+     *
+     * @param nombreProducto del producto.
+     */
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
+    }
+
+    /**
+     * Asigna una categoria al producto.
+     *
+     * @param categoria del producto.
+     */
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    /**
+     * Obtiene el identificador del producto.
+     *
+     * @return identificador del producto.
+     */
     @Override
-    public String getReferencia() {
-        return referencia;
+    public int getCodpr() {
+        return codpr;
     }
 
+    /**
+     * Obtiene el nombre del producto.
+     *
+     * @return nombre del producto.
+     */
     @Override
-    public int getPeso() {
-        return peso;
+    public String getNombreProducto() {
+        return nombreProducto;
     }
 
-    @Override
-    public int getVolumen() {
-        return volumen;
-    }
-
+    /**
+     * Obtiene la categoría del producto.
+     *
+     * @return categoría del producto.
+     */
     @Override
     public Categoria getCategoria() {
         return categoria;
     }
 
-    @Override
-    public boolean tengoEspacio(IContenedor contenedor) {
-        return contenedor.volumenDisponible() > volumen;
-    }
-
-    @Override
-    public void meter(IContenedor contenedor) {
-        this.contenedor = contenedor;
-    }
-
-    @Override
-    public String toString() {
-        return "Producto [categoría=" + getCategoria() + ", referencia=" + referencia + ", peso=" + peso + ", volumen=" + volumen + ", contenedor="
-                + contenedor.getReferencia() + "]";
-    }
 }
