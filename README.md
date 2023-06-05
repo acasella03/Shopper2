@@ -203,11 +203,44 @@ classDiagram
     IRepartidor <.. Repartidor
     IPedido <.. Pedido
     IProducto <.. Producto
-   
- 
-
-
 ```
+## DIAGRAMA DE CLASES SIMPLIFICADO
+![DiagramaClasesSimplificado](DiagramaClasesShopper2.png)
+
+## ENTIDAD RELACIÓN DE LA BASE DE DATOS
+```mermaid
+classDiagram
+direction BT
+class pedidos {
+   text nomCliente
+   text direccion
+   date fecha
+   integer codr
+   integer codpe
+}
+class productos {
+   text nompr
+   text categoria
+   integer codpr
+}
+class repartidores {
+   text nomr
+   integer codr
+}
+class tienen {
+   integer cantidad
+   integer codpe
+   integer codpr
+}
+
+pedidos  -->  repartidores : codr
+tienen  -->  pedidos : codpe
+tienen  -->  productos : codpr
+```
+
+## PATRON MVC (MODELO-VISTA-CONTROLADOR)
+![PatronMVC](Shopper2DiagramaFuncionamientoMVC.drawio.png)
+
 ## DIAGRAMA DE SECUENCIA
 Dado que el proyecto implica el desarrollo de una aplicación de **gestión de pedidos**, 
 es apropiado representar el **diagrama de secuencias** que describe la interacción de la aplicación en general.<br> 
@@ -298,4 +331,19 @@ sequenceDiagram
         Vista ->> Controlador: Mostrar mensaje de error
     end
 ```
+## MENÚ PRINCIPAL
+![MenúPrincipal](MenuPrincipal.png)
+
+## NUEVO PEDIDO
+![NuevoPedido](NuevoPedido.png)
+
+## AGREGAR PRODUCTOS
+![AgregarProductos](AgregarProductos.png)
+![AgregarProductos1](AgregarProductos1.png)
+
+## LISTA DE PEDIDOS
+![ListaPedidos](ListaPedidos.png)
+
+## EDITAR PEDIDO
+![EditarPedido](EditarPedido.png)
 
