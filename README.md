@@ -239,7 +239,7 @@ tienen  -->  productos : codpr
 ```
 
 ## PATRON MVC (MODELO-VISTA-CONTROLADOR)
-![PatronMVC](Shopper2DiagramaFuncionamientoMVC.drawio.png)
+![PatronMVC](https://github.com/acasella03/Shopper2/blob/main/Shopper2_Imagenes/Shopper2DiagramaFuncionamientoMVC.drawio.png)
 
 ## DIAGRAMA DE SECUENCIA
 Dado que el proyecto implica el desarrollo de una aplicación de **gestión de pedidos**, 
@@ -332,18 +332,18 @@ sequenceDiagram
     end
 ```
 ## MENÚ PRINCIPAL
-![MenúPrincipal](MenuPrincipal.png)
+![MenúPrincipal](https://github.com/acasella03/Shopper2/blob/main/Shopper2_Imagenes/MenuPrincipal.png)
 
 ## NUEVO PEDIDO
-![NuevoPedido](NuevoPedido.png)
+![NuevoPedido](https://github.com/acasella03/Shopper2/blob/main/Shopper2_Imagenes/NuevoPedido.png)
 
 ## AGREGAR PRODUCTOS
-![AgregarProductos](AgregarProductos.png)
-![AgregarProductos1](AgregarProductos1.png)
+![AgregarProductos](https://github.com/acasella03/Shopper2/blob/main/Shopper2_Imagenes/AgregarProductos.png)
+![AgregarProductos1](https://github.com/acasella03/Shopper2/blob/main/Shopper2_Imagenes/AgregarProductos1.png)
 
 ## LISTA DE PEDIDOS
-![ListaPedidos](ListaPedidos.png)
+![ListaPedidos](https://github.com/acasella03/Shopper2/blob/main/Shopper2_Imagenes/ListaPedidos.png)
 
 ## EDITAR PEDIDO
-![EditarPedido](EditarPedido.png)
+![EditarPedido](https://github.com/acasella03/Shopper2/blob/main/Shopper2_Imagenes/EditarPedido.png)
 
