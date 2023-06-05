@@ -205,7 +205,7 @@ classDiagram
     IProducto <.. Producto
 ```
 ## DIAGRAMA DE CLASES SIMPLIFICADO
-![DiagramaClasesSimplificado](DiagramaClasesShopper2.png)
+![DiagramaClasesSimplificado](https://github.com/acasella03/Shopper2/blob/main/Shopper2_Imagenes/DiagramaClasesShopper2.png)
 
 ## ENTIDAD RELACIÓN DE LA BASE DE DATOS
 ```mermaid
@@ -239,7 +239,7 @@ tienen  -->  productos : codpr
 ```
 
 ## PATRON MVC (MODELO-VISTA-CONTROLADOR)
-![PatronMVC](https://github.com/acasella03/Shopper2/blob/main/Shopper2_Imagenes/Shopper2DiagramaFuncionamientoMVC.drawio.png)
+![PatronMVC](https://github.com/acasella03/Shopper2/blob/main/Shopper2_Imagenes/Shopper2DiagramaFuncionamientoMVC.png)
 
 ## DIAGRAMA DE SECUENCIA
 Dado que el proyecto implica el desarrollo de una aplicación de **gestión de pedidos**, 
